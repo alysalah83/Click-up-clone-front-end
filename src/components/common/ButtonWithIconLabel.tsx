@@ -24,10 +24,12 @@ function ButtonWithIconLabel({
   latestListIdPromise,
 }: ButtonWithIconLabelProps) {
   const { listId } = useParams<{ listId: string }>();
-  let newListId: string;
+  let newListId: string | undefined;
   const isHavingReservedListId = LIST_ID_RESERVED_ROUTES.has(listId);
-  if (isHavingReservedListId) newListId = use(latestListIdPromise);
-  else newListId = listId;
+  if (isHavingReservedListId) {
+    const latestListId = use(latestListIdPromise);
+    newListId = latestListId ? latestListId : undefined;
+  } else newListId = listId;
 
   const { icon, iconBgColor, label, href } = item;
   const Icon = ICONS_MAP[icon];

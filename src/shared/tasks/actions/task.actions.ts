@@ -21,6 +21,7 @@ import {
 export async function createTask(clientCreatedTask: ClientCreatedTask) {
   try {
     const vialedClientCreatedTask = createTaskSchema.parse(clientCreatedTask);
+    console.log(vialedClientCreatedTask);
     const newTask = await createTaskApi(vialedClientCreatedTask);
 
     return newTask;

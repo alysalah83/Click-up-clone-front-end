@@ -1,5 +1,6 @@
 "use client";
 
+import { useParams } from "next/navigation";
 import { deleteList } from "../actions/list.actions";
 import { useList } from "./ListContext";
 import OptionsDeleteConfirm from "@/shared/options-menu/components/OptionsDeleteConfirm";
@@ -9,7 +10,15 @@ function DeleteListConfirm() {
     workspaceId,
     list: { id: listId, name },
   } = useList();
-  const deleteListWithIds = deleteList.bind(null, workspaceId, listId);
+  const { listId: ListIdParam } = useParams<{ listId: string }>();
+  const isCurrentListIdDeleted = listId === ListIdParam;
+
+  const deleteListWithIds = deleteList.bind(
+    null,
+    workspaceId,
+    listId,
+    isCurrentListIdDeleted,
+  );
 
   return (
     <OptionsDeleteConfirm deleteAction={deleteListWithIds} deletedName={name} />

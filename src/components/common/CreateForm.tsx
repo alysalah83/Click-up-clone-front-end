@@ -3,6 +3,7 @@ import {
   ReactNode,
   SetStateAction,
   useActionState,
+  useEffect,
   // useEffect,
 } from "react";
 // import { useModal } from "../ui/ModalCompound";
@@ -10,6 +11,8 @@ import ErrorMessage from "./ErrorMessage";
 import Button from "./Button";
 import ControlledFormInput from "./ControlledFormInput";
 import { ActionStatus } from "@/types/index.types";
+import { useRouter } from "next/navigation";
+import { useModal } from "../ui/ModalCompound";
 
 interface CreateFormProps {
   children?: ReactNode;
@@ -35,11 +38,20 @@ function CreateForm({
   setInputValue: setNameValue,
   inputValue: nameValue,
 }: CreateFormProps) {
+  const { push } = useRouter();
   const [actionStatus, action, isPending] = useActionState(theAction, {
     status: "idle",
   });
+  const { toggleModal } = useModal();
 
   const isFormValid = nameValue.trim().length > 0;
+
+  useEffect(() => {
+    if (actionStatus.status === "success" && "payload" in actionStatus) {
+      push(`/home/${actionStatus.payload.listId}/table`);
+      toggleModal();
+    }
+  }, [push, actionStatus, toggleModal]);
 
   return (
     <form

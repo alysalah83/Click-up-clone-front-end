@@ -17,16 +17,15 @@ export async function createList(
   prevState: ActionStatus,
   formData: FormData,
 ): Promise<ActionStatus> {
-  let listId;
   try {
     const name = formData.get("name");
     const vialedList = listSchema.parse({ name, workspaceId });
 
     const list = await createListApi(vialedList);
-    listId = list.id;
 
     revalidateTag(`lists-${workspaceId}`);
     revalidatePath("/home/overview");
+    return { status: "success", payload: { listId: list.id } };
   } catch (err: any) {
     if (err instanceof z.ZodError)
       return {
@@ -39,7 +38,6 @@ export async function createList(
       error: err instanceof Error ? err.message : "Something went wrong",
     };
   }
-  redirect(`/home/${listId}/board`);
 }
 
 export async function updateList(
@@ -69,14 +67,16 @@ export async function updateList(
 export async function deleteList(
   workspaceId: string,
   listId: string,
+  isCurrentListIdDeleted: boolean,
 ): Promise<ActionStatus> {
   try {
     const vialedListId = mongoIdSchema.parse(listId);
     await deleteListApi(vialedListId);
     revalidateTag(`lists-${workspaceId}`);
-    return { status: "success" };
   } catch (err: any) {
     console.error(err);
     return { status: "error", error: err.message || "Something went wrong" };
   }
+  if (isCurrentListIdDeleted) return redirect("/home/overview");
+  else return { status: "success" };
 }

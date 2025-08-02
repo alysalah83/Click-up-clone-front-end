@@ -6,6 +6,7 @@ type StylesSizes = "small" | "medium" | "large";
 type ActionStatus =
   | { status: "idle" }
   | { status: "success" }
+  | { status: "success"; payload: { listId: string } }
   | { status: "error"; error: string | undefined };
 
 export type { IconsMap, StylesSizes, ActionStatus };

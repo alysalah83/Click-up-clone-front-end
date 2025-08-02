@@ -11,14 +11,12 @@ import { updateWorkspaceApi } from "../../../lib/api/server/workspace/updateWork
 import { mongoIdSchema } from "../../../lib/validations/global";
 import { Avatar, ClientWorkspace } from "../types/workspace.types";
 import { createListApi } from "@/lib/api/server/list/createList";
-import { redirect } from "next/navigation";
 
 export async function createWorkspace(
   avatar: Avatar,
   prevState: ActionStatus,
   formData: FormData,
 ): Promise<ActionStatus> {
-  let listId;
   try {
     const name = formData.get("name");
     const vialedWorkspace = workspaceSchema.parse({ name, avatar });
@@ -28,10 +26,10 @@ export async function createWorkspace(
       workspaceId: workspace.id,
       name: "List",
     });
-    listId = list.id;
 
     revalidateTag("workspaces");
     revalidatePath("/home/overview");
+    return { status: "success", payload: { listId: list.id } };
   } catch (err) {
     console.log(err);
     if (err instanceof z.ZodError)
@@ -45,7 +43,6 @@ export async function createWorkspace(
       error: err instanceof Error ? err.message : "Something went wrong",
     };
   }
-  redirect(`/home/${listId}/board`);
 }
 
 export async function updateWorkspace(
