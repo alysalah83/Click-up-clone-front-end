@@ -7,4 +7,5 @@ export const LIST_ID_RESERVED_ROUTES = new Set([
   "list",
   "table",
   "undefined",
+  undefined,
 ]);

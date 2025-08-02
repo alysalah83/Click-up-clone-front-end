@@ -15,7 +15,7 @@ function UserLogo({
     .join("");
   return (
     <div className="flex cursor-default items-center gap-2 rounded-lg px-2 py-1">
-      <div className="flex items-center rounded-full bg-lime-700 p-1.5 text-sm leading-2.5 font-medium">
+      <div className="flex h-8 w-8 items-center justify-center rounded-full bg-lime-700 text-sm font-medium">
         {nameFirstLetters}
       </div>
       <span className="text-base font-medium text-neutral-200 capitalize">

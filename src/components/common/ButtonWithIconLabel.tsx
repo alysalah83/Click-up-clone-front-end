@@ -23,9 +23,11 @@ function ButtonWithIconLabel({
   isActive,
   latestListIdPromise,
 }: ButtonWithIconLabelProps) {
-  let { listId } = useParams<{ listId: string }>();
-  const isHavingListId = LIST_ID_RESERVED_ROUTES.has(listId);
-  if (isHavingListId) listId = use(latestListIdPromise);
+  const { listId } = useParams<{ listId: string }>();
+  let newListId: string;
+  const isHavingReservedListId = LIST_ID_RESERVED_ROUTES.has(listId);
+  if (isHavingReservedListId) newListId = use(latestListIdPromise);
+  else newListId = listId;
 
   const { icon, iconBgColor, label, href } = item;
   const Icon = ICONS_MAP[icon];
@@ -42,21 +44,21 @@ function ButtonWithIconLabel({
     Object.entries(tableSorts).forEach(([key, value]) => {
       if (value) tableSearchParams.set(key, value);
     });
-    linkHref = `/home/${listId}${href}?${tableSearchParams.toString()}`;
+    linkHref = `/home/${newListId}${href}?${tableSearchParams.toString()}`;
   } else if (isBoard) {
     const boardSearchParams = new URLSearchParams();
     Object.entries(boardSorts).forEach(([key, value]) => {
       if (value) boardSearchParams.set(key, value);
     });
-    linkHref = `/home/${listId}${href}?${boardSearchParams.toString()}`;
+    linkHref = `/home/${newListId}${href}?${boardSearchParams.toString()}`;
   } else if (isList) {
     const listSearchParams = new URLSearchParams();
     Object.entries(listSorts).forEach(([key, value]) => {
       if (value) listSearchParams.set(key, value);
     });
-    linkHref = `/home/${listId}${href}?${listSearchParams.toString()}`;
+    linkHref = `/home/${newListId}${href}?${listSearchParams.toString()}`;
   } else if (isOverview) linkHref = `/home${href}`;
-  else linkHref = `/home/${listId}${href}`;
+  else linkHref = `/home/${newListId}${href}`;
 
   return (
     <Link href={linkHref}>

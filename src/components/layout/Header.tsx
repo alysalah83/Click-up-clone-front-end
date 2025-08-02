@@ -78,11 +78,11 @@ function HeaderFeatures({
   userPromise: Promise<ClientUser | undefined>;
 }) {
   const pathname = usePathname();
-  const isInTablePage = pathname.includes("/table");
+  const isInBoardPage = pathname.includes("/board");
 
   return (
     <div className="flex items-center gap-4">
-      {!isInTablePage && <BoardSortBtn />}
+      {isInBoardPage && <BoardSortBtn />}
       <UserLogo userPromise={userPromise} />
     </div>
   );
