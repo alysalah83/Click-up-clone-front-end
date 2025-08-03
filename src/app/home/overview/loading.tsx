@@ -1,0 +1,40 @@
+import SkeletonLoader from "@/components/ui/SkeletonLoader";
+
+function loading() {
+  return (
+    <div className="p-4">
+      <div className="flex flex-col gap-4 rounded-xl border border-neutral-700 bg-neutral-900 px-8 py-4 text-neutral-400">
+        <h2 className="mb-4 flex items-end gap-4">
+          <span className="text-2xl font-semibold tracking-wide text-neutral-100">
+            Lists
+          </span>
+          <span className="text-sm font-medium text-neutral-500">
+            Select a list
+          </span>
+        </h2>
+        <div className="flex items-center justify-between">
+          <SkeletonLoader width="w-14" height="h-6" rounded="rounded-sm" />
+          <SkeletonLoader width="w-3xs" height="h-5" />
+        </div>
+        <div className="flex items-center justify-between">
+          <SkeletonLoader width="w-14" height="h-6" rounded="rounded-sm" />
+          <SkeletonLoader width="w-3xs" height="h-5" />
+        </div>
+        <div className="flex items-center justify-between">
+          <SkeletonLoader width="w-14" height="h-6" rounded="rounded-sm" />
+          <SkeletonLoader width="w-3xs" height="h-5" />
+        </div>
+        <div className="flex items-center justify-between">
+          <SkeletonLoader width="w-14" height="h-6" rounded="rounded-sm" />
+          <SkeletonLoader width="w-3xs" height="h-5" />
+        </div>
+        <div className="flex items-center justify-between">
+          <SkeletonLoader width="w-14" height="h-6" rounded="rounded-sm" />
+          <SkeletonLoader width="w-3xs" height="h-5" />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default loading;

@@ -1,6 +1,10 @@
 export const MENU_ITEMS = [
   { icon: "home", label: "Home", href: "/home" },
-  { icon: "dashboard", label: "DashBoard", href: "/home/dashboard" },
+  {
+    icon: "dashboard",
+    label: "DashBoard",
+    href: "/home/dashboard",
+  },
 ] as const;
 
 export const HEADER_MENU = [

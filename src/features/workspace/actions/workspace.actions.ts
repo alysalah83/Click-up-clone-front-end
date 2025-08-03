@@ -11,6 +11,7 @@ import { updateWorkspaceApi } from "../../../lib/api/server/workspace/updateWork
 import { mongoIdSchema } from "../../../lib/validations/global";
 import { Avatar, ClientWorkspace } from "../types/workspace.types";
 import { createListApi } from "@/lib/api/server/list/createList";
+import { createTaskApi } from "@/lib/api/server/task/createTask";
 
 export async function createWorkspace(
   avatar: Avatar,
@@ -25,6 +26,11 @@ export async function createWorkspace(
     const list = await createListApi({
       workspaceId: workspace.id,
       name: "List",
+    });
+    await createTaskApi({
+      listId: list.id,
+      name: "Task 1",
+      priority: "normal",
     });
 
     revalidateTag("workspaces");

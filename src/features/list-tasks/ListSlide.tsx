@@ -5,8 +5,14 @@ import ListSlideRow from "./ListSlideRow";
 import { listBgHoverGradient, listRowBorder } from "./styles/style";
 import TaskSortButton from "@/shared/tasks/components/TaskSortButton";
 
-function ListSlide({ status, tasks }: { status: TaskStatus; tasks: Task[] }) {
-  const tasksCount = tasks.length;
+function ListSlide({
+  status,
+  tasks,
+}: {
+  status: TaskStatus;
+  tasks: Task[] | undefined;
+}) {
+  const tasksCount = tasks?.length;
 
   return (
     <div className="flex flex-col gap-3">
@@ -40,7 +46,7 @@ function ListSlide({ status, tasks }: { status: TaskStatus; tasks: Task[] }) {
           </div>
         </header>
         <section>
-          {tasks.map((task) => (
+          {tasks?.map((task) => (
             <TaskProvider task={task} key={task.id}>
               <ListSlideRow />
             </TaskProvider>
