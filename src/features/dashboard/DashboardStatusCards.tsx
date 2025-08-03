@@ -23,7 +23,7 @@ async function DashboardStatusCards() {
           <span className="text-base font-medium text-neutral-500">Tasks</span>
         </div>
       </div>
-      <div className="col-span-2 flex flex-col gap-4 rounded-xl border border-neutral-600 bg-neutral-900 p-4 pt-2">
+      <div className="flex flex-col gap-4 rounded-xl border border-neutral-600 bg-neutral-900 p-4 pt-2 sm:col-span-2">
         <h3 className="text-xl font-semibold tracking-wide">Completed</h3>
         <div className="flex w-full flex-col items-center justify-center gap-2">
           <span className="text-4xl font-bold text-neutral-300 tabular-nums">

@@ -15,7 +15,7 @@ function ListSlide({
   const tasksCount = tasks?.length;
 
   return (
-    <div className="flex flex-col gap-3">
+    <div className="flex min-w-2xl flex-col gap-3 overflow-x-auto">
       <header className="flex items-center gap-2">
         <StatusCard type={status} />
         <span className="font-medium text-neutral-600 tabular-nums">
@@ -26,7 +26,9 @@ function ListSlide({
         <header
           className={`grid cursor-default grid-cols-21 ${listRowBorder} text-sm font-medium text-neutral-600`}
         >
-          <div className={`col-span-10 p-2 ${listBgHoverGradient}`}>
+          <div
+            className={`col-span-10 flex items-center p-2 ${listBgHoverGradient}`}
+          >
             <span>Name</span>
           </div>
           <div
@@ -41,7 +43,9 @@ function ListSlide({
             <span>Priority</span>
             <TaskSortButton sortingFor="priority" usedFor="list" />
           </div>
-          <div className={`col-span-3 p-2 ${listBgHoverGradient}`}>
+          <div
+            className={`col-span-3 flex items-center p-2 ${listBgHoverGradient}`}
+          >
             <span>Status</span>
           </div>
         </header>

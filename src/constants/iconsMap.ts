@@ -16,6 +16,7 @@ import {
   IoSearchOutline,
   IoCloseOutline,
   IoCheckmarkSharp,
+  IoSettings,
 } from "react-icons/io5";
 import { MdLockOutline, MdOutlineBlock } from "react-icons/md";
 import {
@@ -65,4 +66,5 @@ export const ICONS_MAP = {
   bullEye: FaBullseye,
   signOut: FaSignOutAlt,
   exclamationMark: PiExclamationMarkBold,
+  setting: IoSettings,
 } as const;

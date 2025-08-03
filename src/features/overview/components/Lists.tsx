@@ -15,7 +15,7 @@ async function Lists() {
   if (workspacesCount <= 0) return <NoWorkspace />;
 
   return (
-    <div className="flex flex-col gap-2 rounded-xl border border-neutral-700 bg-neutral-900 px-8 py-4 text-neutral-400">
+    <div className="flex flex-col gap-2 rounded-xl border border-neutral-700 bg-neutral-900 px-6 py-4 text-neutral-400 md:px-8">
       <h2 className="mb-4 flex items-end gap-4">
         <span className="text-2xl font-semibold tracking-wide text-neutral-100">
           Lists
@@ -38,7 +38,7 @@ async function ListItem({ list }: { list: List }) {
   const count = await getListTasksCounts(id);
   const { totalCount, completeCount } = count;
   return (
-    <div className="flex items-center justify-between">
+    <div className="flex items-center justify-between gap-4">
       <Link href={`/home/${id}/table`}>
         <div className="flex cursor-pointer items-center gap-3">
           <ICONS_MAP.list className="size-4 fill-neutral-400" />
@@ -46,7 +46,7 @@ async function ListItem({ list }: { list: List }) {
         </div>
       </Link>
       <div className="flex items-center gap-4">
-        <div className="relative h-2 w-52 rounded-lg bg-neutral-800">
+        <div className="relative h-2 w-32 rounded-lg bg-neutral-800 sm:w-52">
           <div
             style={{
               width: `${(completeCount / totalCount) * 100}%`,
