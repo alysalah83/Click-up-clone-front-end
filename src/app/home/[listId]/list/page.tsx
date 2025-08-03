@@ -1,5 +1,10 @@
 import ListSlides from "@/features/list-tasks/ListSlides";
 import { cookies } from "next/headers";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "List",
+};
 
 async function page({ params }: { params: Promise<{ listId: string }> }) {
   const [{ listId }, cookiesStore] = await Promise.all([params, cookies()]);

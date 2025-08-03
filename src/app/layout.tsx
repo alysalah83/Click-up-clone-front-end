@@ -1,5 +1,10 @@
 import ToastsManger from "@/components/ui/ToastsManger";
 import "@/styles/globals.css";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: { template: "Click up | %s", default: "Click up" },
+};
 
 export default function RootLayout({
   children,

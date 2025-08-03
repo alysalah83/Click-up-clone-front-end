@@ -1,4 +1,9 @@
 import DashboardLayout from "@/features/dashboard/DashboardLayout";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Dashboard",
+};
 
 function DashboardPage() {
   return (

@@ -1,5 +1,10 @@
 import TableTasksLayout from "@/features/table-tasks/components/TableTasksLayout";
 import { cookies } from "next/headers";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Table",
+};
 
 async function page({ params }: { params: Promise<{ listId: string }> }) {
   const [{ listId }, cookiesStore] = await Promise.all([params, cookies()]);
