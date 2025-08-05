@@ -30,6 +30,11 @@ This project showcases **modern React 19 development**, custom UI components, an
         <img src="site-images/signup.jpeg" alt="Signup" width="300" />
         <br>
         <strong>Signup Page</strong>
+       <td align="center">
+        <img src="site-images/overview.png" alt="Overview" width="300" />
+        <br>
+        <strong>Overview</strong>
+      </td>
       </td>
     </tr>
     <tr>
@@ -55,22 +60,17 @@ This project showcases **modern React 19 development**, custom UI components, an
         <br>
         <strong>Table View</strong>
       </td>
-      <td align="center">
-        <img src="site-images/table2.png" alt="Table View 2" width="300" />
-        <br>
-        <strong>Table View 2</strong>
-      </td>
-    </tr>
-    <tr>
       <td align="center" colspan="3">
         <img src="site-images/create%20workspace.png" alt="Create Workspace" width="300" />
         <br>
         <strong>Create Workspace</strong>
       </td>
-       <td align="center">
-        <img src="site-images/overview.png" alt="Overview" width="300" />
+    </tr>
+    <tr>
+    <td align="center">
+        <img src="site-images/table2.png" alt="Table View 2" width="300" />
         <br>
-        <strong>Overview</strong>
+        <strong>Table View 2</strong>
       </td>
     </tr>
   </table>
