@@ -9,8 +9,9 @@ import { Menu, MenuContent, MenuTrigger } from "@/components/ui/MenuCompound";
 import DateRangePicker from "@/components/ui/DateRangePicker";
 import { useClientAddTask } from "@/shared/tasks/hooks/useClientAddTask";
 import AddPriorityMenuList from "@/shared/tasks/components/AddPriorityMenuList";
-import { TaskPriority } from "@/shared/tasks/types/task.types";
+import { TaskDateRange, TaskPriority } from "@/shared/tasks/types/task.types";
 import { TASK_PRIORITIES_LIST } from "@/shared/tasks/consts/task.consts";
+import { getFormattedRangeDate } from "@/utils/helper";
 
 function TableAddTaskRow() {
   const [isAddTaskOpen, setIsAddTaskOpen] = useState(false);
@@ -38,11 +39,6 @@ function TableAddTaskRow() {
       )}
     </div>
   );
-}
-
-interface DateRange {
-  startDate: Date;
-  endDate: Date;
 }
 
 function TableOpenedAddTaskRow({
@@ -126,8 +122,8 @@ function TableAddTaskFeaturesBtns({
   priority,
   onPriorityChange,
 }: {
-  onDateChange: (dateRange: DateRange) => void;
-  dateRanges: { startDate: Date; endDate: Date };
+  dateRanges: TaskDateRange;
+  onDateChange: (dateRange: TaskDateRange) => void;
   priority: TaskPriority;
   onPriorityChange: (arg: TaskPriority) => void;
 }) {
@@ -143,6 +139,11 @@ function TableAddTaskFeaturesBtns({
         <MenuTrigger>
           <ButtonIcon
             type="bordered"
+            label={
+              dateRanges.startDate && dateRanges.endDate
+                ? getFormattedRangeDate(dateRanges)
+                : ""
+            }
             size={3.5}
             ariaLabel="open date menu button"
             icon="date"

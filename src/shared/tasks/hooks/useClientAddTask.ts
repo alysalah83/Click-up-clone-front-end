@@ -1,19 +1,14 @@
 "use client";
 
 import { RefObject, useCallback, useEffect, useState } from "react";
-import { TaskPriority, TaskStatus } from "../types/task.types";
+import { TaskDateRange, TaskPriority, TaskStatus } from "../types/task.types";
 import { useParams } from "next/navigation";
 import { useAddTask } from "./useAddTask";
-
-interface DateRange {
-  startDate: Date;
-  endDate: Date;
-}
 
 interface UseClientAddTaskProps {
   curStatus?: TaskStatus;
   isAddTaskOpen: boolean;
-  containerRef: RefObject<HTMLDivElement | null>;
+  containerRef: RefObject<HTMLDivElement | HTMLFormElement | null>;
   onClose: () => void;
 }
 
@@ -28,9 +23,9 @@ export function useClientAddTask({
   const [nameValue, setNameValue] = useState("");
   const [status, setStatus] = useState<TaskStatus>(curStatus);
   const [priority, setPriority] = useState<TaskPriority>(initPriority);
-  const [{ startDate, endDate }, setDateRange] = useState({
+  const [{ startDate, endDate }, setDateRange] = useState<TaskDateRange>({
     startDate: new Date(),
-    endDate: new Date(),
+    endDate: null,
   });
   const { listId } = useParams<{ listId: string }>();
   const { addTask } = useAddTask(listId);
@@ -40,7 +35,7 @@ export function useClientAddTask({
     setNameValue("");
     setStatus(curStatus);
     setPriority(initPriority);
-    setDateRange({ startDate: new Date(), endDate: new Date() });
+    setDateRange({ startDate: new Date(), endDate: null });
   }, [curStatus]);
 
   const handleAddTask: React.FormEventHandler<HTMLFormElement> = function (e) {
@@ -60,7 +55,8 @@ export function useClientAddTask({
   const handleStatusChange = (status: TaskStatus) => setStatus(status);
   const handlePriorityChange = (priority: TaskPriority) =>
     setPriority(priority);
-  const handleDateChange = (dateRange: DateRange) => setDateRange(dateRange);
+  const handleDateChange = (dateRange: TaskDateRange) =>
+    setDateRange(dateRange);
 
   useEffect(() => {
     const handleClickOutSide = function (e: MouseEvent) {

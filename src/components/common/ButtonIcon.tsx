@@ -88,9 +88,10 @@ function ButtonIcon({
     type === "primary" && isActive && "fill-neutral-950 text-neutral-950",
     type === "primary" && !isActive && "fill-neutral-200 text-neutral-200",
     type === "bordered" && !iconColor && "filled-neutral-400 text-neutral-400",
+    label && "shrink-0",
   );
 
-  const labelClasses = clsx({
+  const labelClasses = clsx("text-nowrap", {
     "text-xs font-medium text-neutral-400": labelSize === "small",
     "text-sm font-medium": labelSize === "medium",
     "text-base": labelSize === "large",

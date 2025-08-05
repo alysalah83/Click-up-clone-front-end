@@ -54,7 +54,12 @@ function BoardColumn({ column }: BoardColumnProps) {
           </TaskProvider>
         ))
       )}
-      {isAddTaskPanelOpened && <AddTaskCard taskStatus={type} />}
+      {isAddTaskPanelOpened && (
+        <AddTaskCard
+          taskStatus={type}
+          isAddTaskPanelOpened={isAddTaskPanelOpened}
+        />
+      )}
       <RowAddNew onClick={onOpenAddTaskPanel} label="Add Task" />
     </div>
   );

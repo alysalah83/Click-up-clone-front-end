@@ -4,22 +4,18 @@ import { useState } from "react";
 import { useMenu } from "@/components/ui/MenuCompound";
 import Button from "@/components/common/Button";
 import { DateRange } from "react-date-range";
-
-interface DateRanges {
-  startDate: Date;
-  endDate: Date;
-}
+import { TaskDateRange } from "@/shared/tasks/types/task.types";
 
 interface DateRangePickerProps {
-  dateRanges: DateRanges;
-  onDateChange: (dateRang: DateRanges) => void;
+  dateRanges: TaskDateRange;
+  onDateChange: (dateRang: TaskDateRange) => void;
 }
 
 function DateRangePicker({ onDateChange, dateRanges }: DateRangePickerProps) {
   const [date, setDate] = useState([
     {
       startDate: dateRanges.startDate,
-      endDate: dateRanges.endDate,
+      endDate: dateRanges.endDate || new Date(),
       key: "selection",
     },
   ]);
@@ -31,6 +27,11 @@ function DateRangePicker({ onDateChange, dateRanges }: DateRangePickerProps) {
       endDate: date[0].endDate,
     });
     toggleMenu();
+  };
+
+  const handleClear = () => {
+    toggleMenu();
+    onDateChange({ startDate: new Date(), endDate: null });
   };
 
   return (
@@ -56,7 +57,7 @@ function DateRangePicker({ onDateChange, dateRanges }: DateRangePickerProps) {
           size="large"
           ariaLabel="clear task date"
           stretch={true}
-          onClick={toggleMenu}
+          onClick={handleClear}
           type="secondary"
         >
           Clear

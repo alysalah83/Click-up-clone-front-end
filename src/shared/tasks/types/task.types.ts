@@ -6,6 +6,11 @@ type TaskPriority = "urgent" | "high" | "normal" | "low" | "none";
 type StartDate = Date | null;
 type EndDate = Date | null;
 
+interface TaskDateRange {
+  startDate: Date;
+  endDate: EndDate;
+}
+
 interface Task {
   id: string;
   name: string;
@@ -45,4 +50,5 @@ export type {
   EndDate,
   TasksCount,
   TasksPriorityCount,
+  TaskDateRange,
 };

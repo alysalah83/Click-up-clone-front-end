@@ -14,11 +14,8 @@ import {
 } from "react";
 import { createPortal } from "react-dom";
 
-type MenuPosition = "top" | "right" | "bottom" | "left";
-
 interface MenuContextValues {
   menuMargin: number;
-  menuPosition: MenuPosition;
   positionCords: PositionCords;
   setPositionCords: Dispatch<SetStateAction<PositionCords>>;
   isOpened: boolean;
@@ -37,16 +34,11 @@ interface PositionCords {
 interface MenuProps {
   children: ReactNode;
   menuMargin?: number;
-  menuPosition?: MenuPosition;
 }
 
 const MenuContext = createContext<MenuContextValues | null>(null);
 
-function Menu({
-  children,
-  menuMargin = MENU_MARGIN ?? 6,
-  menuPosition = "bottom",
-}: MenuProps) {
+function Menu({ children, menuMargin = MENU_MARGIN ?? 6 }: MenuProps) {
   const [positionCords, setPositionCords] = useState<PositionCords>({
     top: null,
     left: null,
@@ -64,7 +56,6 @@ function Menu({
     <MenuContext
       value={{
         menuMargin,
-        menuPosition,
         positionCords,
         setPositionCords,
         isOpened,
@@ -113,7 +104,6 @@ function MenuContent({ children }: { children: ReactNode }) {
     menuRef,
     handleMounted,
     menuMargin,
-    menuPosition,
   } = useMenu();
 
   useEffect(() => handleMounted(), [handleMounted]);
@@ -124,43 +114,46 @@ function MenuContent({ children }: { children: ReactNode }) {
     const triggerRect = triggerRef.current.getBoundingClientRect();
     const menuRect = menuRef.current.getBoundingClientRect();
 
-    let top: number;
-    let left: number;
     const pageHight = window.innerHeight + window.scrollY;
     const pageWidth = window.innerWidth + window.scrollX;
+    // default position is bottom the trigger ele
+    let top = triggerRect.bottom + window.scrollY + menuMargin;
+    let left = triggerRect.left + window.scrollX;
 
-    switch (menuPosition) {
-      case "top":
-        top = triggerRect.top + window.scrollY - menuRect.height - menuMargin;
-        left = triggerRect.left + window.scrollX;
-        break;
-      case "bottom":
-        top = triggerRect.bottom + window.scrollY + menuMargin;
-        left = triggerRect.left + window.scrollX;
-        if (pageHight - top < menuRect.height)
-          top = triggerRect.top + window.scrollY - menuRect.height - menuMargin;
-        if (pageWidth - left < menuRect.width)
-          left = pageWidth - menuRect.width + window.scrollX - menuMargin;
-        break;
-      case "left":
-        top = triggerRect.top + window.scrollY;
-        left = triggerRect.left + window.scrollX - menuRect.width - menuMargin;
-        break;
-      case "right":
-        top = triggerRect.top + window.scrollY;
-        left = triggerRect.right + window.scrollX + menuMargin;
-        break;
-    }
+    if (pageHight - Math.abs(top) < menuRect.height)
+      top = triggerRect.top + window.scrollY - menuRect.height - menuMargin; //making menu top
+
+    if (pageHight - Math.abs(top) < menuRect.height)
+      top = pageHight - menuRect.height + window.scrollY - menuMargin; //making menu sticky to the top of viewport
+
+    if (pageWidth - left < menuRect.width)
+      left = pageWidth - menuRect.width + window.scrollX - menuMargin; //making menu sticky to the left of viewport
+
+    // switch (menuPosition) {
+    //   case "top":
+    //     top = triggerRect.top + window.scrollY - menuRect.height - menuMargin;
+    //     left = triggerRect.left + window.scrollX;
+    //     break;
+    //   case "bottom":
+    //     top = triggerRect.bottom + window.scrollY + menuMargin;
+    //     left = triggerRect.left + window.scrollX;
+    //     if (pageHight - top < menuRect.height)
+    //       top = triggerRect.top + window.scrollY - menuRect.height - menuMargin;
+    //     if (pageWidth - left < menuRect.width)
+    //       left = pageWidth - menuRect.width + window.scrollX - menuMargin;
+    //     break;
+    //   case "left":
+    //     top = triggerRect.top + window.scrollY;
+    //     left = triggerRect.left + window.scrollX - menuRect.width - menuMargin;
+    //     break;
+    //   case "right":
+    //     top = triggerRect.top + window.scrollY;
+    //     left = triggerRect.right + window.scrollX + menuMargin;
+    //     break;
+    // }
 
     setPositionCords({ top, left });
-  }, [
-    triggerRef,
-    menuRef,
-    setPositionCords,
-    menuPosition,
-    isOpened,
-    menuMargin,
-  ]);
+  }, [triggerRef, menuRef, setPositionCords, isOpened, menuMargin]);
 
   if (!mounted || !isOpened) return null;
 

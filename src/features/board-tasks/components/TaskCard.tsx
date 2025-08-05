@@ -1,5 +1,5 @@
 import TaskCardOptionsBtns from "@/features/board-tasks/components/TaskCardOptionsBtns";
-import FeatureBar from "./BoardTaskFeatureBar";
+import BoardTaskFeatureBar from "./BoardTaskFeatureBar";
 import RenameTaskForm from "@/shared/tasks/components/RenameTaskForm";
 import { useTaskContext } from "@/shared/tasks/components/TaskProvider";
 import { useDraggable } from "@dnd-kit/core";
@@ -62,7 +62,7 @@ function TaskCard({ task }: TaskCardProps) {
             </div>
           )}
           <div className="flex items-center gap-1">
-            <FeatureBar shape="buttonIcon" />
+            <BoardTaskFeatureBar />
           </div>
         </div>
       </DropdownTrigger>

@@ -1,38 +1,44 @@
 import Button from "@/components/common/Button";
 import { useBoard } from "./BoardContext";
-import BoardTaskFeatureBar from "./BoardTaskFeatureBar";
 import { ICONS_MAP } from "@/constants/iconsMap";
-import { FormEventHandler, useState } from "react";
-import { useParams } from "next/navigation";
-import { useAddTask } from "@/shared/tasks/hooks/useAddTask";
-import { TaskStatus } from "@/shared/tasks/types/task.types";
+import {
+  TaskDateRange,
+  TaskPriority,
+  TaskStatus,
+} from "@/shared/tasks/types/task.types";
+import { useClientAddTask } from "@/shared/tasks/hooks/useClientAddTask";
+import { BOARD_TASK_ICON_SIZE, FEATURES } from "../consts/board";
+import ButtonIcon from "@/components/common/ButtonIcon";
+import { hoverElementClasses } from "@/constants/styles";
+import { Menu, MenuContent, MenuTrigger } from "@/components/ui/MenuCompound";
+import DateRangePicker from "@/components/ui/DateRangePicker";
+import AddPriorityMenuList from "@/shared/tasks/components/AddPriorityMenuList";
+import { TASK_PRIORITIES_LIST } from "@/shared/tasks/consts/task.consts";
+import { getFormattedRangeDate } from "@/utils/helper";
 
 interface AddTaskProps {
   taskStatus: TaskStatus;
+  isAddTaskPanelOpened: boolean;
 }
 
-function AddTaskCard({ taskStatus }: AddTaskProps) {
-  const { listId } = useParams<{ listId: string }>();
+function AddTaskCard({ taskStatus, isAddTaskPanelOpened }: AddTaskProps) {
   const { taskPanelRef, handleCloseAddTaskPanel } = useBoard();
-  const [nameValue, setNameValue] = useState("");
-  const { addTask } = useAddTask(listId);
-  const isVialed = nameValue.trim().length > 0;
-
-  const handleAddTask: FormEventHandler<HTMLFormElement> = function (e) {
-    e.preventDefault();
-    if (!isVialed) return;
-
-    addTask(
-      { listId, name: nameValue, status: taskStatus },
-
-      {
-        onError(error, erroredTask) {
-          setNameValue(erroredTask.name);
-        },
-      },
-    );
-    setNameValue("");
-  };
+  const {
+    nameValue,
+    handleNameChange,
+    startDate,
+    endDate,
+    handleDateChange,
+    handlePriorityChange,
+    isNameValid,
+    priority,
+    handleAddTask,
+  } = useClientAddTask({
+    containerRef: taskPanelRef,
+    isAddTaskOpen: isAddTaskPanelOpened,
+    onClose: handleCloseAddTaskPanel,
+    curStatus: taskStatus,
+  });
 
   return (
     <form
@@ -49,7 +55,7 @@ function AddTaskCard({ taskStatus }: AddTaskProps) {
           autoFocus
           name="name"
           value={nameValue}
-          onChange={(e) => setNameValue(e.target.value)}
+          onChange={(e) => handleNameChange(e.target.value)}
           type="text"
           placeholder="Task Name..."
           className="w-full px-1 py-1 text-sm text-neutral-100 outline-0"
@@ -57,7 +63,7 @@ function AddTaskCard({ taskStatus }: AddTaskProps) {
         <Button
           ariaLabel="save new task button"
           size="small"
-          disabled={!isVialed}
+          disabled={!isNameValid}
         >
           <span className="flex items-center gap-1">
             <span>Save</span>
@@ -65,10 +71,80 @@ function AddTaskCard({ taskStatus }: AddTaskProps) {
           </span>
         </Button>
       </div>
-      <div className="flex flex-col gap-2">
-        <BoardTaskFeatureBar shape="buttonIconWithLabel" />
+      <div className="flex w-full flex-col gap-2">
+        <BoardAddTaskFeatureBtns
+          onDateChange={handleDateChange}
+          onPriorityChange={handlePriorityChange}
+          dateRanges={{ startDate, endDate }}
+          priority={priority}
+        />
       </div>
     </form>
+  );
+}
+
+function BoardAddTaskFeatureBtns({
+  onDateChange,
+  onPriorityChange,
+  dateRanges,
+  priority,
+}: {
+  onPriorityChange: (priority: TaskPriority) => void;
+  onDateChange: (dateRange: TaskDateRange) => void;
+  dateRanges: TaskDateRange;
+  priority: TaskPriority;
+}) {
+  const [dataObj, priorityObj] = FEATURES;
+  const curPriority = TASK_PRIORITIES_LIST.find(
+    (prio) => prio.label.toLowerCase() === priority,
+  );
+  return (
+    <>
+      <Menu>
+        <MenuTrigger>
+          <div
+            className={`flex w-full items-center gap-1 rounded-lg p-1 ${hoverElementClasses}`}
+          >
+            <ButtonIcon
+              icon={dataObj.icon}
+              ariaLabel={`${dataObj.label} button`}
+              size={BOARD_TASK_ICON_SIZE}
+            />
+            <span className="text-sm">
+              {dateRanges.startDate && dateRanges.endDate
+                ? getFormattedRangeDate(dateRanges)
+                : dataObj.label}
+            </span>
+          </div>
+        </MenuTrigger>
+        <MenuContent>
+          <DateRangePicker
+            onDateChange={onDateChange}
+            dateRanges={dateRanges}
+          />
+        </MenuContent>
+      </Menu>
+      <Menu>
+        <MenuTrigger>
+          <div
+            className={`flex w-full items-center gap-1 rounded-lg p-1 ${hoverElementClasses}`}
+          >
+            <ButtonIcon
+              icon={priorityObj.icon}
+              iconColor={priority !== "none" ? curPriority?.iconColor : ""}
+              ariaLabel={`${priorityObj.label} button`}
+              size={BOARD_TASK_ICON_SIZE}
+            />
+            <span className="text-sm capitalize">
+              {priority === "none" ? priorityObj.label : priority}
+            </span>
+          </div>
+        </MenuTrigger>
+        <MenuContent>
+          <AddPriorityMenuList onChange={onPriorityChange} />
+        </MenuContent>
+      </Menu>
+    </>
   );
 }
 
