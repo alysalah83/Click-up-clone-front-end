@@ -144,11 +144,13 @@ function ToolTipMessage({
     setPosition({ top, left });
   }, [parentToolTipRef, messageRef, visible, setPosition, messagePosition]);
 
-  if (!mounted) return null;
+  if (!mounted || !visible) return null;
 
   const toolTipClasses = clsx(
-    "flex transition-opacity delay-700 duration-150",
-    visible ? "visible opacity-100 delay-300" : "invisible opacity-0",
+    "flex",
+    visible
+      ? "visible opacity-100  transition-opacity duration-150 delay-500"
+      : "invisible opacity-0",
     {
       "flex-col": messagePosition === "top",
       "flex-row-reverse": messagePosition === "right",
