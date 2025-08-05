@@ -7,7 +7,7 @@ This project showcases **modern React 19 development**, custom UI components, an
 
 ## 🚀 Live Demo
 
-[**View Application**](https://click-up-clone-two.vercel.app/) • [**Frontend Repo**](https://github.com/alysalah83/Click-up-clone-front-end) • [**Backend Repo**](https://github.com/username/click-up-clone-backend)
+[**View Application**](https://click-up-clone-two.vercel.app/) • [**Frontend Repo**](https://github.com/alysalah83/Click-up-clone-front-end) • [**Backend Repo**](https://github.com/alysalah83/click-up-clone-backend)
 
 ---
 
