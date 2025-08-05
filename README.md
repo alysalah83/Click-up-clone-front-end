@@ -246,21 +246,45 @@ npm run type-check   # TypeScript checking
 
 ```
 src/
-├── app/                    # Next.js 15 App Router
-│   ├── (auth)/            # Authentication routes (login, signup)
-│   ├── (dashboard)/       # Protected dashboard routes
-│   ├── globals.css        # Global Tailwind styles
-│   └── layout.tsx         # Root application layout
-├── components/             # Custom UI components
-│   ├── ui/                # Base components (buttons, modals, etc.)
-│   ├── layout/            # Layout components (navbar, sidebar)
-│   ├── forms/             # Form components with validation
-│   └── features/          # Feature-specific components
-├── hooks/                 # Custom React hooks
-├── stores/                # Zustand state management
-├── lib/                   # Utilities and API configuration
-├── types/                 # TypeScript type definitions
-└── utils/                 # Helper functions
+├── app/ # Next.js 15 App Router
+│ └── (dashboard)/ # Protected dashboard routes
+├── components/ # Custom UI components
+│ ├── common/ # Shared components
+│ ├── layout/ # Layout components
+│ ├── ui/ # Base UI elements
+│ └── features/ # Feature-specific components
+│        │ ├── auth/ # Authentication components
+│        │ ├── board-tasks/ # Kanban board components
+│        │ ├── dashboard/ # Dashboard analytics
+│        │ ├── list-tasks/ # List view components
+│        │ ├── lists-side-nav # Side navigation
+│        │ ├── overview/ # Overview components
+│        │ ├── table-tasks/ # Table view components
+│        │ ├── workspace/ # Workspace management
+│        │ ├── actions/ # Workspace actions
+│        │ ├── components/ # UI components
+│        │ ├── consts/ # Constants
+│        │ ├── hooks/ # Custom hooks
+│        │ ├── types/ # Type definitions
+│        │ ├── utils/ # Utilities
+│        │ └── validations # Validation logic
+├── config/ # Configuration files
+├── constants/ # App constants
+├── contexts/ # React contexts
+├── lib/ # Core libraries
+│ ├── api/ # API configuration
+│ ├── axios/ # Axios setup
+│ ├── client/ # Client-side libraries
+│ ├── server/ # Server-side utilities
+│ ├── utils/ # Shared utilities
+│ └── validations/ # Zod Validation schemas
+├── shared/ # Shared resources
+├── stores/ # Zustand state stores
+├── styles/ # Custom styles
+├── types/ # Global TypeScript types
+├── utils/ # Utility functions
+├── middleware.ts # Next.js middleware
+└── env.local # Environment variables
 ```
 
 ---
@@ -296,18 +320,88 @@ src/
 
 ## 💼 Portfolio Showcase
 
-This project demonstrates proficiency in:
+This project demonstrates advanced full-stack development capabilities with a balanced focus on both frontend and backend expertise:
 
-- **Modern Frontend Development** - React 19, Next.js 15, TypeScript
-- **Custom UI Development** - Building scalable component libraries
-- **State Management** - Efficient application state with Zustand
-- **API Integration** - Seamless frontend-backend communication
-- **Database Design** - MongoDB schema design and optimization
-- **Authentication Systems** - Secure JWT implementation
-- **Performance Optimization** - Code splitting, caching, and optimization
-- **User Experience Design** - Intuitive interfaces and smooth interactions
+### 💻 Frontend Expertise
 
----
+- **React 19 & Next.js 15** - Bleeding-edge features including:
+  - Server Actions for data mutations
+  - React Compiler for automatic optimizations
+  - Next.js App Router architecture
+- **Zod Validation Ecosystem** - Unified validation across stack:
+  - Frontend form validation with `react-hook-form` + Zod
+  - Shared validation schemas with backend
+  - Type inference from Zod schemas
+- **State Management** - Zustand for global state + React Query for server state:
+  - Optimistic UI updates
+  - Automatic cache management
+  - Background data synchronization
+- **Real-time UI** - Smooth drag-and-drop interfaces with `@dnd-kit`:
+  - Custom collision detection
+  - Performance-optimized rendering
+  - Touch device support
+- **Data Visualization** - Interactive charts with Recharts:
+  - Task distribution pie charts
+  - Progress tracking bar charts
+  - Workload heatmaps
+- **Performance Optimization**:
+
+  - Code splitting with dynamic imports
+  - Memoization techniques
+  - Efficient virtualized lists
+
+  ### 🖥️ Backend Expertise
+
+- **RESTful API Design** - Structured endpoints with proper HTTP methods and status codes
+- **Database Architecture** - MongoDB schema design with Mongoose for:
+  - Workspace hierarchy and permissions
+  - Task relationships and dependencies
+  - User management with secure credentials
+- **Authentication System** - JWT implementation with:
+  - Secure HTTP-only cookies
+  - Refresh token rotation
+  - Session management middleware
+- **Server-Side Validation** - Comprehensive Zod schemas for all API endpoints
+- **Middleware Architecture** - Custom middleware for:
+  - Authentication verification
+  - Error handling
+  - CORS configuration
+- **Aggregation Pipelines** - Complex MongoDB aggregations for:
+  - Dashboard analytics
+  - Progress tracking
+  - Task distribution statistics
+- **Query Optimization** - Efficient data retrieval with:
+  - Proper indexing
+  - Pagination
+  - Population of related documents
+- **Security Implementation** - Password hashing with bcrypt, rate limiting, and XSS protection
+
+### 🔗 Full-Stack Integration
+
+- **End-to-End Type Safety** - Shared TypeScript types across frontend and backend
+- **API Contract Enforcement** - Zod validation on both client and server
+- **Authentication Flow** - Seamless JWT handling with cookie management
+- **Error Handling System** - Unified error format with proper HTTP status codes
+- **Deployment Architecture** - Vercel for frontend + cloud services for backend
+- **CI/CD Pipeline** - Automated testing and deployment workflows
+- **WebSockets Implementation** - Real-time updates for collaborative features
+
+### 🌟 Advanced Features
+
+- **Server Actions** - Secure direct database mutations from Next.js:
+  - Workspace creation/updates
+  - Bulk task operations
+  - User profile management
+- **Custom Hooks Library** - Reusable logic for:
+  - Drag-and-drop operations
+  - Form handling
+  - API request management
+- **Accessibility Compliance** - WCAG 2.1 standards implementation:
+  - Keyboard navigation
+  - ARIA attributes
+  - Screen reader support
+- **Internationalization Ready** - i18n architecture setup for localization
+- **Theme Engine** - Dark mode/light mode with system preference detection
 
 **[🚀 Live Demo](https://click-up-clone-two.vercel.app/)** | **[📚 Repository](https://github.com/alysalah83/Click-up-clone-front-end)**
 
