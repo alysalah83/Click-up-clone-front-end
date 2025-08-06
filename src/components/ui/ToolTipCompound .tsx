@@ -22,6 +22,7 @@ type Position = {
 
 type ToolTipContext = {
   isHovered: boolean;
+  shouldRender: boolean;
   mounted: boolean;
   position: Position;
   openToolTip: () => void;
@@ -42,18 +43,27 @@ const ToolTipContext = createContext<ToolTipContext | null>(null);
 
 function ToolTip({ children }: { children: ReactNode }) {
   const [isHovered, setIsHovered] = useState(false);
+  const [shouldRender, setShouldRender] = useState(false);
   const parentToolTipRef = useRef<HTMLElement | null>(null);
   const messageRef = useRef<HTMLDivElement | null>(null);
   const [position, setPosition] = useState<Position>({ top: null, left: null });
   const [mounted, setMounted] = useState(false);
 
-  const openToolTip = () => setIsHovered(true);
-  const closeToolTip = () => setIsHovered(false);
+  const openToolTip = () => {
+    setIsHovered(true);
+
+    setTimeout(() => setShouldRender(true), 10);
+  };
+  const closeToolTip = () => {
+    setIsHovered(false);
+    setShouldRender(false);
+  };
 
   return (
     <ToolTipContext
       value={{
         isHovered,
+        shouldRender,
         openToolTip,
         closeToolTip,
         parentToolTipRef,
@@ -89,6 +99,7 @@ function ToolTipMessage({
     setPosition,
     mounted,
     setMounted,
+    shouldRender,
   } = useToolTip();
 
   useEffect(() => setMounted(true), [setMounted]);
@@ -148,7 +159,7 @@ function ToolTipMessage({
 
   const toolTipClasses = clsx(
     "flex",
-    visible
+    shouldRender
       ? "visible opacity-100  transition-opacity duration-150 delay-500"
       : "invisible opacity-0",
     {
