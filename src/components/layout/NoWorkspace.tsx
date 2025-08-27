@@ -14,7 +14,7 @@ function NoWorkspace() {
           alt="no workspace image"
         />
       </div>
-      <p className="text-center text-base text-neutral-400">
+      <p className="text-center text-base text-neutral-600 dark:text-neutral-400">
         You have no existing Spaces to put shared tasks in.
         <br /> Create a Space now to organize your work.
       </p>
