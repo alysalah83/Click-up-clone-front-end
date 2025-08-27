@@ -56,14 +56,18 @@ function CreateForm({
   return (
     <form
       action={action}
-      className="flex max-w-80 flex-col gap-5 p-6 text-neutral-500 lg:max-w-lg lg:min-w-lg"
+      className="flex max-w-80 flex-col gap-5 p-6 text-neutral-700 lg:max-w-lg lg:min-w-lg dark:text-neutral-500"
     >
       <header className="flex flex-col gap-2">
-        <h2 className="text-lg font-medium text-neutral-100">{headerTitle}</h2>
+        <h2 className="text-lg font-medium text-neutral-900 dark:text-neutral-100">
+          {headerTitle}
+        </h2>
         <p className="text-sm">{headerText}</p>
       </header>
       <main className="flex flex-col gap-2">
-        <h3 className="font-medium text-neutral-400">{inputLabel}</h3>
+        <h3 className="font-medium text-neutral-600 dark:text-neutral-400">
+          {inputLabel}
+        </h3>
         <div className="flex items-center gap-3">
           {children}
           <div className="w-full">

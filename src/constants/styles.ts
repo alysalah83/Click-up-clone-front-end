@@ -1,7 +1,7 @@
 export const hoverElementClasses =
-  "cursor-pointer hover:bg-neutral-200/10 active:bg-neutral-200/10";
+  "cursor-pointer hover:bg-neutral-900/10 active:bg-neutral-900/10 dark:hover:bg-neutral-200/10 dark:active:bg-neutral-200/10";
 
-export const hoverElementWithBgClasses = `bg-neutral-600/20 ${hoverElementClasses}`;
+export const hoverElementWithBgClasses = `bg-neutral-400/20 dark:bg-neutral-600/20 ${hoverElementClasses}`;
 
 export const sizeClasses: Record<number, string> = {
   1: "h-1 w-1",

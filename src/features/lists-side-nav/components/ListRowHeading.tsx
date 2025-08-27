@@ -30,7 +30,7 @@ function ListRowHeading({ list }: { list: List }) {
     <Dropdown isAbsolute={false}>
       <DropdownTrigger>
         <div
-          className={`flex items-center justify-between rounded-lg px-2 py-1 transition duration-300 ${isActive ? "bg-neutral-200/10" : hoverElementClasses.replace("cursor-pointer", "cursor-default")}`}
+          className={`flex items-center justify-between rounded-lg px-2 py-1 transition duration-300 ${isActive ? "bg-neutral-900/10 dark:bg-neutral-200/10" : hoverElementClasses.replace("cursor-pointer", "cursor-default")}`}
         >
           <ListRowHeadingTitle list={list} />
 

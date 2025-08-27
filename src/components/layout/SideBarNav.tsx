@@ -19,12 +19,12 @@ function SideBarNav({ children }: { children: ReactNode }) {
 
   return (
     <aside
-      className={`flex h-full flex-col gap-4 overflow-x-hidden overflow-y-auto rounded-tl-xl rounded-bl-xl border-r border-neutral-700 bg-neutral-900 text-neutral-400 ${
+      className={`flex h-full flex-col gap-4 overflow-x-hidden overflow-y-auto rounded-tl-xl rounded-bl-xl border-r border-neutral-300 bg-neutral-200 text-neutral-600 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-400 ${
         isSideNavOpened ? "w-xs p-4" : "w-0 border-r-0 p-0"
       }`}
     >
-      <header className="flex items-center justify-between border-b border-neutral-700 pb-4">
-        <h3 className="text-xl font-semibold tracking-wider text-neutral-200">
+      <header className="flex items-center justify-between border-b border-neutral-300 pb-4 dark:border-neutral-700">
+        <h3 className="text-xl font-semibold tracking-wider text-neutral-800 dark:text-neutral-200">
           Home
         </h3>
         <div className="flex items-center gap-2">

@@ -1,5 +1,10 @@
 import { BsPencil, BsThreeDots } from "react-icons/bs";
-import { FaBullseye, FaRegUserCircle, FaSignOutAlt } from "react-icons/fa";
+import {
+  FaBullseye,
+  FaMoon,
+  FaRegUserCircle,
+  FaSignOutAlt,
+} from "react-icons/fa";
 import {
   FaArrowDownLong,
   FaArrowUpLong,
@@ -18,7 +23,7 @@ import {
   IoCheckmarkSharp,
   IoSettings,
 } from "react-icons/io5";
-import { MdLockOutline, MdOutlineBlock } from "react-icons/md";
+import { MdLockOutline, MdOutlineBlock, MdSunny } from "react-icons/md";
 import {
   PiArrowBendDownLeftBold,
   PiCalendarDotsFill,
@@ -67,4 +72,6 @@ export const ICONS_MAP = {
   signOut: FaSignOutAlt,
   exclamationMark: PiExclamationMarkBold,
   setting: IoSettings,
+  moon: FaMoon,
+  sun: MdSunny,
 } as const;

@@ -21,7 +21,7 @@ async function WorkspaceItem({ workspace }: WorkspaceItemProps) {
       </WorkspaceProvider>
 
       {haveLists && (
-        <menu className="ml-auto flex w-[92%] flex-col gap-2 border-l border-neutral-700 pl-3">
+        <menu className="ml-auto flex w-[92%] flex-col gap-2 border-l border-neutral-300 pl-3 dark:border-neutral-700">
           {lists.map((list) => (
             <ListProvider workspaceId={workspace.id} list={list} key={list.id}>
               <ListRowHeading list={list} />

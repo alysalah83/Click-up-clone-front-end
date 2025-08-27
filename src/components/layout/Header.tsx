@@ -13,6 +13,10 @@ import { HEADER_MENU } from "@/constants/ui";
 import BoardSortBtn from "@/features/board-tasks/components/BoardSortBtn";
 import UserLogo from "@/features/auth/components/UserLogo";
 import { ClientUser } from "@/features/auth/types/auth.types";
+import { ICONS_MAP } from "@/constants/iconsMap";
+import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
+import SkeletonLoader from "../ui/SkeletonLoader";
 
 function Header({
   userPromise,
@@ -28,7 +32,7 @@ function Header({
     <header
       className={`flex flex-col gap-3 border-b px-2 pt-4 sm:px-4 ${
         !isSideNavOpened && "rounded-tl-xl"
-      } border-neutral-700`}
+      } border-neutral-300 dark:border-neutral-700`}
     >
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
@@ -54,12 +58,15 @@ function Header({
             withBg={true}
             padding="large"
           />
-          <h4 className="text-sm font-semibold capitalize">Workload</h4>
+          <h4 className="text-sm font-bold capitalize">Workload</h4>
         </div>
-        <UserLogo userPromise={userPromise} />
+        <div className="flex items-center gap-1">
+          <ThemeButton />
+          <UserLogo userPromise={userPromise} />
+        </div>
       </div>
       <div className="flex justify-between">
-        <menu className="flex items-center sm:gap-2">
+        <menu className="flex sm:gap-2">
           {HEADER_MENU.map((item) => (
             <ButtonWithIconLabel
               item={item}
@@ -83,6 +90,37 @@ function HeaderFeatures() {
     <div className="flex items-center gap-4">
       {isInBoardPage && <BoardSortBtn />}
     </div>
+  );
+}
+
+function ThemeButton() {
+  const [isMounted, setIsMounted] = useState(false);
+  const { resolvedTheme, setTheme } = useTheme();
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted)
+    return <SkeletonLoader rounded="rounded-full" width="w-6" height="h-6" />;
+
+  return (
+    <button
+      type="button"
+      aria-label="toggle theme button"
+      className="cursor-pointer p-1"
+    >
+      {resolvedTheme === "light" ? (
+        <ICONS_MAP.sun
+          className="size-6 fill-amber-500 transition duration-200 hover:fill-amber-600"
+          onClick={() => setTheme("dark")}
+        />
+      ) : (
+        <ICONS_MAP.moon
+          className="size-6 fill-neutral-500 transition duration-200 hover:fill-neutral-600"
+          onClick={() => setTheme("light")}
+        />
+      )}
+    </button>
   );
 }
 

@@ -45,7 +45,7 @@ function WorkspaceRowHeadingTitle({ workspace }: { workspace: Workspace }) {
     >
       <button
         type="button"
-        className={`${WORKSPACE_AVATAR_COLORS[color].bg} shrink-0 cursor-pointer rounded-lg border border-neutral-700 px-2 py-1.5 text-lg leading-3.5 font-semibold text-neutral-100 transition duration-300 disabled:cursor-not-allowed disabled:opacity-70`}
+        className={`${WORKSPACE_AVATAR_COLORS[color].bg} shrink-0 cursor-pointer rounded-lg border border-neutral-300 px-2 py-1.5 text-lg leading-3.5 font-semibold text-neutral-100 transition duration-300 disabled:cursor-not-allowed disabled:opacity-70 dark:border-neutral-700`}
       >
         {letter.toUpperCase()}
       </button>

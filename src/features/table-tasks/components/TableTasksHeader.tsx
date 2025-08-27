@@ -17,9 +17,9 @@ function TableTasksHeader() {
 
   return (
     <header
-      className={`${tableGrid} bg-neutral-800/50 text-sm font-semibold text-neutral-500`}
+      className={`${tableGrid} bg-neutral-100/80 text-sm font-semibold text-neutral-700 dark:bg-neutral-800/50 dark:text-neutral-500`}
     >
-      <div className="col-span-1 flex items-center justify-center border-r border-neutral-600">
+      <div className="col-span-1 flex items-center justify-center border-r border-neutral-300 dark:border-neutral-700">
         <CheckBox isChecked={isAllChecked} onClick={handleCheckAll} />
       </div>
       <div

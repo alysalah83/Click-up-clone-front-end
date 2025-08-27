@@ -31,12 +31,14 @@ function BoardColumn({ column }: BoardColumnProps) {
   return (
     <div
       ref={setNodeRef}
-      className={`flex h-fit max-h-full w-2xs flex-col gap-1 overflow-y-auto rounded-lg p-1 ${bgColor} ${isOver ? "ring-2 ring-neutral-700 outline-0" : ""} transition-all duration-200`}
+      className={`flex h-fit max-h-full w-2xs flex-col gap-1 overflow-y-auto rounded-lg p-1 ${bgColor} ${isOver ? "ring-2 ring-neutral-300 outline-0 dark:ring-neutral-700" : ""} transition-all duration-200`}
     >
       <header className="flex w-full items-center justify-between">
         <div className="flex items-center gap-4">
           <StatusCard type={type} />
-          <span className="text-sm text-neutral-400/80">{tasksCount}</span>
+          <span className="text-sm text-neutral-600/80 dark:text-neutral-400/80">
+            {tasksCount}
+          </span>
         </div>
         <AddButton
           onClick={onOpenAddTaskPanel}

@@ -18,7 +18,7 @@ function TableSlotCheckBox({
   const isTaskChecked = checkedTasksIdSet.has(id);
 
   return (
-    <div className="col-span-1 flex items-center justify-center border-r border-neutral-600">
+    <div className="col-span-1 flex items-center justify-center border-r border-neutral-300 dark:border-neutral-700">
       {isTaskChecked || isTaskRowHovered ? (
         <CheckBox
           isChecked={isTaskChecked}

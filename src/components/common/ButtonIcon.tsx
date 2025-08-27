@@ -4,7 +4,7 @@ import {
   sizeClasses,
 } from "@/constants/styles";
 import { ICONS_MAP } from "@/constants/iconsMap";
-import React from "react";
+import React, { memo } from "react";
 import clsx from "clsx";
 import type { IconsMap, StylesSizes } from "@/types/index.types";
 
@@ -68,14 +68,16 @@ function ButtonIcon({
       (withBg ? hoverElementWithBgClasses : hoverElementClasses),
 
     {
-      "disabled:bg-neutral-700/20": !bgColor && !bgHoverColor,
+      "disable:bg-neutral-300/20 dark:disabled:bg-neutral-700/20":
+        !bgColor && !bgHoverColor,
     },
 
     bgColor && `${bgColor} cursor-pointer`,
     bgHoverColor && `cursor-pointer`,
     {
-      "bg-neutral-800/15 border border-neutral-600": type === "bordered",
-      "bg-neutral-50": type === "primary" && isActive,
+      "bg-neutral-300/15 dark:bg-neutral-800/15 border border-neutral-300 dark:border-neutral-600":
+        type === "bordered",
+      "bg-neutral-950 dark:bg-neutral-50": type === "primary" && isActive,
     },
   );
 
@@ -84,15 +86,24 @@ function ButtonIcon({
     sizeClasses[size],
     iconColor,
     disabledIconColor,
-    type === "default" && !iconColor && "fill-neutral-400 text-neutral-400",
-    type === "primary" && isActive && "fill-neutral-950 text-neutral-950",
-    type === "primary" && !isActive && "fill-neutral-200 text-neutral-200",
-    type === "bordered" && !iconColor && "filled-neutral-400 text-neutral-400",
+    type === "default" &&
+      !iconColor &&
+      "fill-neutral-500 text-neutral-500 dark:fill-neutral-400 dark:text-neutral-400",
+    type === "primary" &&
+      isActive &&
+      "fill-neutral-50 dark:fill-neutral-950 text-neutral-50 dark:text-neutral-950",
+    type === "primary" &&
+      !isActive &&
+      "fill-neutral-800 dark:fill-neutral-200 dark:text-neutral-200",
+    type === "bordered" &&
+      !iconColor &&
+      "fill-neutral-neutral-500 text-neutral-500 dark:fill-neutral-400 dark:text-neutral-400",
     label && "shrink-0",
   );
 
   const labelClasses = clsx("text-nowrap", {
-    "text-xs font-medium text-neutral-400": labelSize === "small",
+    "text-xs font-medium text-neutral-600 dark:text-neutral-400":
+      labelSize === "small",
     "text-sm font-medium": labelSize === "medium",
     "text-base": labelSize === "large",
   });
@@ -117,4 +128,4 @@ function ButtonIcon({
   );
 }
 
-export default ButtonIcon;
+export default memo(ButtonIcon);

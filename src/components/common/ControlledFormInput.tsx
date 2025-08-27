@@ -29,7 +29,7 @@ function ControlledFormInput({
       }}
       placeholder={placeholder}
       disabled={disabled}
-      className="w-full rounded-lg border border-neutral-700 px-4 py-2 placeholder-neutral-500 ring-offset-1 ring-offset-neutral-500 transition duration-300 outline-none focus:ring disabled:cursor-not-allowed disabled:bg-neutral-500 disabled:text-neutral-800"
+      className="w-full rounded-lg border border-neutral-500 px-4 py-2 placeholder-neutral-500 ring-offset-1 ring-offset-neutral-100 transition duration-300 outline-none focus:ring disabled:cursor-not-allowed disabled:bg-neutral-600 disabled:text-neutral-100 dark:border-neutral-700 dark:ring-offset-neutral-500 dark:disabled:bg-neutral-500 dark:disabled:text-neutral-800"
     />
   );
 }

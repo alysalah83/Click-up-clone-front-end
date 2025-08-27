@@ -31,10 +31,10 @@ function BoardSortBtn() {
 function TaskSortMenu() {
   return (
     <div className="flex min-w-48 flex-col gap-3 p-3">
-      <h3 className="px-3 pt-1 text-sm font-medium text-neutral-500">
+      <h3 className="px-3 pt-1 text-sm font-medium text-neutral-700 dark:text-neutral-500">
         Sort By
       </h3>
-      <ul className="text-base font-medium text-neutral-300">
+      <ul className="text-base font-medium text-neutral-900 dark:text-neutral-300">
         <li
           className={`${hoverElementClasses} flex items-center gap-1 rounded-lg px-3 py-1 transition duration-300`}
         >

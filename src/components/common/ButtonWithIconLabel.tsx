@@ -5,7 +5,7 @@ import { useParams } from "next/navigation";
 import Link from "next/link";
 import { useLocalTaskSorts } from "@/stores/useTableSearchParams";
 import { LIST_ID_RESERVED_ROUTES } from "@/config/config";
-import { use } from "react";
+import { memo, use } from "react";
 
 interface ButtonWithIconLabelProps {
   item: {
@@ -28,6 +28,7 @@ function ButtonWithIconLabel({
   const isHavingReservedListId = LIST_ID_RESERVED_ROUTES.has(listId);
   if (isHavingReservedListId) {
     const latestListId = use(latestListIdPromise);
+
     newListId = latestListId ? latestListId : undefined;
   } else newListId = listId;
 
@@ -69,8 +70,8 @@ function ButtonWithIconLabel({
         aria-label={`${label} button`}
         className={`flex gap-1 px-2 py-1 ${
           isActive
-            ? "rounded-tl-lg rounded-tr-lg border-b-2 border-neutral-50 pb-2 text-neutral-50"
-            : "mb-2 rounded-lg text-neutral-300"
+            ? "rounded-tl-lg rounded-tr-lg border-b-2 border-neutral-950 pb-2 text-neutral-950 dark:border-neutral-50 dark:text-neutral-50"
+            : "mb-2 rounded-lg text-neutral-500 dark:text-neutral-300"
         } items-center transition duration-300 ${hoverElementClasses}`}
       >
         <span className={`rounded-sm p-0.5 ${iconBgColor}`}>
@@ -82,4 +83,4 @@ function ButtonWithIconLabel({
   );
 }
 
-export default ButtonWithIconLabel;
+export default memo(ButtonWithIconLabel) ;

@@ -22,7 +22,7 @@ function TaskCardOptionsBtns() {
 
   return (
     <div
-      className="absolute top-0.5 right-0.5 z-10 flex rounded-lg border border-neutral-700 bg-neutral-900 p-0.5"
+      className="absolute top-0.5 right-0.5 z-10 flex rounded-lg border border-neutral-300 bg-neutral-200 p-0.5 dark:border-neutral-700 dark:bg-neutral-900"
       onClick={(e) => e.stopPropagation()}
     >
       {status !== "complete" && (

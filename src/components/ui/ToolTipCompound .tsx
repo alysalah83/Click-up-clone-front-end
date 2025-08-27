@@ -51,9 +51,9 @@ function ToolTip({ children }: { children: ReactNode }) {
 
   const openToolTip = () => {
     setIsHovered(true);
-
     setTimeout(() => setShouldRender(true), 10);
   };
+
   const closeToolTip = () => {
     setIsHovered(false);
     setShouldRender(false);
@@ -173,13 +173,13 @@ function ToolTipMessage({
   let arrowClasses;
   if (withArrow)
     arrowClasses = clsx("h-0 w-0 self-center", {
-      "border-t-[6px] border-r-[6px] border-l-[6px] border-t-neutral-700 border-r-transparent border-l-transparent":
+      "border-t-[6px] border-r-[6px] border-l-[6px] border-t-neutral-300 dark:border-t-neutral-700 border-r-transparent border-l-transparent":
         messagePosition === "top",
-      "border-t-[6px] border-b-[6px] border-l-[6px] border-l-neutral-700 border-t-transparent border-b-transparent":
+      "border-t-[6px] border-b-[6px] border-l-[6px] border-l-neutral-300 dark:border-l-neutral-700 border-t-transparent border-b-transparent":
         messagePosition === "left",
-      "border-b-[6px] border-r-[6px] border-l-[6px] border-b-neutral-700 border-r-transparent border-l-transparent":
+      "border-b-[6px] border-r-[6px] border-l-[6px] border-b-neutral-300 dark:border-b-neutral-700 border-r-transparent border-l-transparent":
         messagePosition === "bottom",
-      "border-t-[6px] border-b-[6px] border-r-[6px] border-r-neutral-700 border-t-transparent border-b-transparent":
+      "border-t-[6px] border-b-[6px] border-r-[6px] border-r-neutral-300 dark:border-r-neutral-700 border-t-transparent border-b-transparent":
         messagePosition === "right",
     });
 
@@ -198,7 +198,7 @@ function ToolTipMessage({
       ref={messageRef}
       className={toolTipClasses}
     >
-      <span className="max-w-xs overflow-hidden rounded-lg bg-neutral-700 px-3 py-2 text-xs font-medium tracking-wide text-ellipsis whitespace-nowrap shadow-lg">
+      <span className="max-w-xs overflow-hidden rounded-lg bg-neutral-300 px-3 py-2 text-xs font-medium tracking-wide text-ellipsis whitespace-nowrap shadow-lg dark:bg-neutral-700">
         {children}
       </span>
       {withArrow && <span className={arrowClasses} role="tooltip arrow" />}

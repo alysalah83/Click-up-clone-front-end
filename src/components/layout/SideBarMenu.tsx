@@ -18,7 +18,7 @@ function SideBarMenu() {
   const pathname = usePathname();
 
   return (
-    <menu className="mr-2 flex w-fit flex-col items-center gap-6 rounded-xl bg-neutral-900 px-2 py-4">
+    <menu className="mr-2 flex w-fit flex-col items-center gap-6 rounded-xl bg-neutral-200 px-2 py-4 dark:bg-neutral-900">
       <Link href={homeObject.href}>
         <li className="flex flex-col items-center gap-1">
           <ButtonIcon

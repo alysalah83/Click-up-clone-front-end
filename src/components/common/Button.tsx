@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import MiniSpinner from "../ui/MiniSpinner";
 import { StylesSizes } from "@/types/index.types";
-import { ReactNode } from "react";
+import { memo, ReactNode } from "react";
 
 interface ButtonProps {
   children: ReactNode;
@@ -36,26 +36,32 @@ function Button({
     "capitalize transition duration-300 text-nowrap",
     stretch ? "w-full flex justify-center" : "w-fit",
     {
-      "bg-neutral-100 text-neutral-900": type === "primary",
-      "bg-neutral-925 border border-neutral-800 text-neutral-300":
+      "bg-neutral-800 text-neutral-50 dark:bg-neutral-100 dark:text-neutral-900":
+        type === "primary",
+      "bg-neutral-100  dark:bg-neutral-925 border border-neutral-400 dark:border-neutral-800 text-neutral-500 dark:text-neutral-300":
         type === "secondary",
-      "bg-red-500 text-red-50": type === "delete",
+      "bg-red-600 text-red-100 dark:bg-red-500 dark:text-red-50":
+        type === "delete",
       "bg-indigo-600 text-indigo-50": type === "colored",
     },
     {
       "cursor-pointer": !pending,
-      "hover:bg-neutral-300": type === "primary" && !pending,
-      "hover:bg-neutral-900": type === "secondary" && !pending,
+      "hover:bg-neutral-700 dark:hover:bg-neutral-300":
+        type === "primary" && !pending,
+      "hover:bg-neutral-200 dark:hover:bg-neutral-900":
+        type === "secondary" && !pending,
       "hover:bg-red-800": type === "delete" && !pending,
       "hover:bg-indigo-700": type === "colored" && !pending,
 
       "disabled:cursor-not-allowed": disabled && !pending,
-      "disabled:bg-neutral-800": type === "secondary" && disabled,
-      "disabled:bg-neutral-500": type === "primary" && disabled && !pending,
+      "disabled:bg-neutral-300 dark:disabled:bg-neutral-800":
+        type === "secondary" && disabled,
+      "disabled:bg-neutral-600 dark:disabled:bg-neutral-500":
+        type === "primary" && disabled && !pending,
 
       "cursor-default": pending,
-      " flex justify-center": type === "delete" && pending,
-      "bg-neutral-500": type === "primary" && pending,
+      "flex justify-center": type === "delete" && pending,
+      "bg-neutral-600 dark:bg-neutral-500": type === "primary" && pending,
       "bg-indigo-800": type === "colored" && pending,
     },
     {
@@ -86,4 +92,4 @@ function Button({
   );
 }
 
-export default Button;
+export default memo(Button);

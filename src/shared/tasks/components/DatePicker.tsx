@@ -1,39 +1,21 @@
-import "react-date-range/dist/styles.css";
-import "react-date-range/dist/theme/default.css";
-import { useState } from "react";
-import { useMenu } from "@/components/ui/MenuCompound";
 import Button from "@/components/common/Button";
 import { DateRange } from "react-date-range";
-import { TaskDateRange } from "@/shared/tasks/types/task.types";
 
-interface DateRangePickerProps {
-  dateRanges: TaskDateRange;
-  onDateChange: (dateRang: TaskDateRange) => void;
-}
+type DateState = {
+  startDate: Date;
+  endDate: Date;
+  key: string;
+}[];
 
-function DateRangePicker({ onDateChange, dateRanges }: DateRangePickerProps) {
-  const [date, setDate] = useState([
-    {
-      startDate: dateRanges.startDate,
-      endDate: dateRanges.endDate || new Date(),
-      key: "selection",
-    },
-  ]);
-  const { toggleMenu } = useMenu();
-
-  const handleConfirm = function () {
-    onDateChange({
-      startDate: date[0].startDate,
-      endDate: date[0].endDate,
-    });
-    toggleMenu();
-  };
-
-  const handleClear = () => {
-    toggleMenu();
-    onDateChange({ startDate: new Date(), endDate: null });
-  };
-
+function DatePicker({
+  action,
+  date,
+  setDate,
+}: {
+  action: (date?: { startDate?: Date; endDate?: Date }) => void;
+  date: DateState;
+  setDate: React.Dispatch<React.SetStateAction<DateState>>;
+}) {
   return (
     <div className="flex flex-col">
       <DateRange
@@ -57,7 +39,7 @@ function DateRangePicker({ onDateChange, dateRanges }: DateRangePickerProps) {
           size="large"
           ariaLabel="clear task date"
           stretch={true}
-          onClick={handleClear}
+          onClick={() => action()}
           type="secondary"
         >
           Clear
@@ -66,7 +48,12 @@ function DateRangePicker({ onDateChange, dateRanges }: DateRangePickerProps) {
           size="large"
           ariaLabel="confirm task date"
           stretch={true}
-          onClick={handleConfirm}
+          onClick={() =>
+            action({
+              startDate: date[0].startDate,
+              endDate: date[0].endDate,
+            })
+          }
         >
           Confirm
         </Button>
@@ -74,4 +61,5 @@ function DateRangePicker({ onDateChange, dateRanges }: DateRangePickerProps) {
     </div>
   );
 }
-export default DateRangePicker;
+
+export default DatePicker;

@@ -27,7 +27,7 @@ const TASK_STATUS = {
   toDo: {
     name: "to do",
     icon: "circleDotted",
-    bgColor: "bg-neutral-700",
+    bgColor: "bg-neutral-400 dark:bg-neutral-700",
     color: "fill-neutral-600",
     status: "toDo",
     colorHex: "#525252",

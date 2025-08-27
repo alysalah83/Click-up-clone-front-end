@@ -81,7 +81,7 @@ function ModalContent({
   return (
     <Overlay contentYPosition={contentYPosition}>
       <div
-        className={`relative z-50 m-4 h-fit w-fit ${contentYPosition === "withTopMargin" && "mt-48"} rounded-lg bg-neutral-800`}
+        className={`relative z-50 m-4 h-fit w-fit ${contentYPosition === "withTopMargin" && "mt-48"} rounded-lg bg-neutral-300 dark:bg-neutral-800`}
         aria-label="container for modal window"
       >
         <span className="absolute top-6 right-6">

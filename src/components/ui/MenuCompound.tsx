@@ -167,7 +167,7 @@ function MenuContent({ children }: { children: ReactNode }) {
           left: positionCords.left ?? 0,
           visibility: hasPosition ? "visible" : "hidden",
         }}
-        className="absolute z-50 rounded-lg bg-neutral-800 text-sm text-neutral-200 shadow-md shadow-neutral-900/10"
+        className="absolute z-50 rounded-lg bg-neutral-300 text-sm text-neutral-800 shadow-md shadow-neutral-900/10 dark:bg-neutral-800 dark:text-neutral-200"
         ref={menuRef}
       >
         {children}

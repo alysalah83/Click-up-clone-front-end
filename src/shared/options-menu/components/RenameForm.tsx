@@ -49,7 +49,7 @@ function RenameForm({ onClose, initialName, onSave }: RenameFormProps) {
         value={nameValue}
         name="name"
         type="text"
-        className="w-full text-sm text-neutral-100 outline-0"
+        className="w-full text-sm text-neutral-900 outline-0 dark:text-neutral-100"
         title="Rename Task"
       />
     </form>

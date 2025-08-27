@@ -17,21 +17,21 @@ This project showcases **modern React 19 development**, custom UI components, an
   <table>
     <tr>
       <td align="center">
-        <img src="site-images/home%20page.png" alt="Home Page" width="300" />
+        <img src="assets/home-page.png" alt="Home Page" width="300" />
         <br>
         <strong>Home Page</strong>
       </td>
       <td align="center">
-        <img src="site-images/login.jpeg" alt="Login" width="300" />
+        <img src="assets/login.jpeg" alt="Login" width="300" />
         <br>
         <strong>Login Page</strong>
       </td>
       <td align="center">
-        <img src="site-images/signup.jpeg" alt="Signup" width="300" />
+        <img src="assets/signup.jpeg" alt="Signup" width="300" />
         <br>
         <strong>Signup Page</strong>
        <td align="center">
-        <img src="site-images/overview.png" alt="Overview" width="300" />
+        <img src="assets/overview.png" alt="Overview" width="300" />
         <br>
         <strong>Overview</strong>
       </td>
@@ -39,36 +39,36 @@ This project showcases **modern React 19 development**, custom UI components, an
     </tr>
     <tr>
       <td align="center">
-        <img src="site-images/dashboard.png" alt="Dashboard" width="300" />
+        <img src="assets/dashboard.png" alt="Dashboard" width="300" />
         <br>
         <strong>Dashboard</strong>
       </td>
       <td align="center">
-        <img src="site-images/board.png" alt="Board View" width="300" />
+        <img src="assets/board.png" alt="Board View" width="300" />
         <br>
         <strong>Board View</strong>
       </td>
     </tr>
     <tr>
       <td align="center">
-        <img src="site-images/list.png" alt="List View" width="300" />
+        <img src="assets/list.png" alt="List View" width="300" />
         <br>
         <strong>List View</strong>
       </td>
       <td align="center">
-        <img src="site-images/table.png" alt="Table View" width="300" />
+        <img src="assets/table.png" alt="Table View" width="300" />
         <br>
         <strong>Table View</strong>
       </td>
       <td align="center" colspan="3">
-        <img src="site-images/create%20workspace.png" alt="Create Workspace" width="300" />
+        <img src="assets/create-workspace.png" alt="Create Workspace" width="300" />
         <br>
         <strong>Create Workspace</strong>
       </td>
     </tr>
     <tr>
     <td align="center">
-        <img src="site-images/table2.png" alt="Table View 2" width="300" />
+        <img src="assets/table2.png" alt="Table View 2" width="300" />
         <br>
         <strong>Table View 2</strong>
       </td>

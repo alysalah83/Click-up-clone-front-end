@@ -20,11 +20,9 @@ function TableTaskRow({ task, sortNum }: { task: Task; sortNum: number }) {
 
   return (
     <main
-      onMouseEnter={handleTaskRowHovered}
-      onTouchStart={handleTaskRowHovered}
-      onMouseLeave={handleTaskRowNotHovered}
-      onTouchEnd={handleTaskRowNotHovered}
-      className={`${tableGrid} border-b border-neutral-700 ${isTaskChecked ? "bg-neutral-500/30" : "bg-neutral-900/50 hover:bg-neutral-500/20 active:bg-neutral-500/20"} text-sm font-medium text-neutral-300 transition duration-300`}
+      onPointerEnter={handleTaskRowHovered}
+      onPointerLeave={handleTaskRowNotHovered}
+      className={`${tableGrid} border-b border-neutral-300 dark:border-neutral-700 ${isTaskChecked ? "bg-neutral-200 dark:bg-neutral-500/30" : "bg-neutral-50 hover:bg-neutral-200/20 active:bg-neutral-200/20 dark:bg-neutral-900/50 dark:hover:bg-neutral-500/20 dark:active:bg-neutral-500/20"} text-sm font-medium text-neutral-600 transition duration-200 dark:text-neutral-300`}
     >
       <TableSlotCheckBox
         isTaskRowHovered={isTaskRowHovered}

@@ -47,13 +47,13 @@ function TaskCard({ task }: TaskCardProps) {
           {...listeners}
           {...attributes}
           style={styles}
-          className={`group flex w-full cursor-pointer flex-col gap-3 rounded-lg border border-neutral-700 bg-neutral-900 px-3 py-2 transition duration-300 hover:border-neutral-500 active:border-neutral-500`}
+          className={`group flex w-full cursor-pointer flex-col gap-3 rounded-lg border border-neutral-300 bg-neutral-100 px-3 py-2 transition duration-300 hover:border-neutral-100 active:border-neutral-100 dark:border-neutral-700 dark:bg-neutral-900 dark:hover:border-neutral-500 dark:active:border-neutral-500`}
         >
           {isRenameOpen ? (
             <RenameTaskForm />
           ) : (
             <div className="flex justify-between">
-              <span className="line-clamp-2 grow-0 text-sm font-medium text-neutral-50 transition duration-300 group-hover:text-neutral-300 group-active:text-neutral-300">
+              <span className="line-clamp-2 grow-0 text-sm font-medium text-neutral-950 transition duration-300 dark:text-neutral-50 dark:group-hover:text-neutral-300 dark:group-active:text-neutral-300">
                 {name}
               </span>
               <DropdownMenu>

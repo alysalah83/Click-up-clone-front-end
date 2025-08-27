@@ -1,4 +1,5 @@
 import ToastsManger from "@/components/ui/ToastsManger";
+import ThemeProvider from "@/contexts/ThemeProvider";
 import "@/styles/globals.css";
 import { Metadata } from "next";
 
@@ -12,10 +13,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className="relative h-full w-full overflow-x-hidden text-neutral-100">
+    <html lang="en" suppressHydrationWarning>
+      <body className="relative h-full w-full overflow-x-hidden text-neutral-900 dark:text-neutral-100">
         <ToastsManger />
-        {children}
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   );

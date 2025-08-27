@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { memo, useRef, useState } from "react";
 import { slotPaddingClasses, tableGrid } from "../styles/style";
 import { ICONS_MAP } from "@/constants/iconsMap";
 import ButtonIcon from "@/components/common/ButtonIcon";
@@ -8,10 +8,10 @@ import Button from "@/components/common/Button";
 import { Menu, MenuContent, MenuTrigger } from "@/components/ui/MenuCompound";
 import DateRangePicker from "@/components/ui/DateRangePicker";
 import { useClientAddTask } from "@/shared/tasks/hooks/useClientAddTask";
-import AddPriorityMenuList from "@/shared/tasks/components/AddPriorityMenuList";
 import { TaskDateRange, TaskPriority } from "@/shared/tasks/types/task.types";
 import { TASK_PRIORITIES_LIST } from "@/shared/tasks/consts/task.consts";
 import { getFormattedRangeDate } from "@/utils/helper";
+import TaskPriorityMenuList from "@/shared/tasks/components/TaskPriorityMenuList";
 
 function TableAddTaskRow() {
   const [isAddTaskOpen, setIsAddTaskOpen] = useState(false);
@@ -26,7 +26,7 @@ function TableAddTaskRow() {
         if (!isAddTaskOpen) handleToggleAddTaskOpen();
       }}
       ref={containerRef}
-      className={`${tableGrid} ${isAddTaskOpen ? "" : "cursor-pointer"} border-b border-neutral-700 bg-neutral-900/50 py-1 text-sm font-medium text-neutral-300 transition duration-300 hover:bg-neutral-500/20 active:bg-neutral-500/20`}
+      className={`${tableGrid} ${isAddTaskOpen ? "" : "cursor-pointer"} border-b border-neutral-300 bg-neutral-100 py-1 text-sm font-medium text-neutral-500 transition duration-300 hover:bg-neutral-200 active:bg-neutral-200 dark:border-neutral-700 dark:bg-neutral-900/50 dark:text-neutral-300 dark:hover:bg-neutral-500/20 dark:active:bg-neutral-500/20`}
     >
       {isAddTaskOpen ? (
         <TableOpenedAddTaskRow
@@ -168,14 +168,14 @@ function TableAddTaskFeaturesBtns({
           />
         </MenuTrigger>
         <MenuContent>
-          <AddPriorityMenuList onChange={onPriorityChange} />
+          <TaskPriorityMenuList action={onPriorityChange} />
         </MenuContent>
       </Menu>
     </div>
   );
 }
 
-function TableClosedAddTaskRow() {
+const TableClosedAddTaskRow = memo(function TableClosedAddTaskRow() {
   const Icon = ICONS_MAP.plus;
 
   return (
@@ -185,6 +185,6 @@ function TableClosedAddTaskRow() {
       <Icon className={`size-3.5 text-neutral-600`} />
     </div>
   );
-}
+});
 
 export default TableAddTaskRow;

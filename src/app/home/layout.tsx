@@ -14,9 +14,9 @@ async function HomeLayout({ children }: { children: ReactNode }) {
 
   return (
     <QueryProvider>
-      <div className="flex h-screen overflow-x-auto bg-black p-2">
+      <div className="flex h-screen overflow-x-auto bg-white p-2 dark:bg-black">
         <SideBarMenu />
-        <div className="flex w-full rounded-xl border border-neutral-700">
+        <div className="flex w-full rounded-xl border border-neutral-300 dark:border-neutral-700">
           <SideBarNav>
             <Workspace />
           </SideBarNav>

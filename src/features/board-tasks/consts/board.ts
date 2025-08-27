@@ -5,9 +5,9 @@ export const SKELTON_TASK_COUNT = 3;
 export const TASK_OPTIONS_BTNS_SIZE = 3.5;
 
 export const BOARD_COLUMNS = [
-  { type: "toDo", bgColor: "bg-neutral-900" },
-  { type: "inProgress", bgColor: "bg-violet-950/20" },
-  { type: "complete", bgColor: "bg-emerald-900/20" },
+  { type: "toDo", bgColor: "bg-neutral-200 dark:bg-neutral-900" },
+  { type: "inProgress", bgColor: "bg-violet-300/20 dark:bg-violet-950/20" },
+  { type: "complete", bgColor: "bg-emerald-200/20 bg-emerald-900/20" },
 ] as const;
 
 export const FEATURES = [

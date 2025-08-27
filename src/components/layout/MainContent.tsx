@@ -9,7 +9,7 @@ function MainContent({ children }: { children: ReactNode }) {
     <section
       className={`flex h-full w-full flex-auto ${
         !isSideNavOpened && "rounded-tl-xl rounded-bl-xl"
-      } bg-neutral-925 flex-col overflow-hidden rounded-tr-xl rounded-br-xl`}
+      } dark:bg-neutral-925 flex-col overflow-hidden rounded-tr-xl rounded-br-xl bg-neutral-100`}
     >
       {children}
     </section>

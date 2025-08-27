@@ -4,7 +4,7 @@ import logo from "@/../public/logo.png";
 
 function loading() {
   return (
-    <div className="relative h-screen w-screen bg-neutral-900">
+    <div className="relative h-screen w-screen bg-neutral-50 dark:bg-neutral-900">
       <Image
         width={350}
         height={350}

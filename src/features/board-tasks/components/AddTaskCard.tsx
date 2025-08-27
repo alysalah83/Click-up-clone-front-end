@@ -12,9 +12,9 @@ import ButtonIcon from "@/components/common/ButtonIcon";
 import { hoverElementClasses } from "@/constants/styles";
 import { Menu, MenuContent, MenuTrigger } from "@/components/ui/MenuCompound";
 import DateRangePicker from "@/components/ui/DateRangePicker";
-import AddPriorityMenuList from "@/shared/tasks/components/AddPriorityMenuList";
 import { TASK_PRIORITIES_LIST } from "@/shared/tasks/consts/task.consts";
 import { getFormattedRangeDate } from "@/utils/helper";
+import TaskPriorityMenuList from "@/shared/tasks/components/TaskPriorityMenuList";
 
 interface AddTaskProps {
   taskStatus: TaskStatus;
@@ -42,7 +42,7 @@ function AddTaskCard({ taskStatus, isAddTaskPanelOpened }: AddTaskProps) {
 
   return (
     <form
-      className="flex flex-col gap-3 rounded-lg border border-neutral-500 bg-neutral-900 p-2 text-neutral-400/80"
+      className="flex flex-col gap-3 rounded-lg border-neutral-100 bg-neutral-100 p-2 text-neutral-600/80 dark:border-neutral-500 dark:bg-neutral-900 dark:text-neutral-400/80"
       ref={taskPanelRef}
       onKeyDown={(e) => {
         if (e.key === "Escape") return handleCloseAddTaskPanel();
@@ -58,7 +58,7 @@ function AddTaskCard({ taskStatus, isAddTaskPanelOpened }: AddTaskProps) {
           onChange={(e) => handleNameChange(e.target.value)}
           type="text"
           placeholder="Task Name..."
-          className="w-full px-1 py-1 text-sm text-neutral-100 outline-0"
+          className="w-full px-1 py-1 text-sm text-neutral-900 outline-0 dark:text-neutral-100"
         />
         <Button
           ariaLabel="save new task button"
@@ -67,7 +67,7 @@ function AddTaskCard({ taskStatus, isAddTaskPanelOpened }: AddTaskProps) {
         >
           <span className="flex items-center gap-1">
             <span>Save</span>
-            <ICONS_MAP.leftArrow className="size-3 fill-neutral-900 text-neutral-900" />
+            <ICONS_MAP.leftArrow className="size-3 fill-neutral-100 text-neutral-100 dark:fill-neutral-900 dark:text-neutral-900" />
           </span>
         </Button>
       </div>
@@ -141,7 +141,7 @@ function BoardAddTaskFeatureBtns({
           </div>
         </MenuTrigger>
         <MenuContent>
-          <AddPriorityMenuList onChange={onPriorityChange} />
+          <TaskPriorityMenuList action={onPriorityChange} />
         </MenuContent>
       </Menu>
     </>
