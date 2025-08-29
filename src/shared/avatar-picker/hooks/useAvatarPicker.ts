@@ -11,12 +11,13 @@ import {
   AvatarLetters,
 } from "../types/avatarPicker.types";
 
-export function useAvatarPicker({ label }: { label: AvatarLetters }) {
+export function useAvatarPicker({ label }: { label: string }) {
   const randomColor = getRandomColor();
   const randomLetter = getRandomLetter();
   const [selectedColor, setSelectedColor] = useState<AvatarColors>(randomColor);
-  const [selectedIcon, setSelectedIcon] = useState<AvatarIcons | "">("");
-  const avatarLetter = label.trim().at(0)?.toUpperCase() || randomLetter;
+  const [selectedIcon, setSelectedIcon] = useState<AvatarIcons | null>(null);
+  const avatarLetter = (label.trim().at(0)?.toUpperCase() ||
+    randomLetter) as AvatarLetters;
 
   return {
     selectedColor,

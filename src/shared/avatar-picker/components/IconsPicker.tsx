@@ -23,7 +23,7 @@ const IconButton = memo(function IconButton({
   iconName: AvatarIcons;
   Icon: IconType;
   isSelected: boolean;
-  onSelectIcon: React.Dispatch<React.SetStateAction<AvatarIcons>>;
+  onSelectIcon: React.Dispatch<React.SetStateAction<AvatarIcons | null>>;
 }) {
   return (
     <button
@@ -41,8 +41,8 @@ function IconPicker({
   selectedIcon,
   onSelectIcon,
 }: {
-  selectedIcon: AvatarIcons;
-  onSelectIcon: React.Dispatch<React.SetStateAction<AvatarIcons>>;
+  selectedIcon: AvatarIcons | null;
+  onSelectIcon: React.Dispatch<React.SetStateAction<AvatarIcons | null>>;
 }) {
   const [iconsVisibleCount, setIconsVisibleCount] =
     useState(iconPickerLoadCount);
