@@ -3,7 +3,7 @@
 import { updateWorkspace } from "@/features/workspace/actions/workspace.actions";
 import { useWorkspace } from "./WorkspaceContext";
 import RenameForm from "@/shared/options-menu/components/RenameForm";
-import { startTransition, useOptimistic } from "react";
+import { memo, startTransition, useOptimistic } from "react";
 
 function WorkspaceName() {
   const {
@@ -42,4 +42,4 @@ function WorkspaceName() {
   );
 }
 
-export default WorkspaceName;
+export default memo(WorkspaceName);

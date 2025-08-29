@@ -1,28 +1,29 @@
 "use client";
 
 import { useState } from "react";
-import WorkspaceAvatar from "./WorkspaceAvatar";
 import { createWorkspace } from "@/features/workspace/actions/workspace.actions";
-import { getRandomColor, getRandomLetter } from "../utils/helper";
 import CreateForm from "@/components/common/CreateForm";
-import { WorkspaceAvatarColors } from "../types/workspace.types";
+import AvatarPickerMenu from "@/shared/avatar-picker/components/AvatarPickerMenu";
+import ColorsPicker from "@/shared/avatar-picker/components/ColorsPicker";
+import IconPicker from "@/shared/avatar-picker/components/IconsPicker";
+import { useAvatarPicker } from "@/shared/avatar-picker/hooks/useAvatarPicker";
 
 function CreateWorkspaceForm() {
-  const randomColor = getRandomColor();
-  const randomLetter = getRandomLetter();
-  const [selectedColor, setSelectedColor] =
-    useState<WorkspaceAvatarColors>(randomColor);
   const [nameValue, setNameValue] = useState("");
-
-  const workspaceLetter = nameValue.trim().at(0)?.toUpperCase() || randomLetter;
+  const {
+    avatarLetter,
+    selectedColor,
+    selectedIcon,
+    setSelectedColor,
+    setSelectedIcon,
+  } = useAvatarPicker({ label: nameValue });
 
   const createWorkspaceWithAvatar = createWorkspace.bind(null, {
-    letter: workspaceLetter,
+    icon: selectedIcon || avatarLetter,
     color: selectedColor,
   });
 
-  const handleSelectColor = (color: WorkspaceAvatarColors) =>
-    setSelectedColor(color);
+  console.log(selectedColor, selectedIcon);
 
   return (
     <CreateForm
@@ -36,11 +37,20 @@ function CreateWorkspaceForm() {
       setInputValue={setNameValue}
       inputValue={nameValue}
     >
-      <WorkspaceAvatar
-        avatarLetter={workspaceLetter}
+      <AvatarPickerMenu
+        selectedIcon={selectedIcon}
         selectedColor={selectedColor}
-        onSelectColor={handleSelectColor}
-      />
+        avatarIcon={selectedIcon || avatarLetter}
+      >
+        <ColorsPicker
+          selectedColor={selectedColor}
+          onSelectColor={setSelectedColor}
+        />
+        <IconPicker
+          selectedIcon={selectedIcon}
+          onSelectIcon={setSelectedIcon}
+        />
+      </AvatarPickerMenu>
     </CreateForm>
   );
 }

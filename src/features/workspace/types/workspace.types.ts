@@ -1,11 +1,6 @@
 import z from "zod";
 import { workspaceSchema } from "../validations/workspaceSchema";
-import { WORKSPACE_AVATAR_COLORS } from "../consts/workspace.consts";
-
-interface Avatar {
-  letter: string;
-  color: WorkspaceAvatarColors;
-}
+import { Avatar } from "@/shared/avatar-picker/types/avatarPicker.types";
 
 interface Workspace {
   id: string;
@@ -14,8 +9,6 @@ interface Workspace {
   createdAt: string;
 }
 
-type WorkspaceAvatarColors = keyof typeof WORKSPACE_AVATAR_COLORS;
-
 type ClientWorkspace = z.infer<typeof workspaceSchema>;
 
-export type { Workspace, WorkspaceAvatarColors, ClientWorkspace, Avatar };
+export type { Workspace, ClientWorkspace };

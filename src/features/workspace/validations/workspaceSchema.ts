@@ -8,7 +8,7 @@ const workspaceSchema = z.object({
     .max(32, { error: "name max length is 32 character" })
     .regex(/^[a-zA-Z0-9\s.,!?-]+$/, { error: "Invalid characters detected" }),
   avatar: z.object({
-    letter: z.string().trim().length(1).toUpperCase(),
+    icon: z.string().trim(),
     color: z.string(),
   }),
 });

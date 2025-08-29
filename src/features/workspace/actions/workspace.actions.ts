@@ -9,9 +9,10 @@ import { deleteWorkspaceApi } from "../../../lib/api/server/workspace/deleteWork
 import { createWorkspaceApi } from "../../../lib/api/server/workspace/createWorkspace";
 import { updateWorkspaceApi } from "../../../lib/api/server/workspace/updateWorkspace";
 import { mongoIdSchema } from "../../../lib/validations/global";
-import { Avatar, ClientWorkspace } from "../types/workspace.types";
+import { ClientWorkspace } from "../types/workspace.types";
 import { createListApi } from "@/lib/api/server/list/createList";
 import { createTaskApi } from "@/lib/api/server/task/createTask";
+import { Avatar } from "@/shared/avatar-picker/types/avatarPicker.types";
 
 export async function createWorkspace(
   avatar: Avatar,

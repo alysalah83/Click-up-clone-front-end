@@ -6,37 +6,52 @@ import React, {
   useCallback,
   memo,
 } from "react";
-import * as icons from "react-icons/io";
-import MiniSpinner from "../ui/MiniSpinner";
 import { ICON_PICKER_LOAD_COUNT } from "@/config/config";
+import MiniSpinner from "@/components/ui/MiniSpinner";
+import { AVATAR_ICONS as icons } from "../consts/avatar.consts";
+import { AvatarIcons } from "../types/avatarPicker.types";
+import { IconType } from "react-icons";
 
 const iconPickerLoadCount = ICON_PICKER_LOAD_COUNT || 50;
 
 const IconButton = memo(function IconButton({
   iconName,
   Icon,
+  isSelected,
+  onSelectIcon,
 }: {
-  iconName: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  Icon: React.ComponentType<any>;
+  iconName: AvatarIcons;
+  Icon: IconType;
+  isSelected: boolean;
+  onSelectIcon: React.Dispatch<React.SetStateAction<AvatarIcons>>;
 }) {
   return (
     <button
-      className="cursor-pointer rounded-lg p-1 transition duration-300 hover:bg-neutral-200/10 active:bg-neutral-200/10"
+      className={`cursor-pointer rounded-lg p-1 transition duration-300 ${isSelected ? "bg-neutral-900/10 dark:bg-neutral-200/10" : "hover:bg-neutral-900/10 active:bg-neutral-900/10 dark:hover:bg-neutral-200/10 dark:active:bg-neutral-200/10"}`}
       aria-label={`${iconName} Avatar`}
       type="button"
+      onClick={() => (isSelected ? null : onSelectIcon(iconName))}
     >
-      <Icon className="size-5 fill-neutral-400 text-neutral-400" />
+      <Icon className="size-6 fill-neutral-600 text-neutral-600 dark:fill-neutral-400 dark:text-neutral-400" />
     </button>
   );
 });
 
-function IconPicker() {
+function IconPicker({
+  selectedIcon,
+  onSelectIcon,
+}: {
+  selectedIcon: AvatarIcons;
+  onSelectIcon: React.Dispatch<React.SetStateAction<AvatarIcons>>;
+}) {
   const [iconsVisibleCount, setIconsVisibleCount] =
     useState(iconPickerLoadCount);
   const iconPickerContainerRef = useRef<HTMLDivElement | null>(null);
   const loaderRef = useRef<HTMLDivElement | null>(null);
-  const iconsArr = useMemo(() => Object.entries(icons), []);
+  const iconsArr = useMemo(
+    () => Object.entries(icons) as [AvatarIcons, IconType][],
+    [],
+  );
   const iconsCount = iconsArr.length;
 
   const visibleIcons = useMemo(
@@ -78,7 +93,13 @@ function IconPicker() {
     >
       <div className="flex flex-wrap gap-1">
         {visibleIcons.map(([iconName, Icon]) => (
-          <IconButton key={iconName} iconName={iconName} Icon={Icon} />
+          <IconButton
+            key={iconName}
+            iconName={iconName}
+            Icon={Icon}
+            isSelected={selectedIcon === iconName}
+            onSelectIcon={onSelectIcon}
+          />
         ))}
       </div>
       {iconsCount !== iconsVisibleCount && (
@@ -90,4 +111,4 @@ function IconPicker() {
   );
 }
 
-export default IconPicker;
+export default memo(IconPicker);

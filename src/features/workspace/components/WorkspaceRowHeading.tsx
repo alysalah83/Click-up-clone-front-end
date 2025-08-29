@@ -16,10 +16,10 @@ import {
   ToolTipTrigger,
 } from "@/components/ui/ToolTipCompound ";
 import OptionsWorkspaceMenuItems from "./OptionsWorkspaceMenuItems";
-import { WORKSPACE_AVATAR_COLORS } from "../consts/workspace.consts";
 import WorkspaceName from "./WorkspaceName";
 import { useWorkspace } from "./WorkspaceContext";
 import { Workspace } from "../types/workspace.types";
+import Avatar from "@/shared/avatar-picker/components/Avatar";
 
 function WorkspaceRowHeading({ workspace }: { workspace: Workspace }) {
   return (
@@ -35,7 +35,7 @@ function WorkspaceRowHeading({ workspace }: { workspace: Workspace }) {
 
 function WorkspaceRowHeadingTitle({ workspace }: { workspace: Workspace }) {
   const {
-    avatar: { color, letter },
+    avatar: { color, icon },
   } = workspace;
   const { isRenameOpen } = useWorkspace();
 
@@ -43,13 +43,7 @@ function WorkspaceRowHeadingTitle({ workspace }: { workspace: Workspace }) {
     <div
       className={`flex ${isRenameOpen ? "w-full" : "max-w-3/4"} items-center gap-2`}
     >
-      <button
-        type="button"
-        className={`${WORKSPACE_AVATAR_COLORS[color].bg} shrink-0 cursor-pointer rounded-lg border border-neutral-300 px-2 py-1.5 text-lg leading-3.5 font-semibold text-neutral-100 transition duration-300 disabled:cursor-not-allowed disabled:opacity-70 dark:border-neutral-700`}
-      >
-        {letter.toUpperCase()}
-      </button>
-
+      <Avatar selectedColor={color} avatarContent={icon} />
       <WorkspaceName />
     </div>
   );

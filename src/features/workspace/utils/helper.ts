@@ -1,44 +1,18 @@
-import { WORKSPACE_AVATAR_COLORS } from "@/features/workspace/consts/workspace.consts";
-import { WorkspaceAvatarColors } from "../types/workspace.types";
-
-const letters = [
-  "A",
-  "B",
-  "C",
-  "D",
-  "E",
-  "F",
-  "G",
-  "H",
-  "I",
-  "J",
-  "K",
-  "L",
-  "M",
-  "N",
-  "O",
-  "P",
-  "Q",
-  "R",
-  "S",
-  "T",
-  "U",
-  "V",
-  "W",
-  "X",
-  "Y",
-  "Z",
-] as const;
+import {
+  AVATAR_COLORS,
+  AvatarColors,
+} from "@/shared/avatar-picker/types/avatarPicker.types";
+import { avatarLetters } from "@/shared/avatar-picker/utils/helper";
 
 const getRandomColor = () => {
-  const colorsArr = Object.entries(WORKSPACE_AVATAR_COLORS);
+  const colorsArr = Object.entries(AVATAR_COLORS);
   const randomIndex = Math.floor(Math.random() * colorsArr.length);
-  return colorsArr[randomIndex][0] as WorkspaceAvatarColors;
+  return colorsArr[randomIndex][0] as AvatarColors;
 };
 
 const getRandomLetter = () => {
-  const randomIndex = Math.floor(Math.random() * letters.length);
-  return letters[randomIndex];
+  const randomIndex = Math.floor(Math.random() * avatarLetters.length);
+  return avatarLetters[randomIndex];
 };
 
 export { getRandomColor, getRandomLetter };
