@@ -19,7 +19,7 @@ import OptionsWorkspaceMenuItems from "./OptionsWorkspaceMenuItems";
 import WorkspaceName from "./WorkspaceName";
 import { useWorkspace } from "./WorkspaceContext";
 import { Workspace } from "../types/workspace.types";
-import Avatar from "@/shared/avatar-picker/components/Avatar";
+import WorkspaceAvatar from "./WorkspaceAvatar";
 
 function WorkspaceRowHeading({ workspace }: { workspace: Workspace }) {
   return (
@@ -35,6 +35,7 @@ function WorkspaceRowHeading({ workspace }: { workspace: Workspace }) {
 
 function WorkspaceRowHeadingTitle({ workspace }: { workspace: Workspace }) {
   const {
+    id,
     avatar: { color, icon },
   } = workspace;
   const { isRenameOpen } = useWorkspace();
@@ -43,7 +44,11 @@ function WorkspaceRowHeadingTitle({ workspace }: { workspace: Workspace }) {
     <div
       className={`flex ${isRenameOpen ? "w-full" : "max-w-3/4"} items-center gap-2`}
     >
-      <Avatar selectedColor={color} avatarContent={icon} />
+      <WorkspaceAvatar
+        currentColor={color}
+        currentIcon={icon}
+        workspaceId={id}
+      />
       <WorkspaceName />
     </div>
   );

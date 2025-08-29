@@ -22,6 +22,7 @@ import {
   IoCloseOutline,
   IoCheckmarkSharp,
   IoSettings,
+  IoWaterOutline,
 } from "react-icons/io5";
 import { MdLockOutline, MdOutlineBlock, MdSunny } from "react-icons/md";
 import {
@@ -74,4 +75,5 @@ export const ICONS_MAP = {
   setting: IoSettings,
   moon: FaMoon,
   sun: MdSunny,
+  water: IoWaterOutline,
 } as const;
