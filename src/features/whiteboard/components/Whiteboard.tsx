@@ -16,6 +16,7 @@ function ThemeUpdater() {
         colorScheme: theme as "dark" | "light" | undefined,
       });
     }
+    document.querySelector(".tl-watermark_SEE-LICENSE")?.remove();
   }, [editor, theme]);
 
   return null;
