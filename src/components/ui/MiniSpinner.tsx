@@ -9,12 +9,12 @@ interface MiniSpinnerProps {
 function MiniSpinner({
   width = "small",
   padding = "p-1",
-  bgColor = "bg-neutral-200",
+  bgColor = "bg-neutral-900 dark:bg-neutral-200",
 }: MiniSpinnerProps) {
   const spinnerWidthClass = {
     small: "w-5",
     medium: "w-6",
-    large: "w-7",
+    large: "w-9",
   };
 
   return (
