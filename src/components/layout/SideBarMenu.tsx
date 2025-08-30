@@ -69,7 +69,7 @@ function SideMenuLink({ menuItem }: { menuItem: MenuItem }) {
     isActive = includedRoutes.some((path) => pathname.includes(path));
 
   return (
-    <Link href={href} prefetch={href !== "/home/whiteboard"}>
+    <Link href={href}>
       <li className="flex flex-col items-center gap-1">
         <ButtonIcon
           icon={icon}
