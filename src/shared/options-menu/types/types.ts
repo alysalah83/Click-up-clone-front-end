@@ -8,7 +8,7 @@ interface OptionsMenuItemProps {
     label: string;
     color: string | null;
     display: {
-      uiForAction: string;
+      uiForAction: UiForAction;
       ActionComponent: React.ComponentType;
     } | null;
     action: (() => void) | null;

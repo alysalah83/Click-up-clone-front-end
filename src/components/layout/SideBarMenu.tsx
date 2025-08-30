@@ -11,45 +11,22 @@ import {
   ToolTipMessage,
   ToolTipTrigger,
 } from "../ui/ToolTipCompound ";
+import { IconsMap } from "@/types/index.types";
+
+interface MenuItem {
+  icon: IconsMap;
+  label: string;
+  href: string;
+  includedRoutes?: string[];
+}
 
 function SideBarMenu() {
   const [isPending, setIsPending] = useState(false);
-  const [homeObject, dashboardObj] = MENU_ITEMS;
-  const pathname = usePathname();
-
   return (
     <menu className="mr-2 flex w-fit flex-col items-center gap-6 rounded-xl bg-neutral-200 px-2 py-4 dark:bg-neutral-900">
-      <Link href={homeObject.href}>
-        <li className="flex flex-col items-center gap-1">
-          <ButtonIcon
-            icon={homeObject.icon}
-            size={6}
-            type="primary"
-            isActive={
-              pathname.includes(homeObject.href) &&
-              !pathname.includes(dashboardObj.href)
-            }
-            ariaLabel={`${homeObject.label} button`}
-          />
-          <span className="text-xs font-bold capitalize">
-            {homeObject.label}
-          </span>
-        </li>
-      </Link>
-      <Link href={dashboardObj.href}>
-        <li className="flex flex-col items-center gap-1">
-          <ButtonIcon
-            icon={dashboardObj.icon}
-            size={6}
-            type="primary"
-            isActive={pathname.includes(dashboardObj.href)}
-            ariaLabel={`${dashboardObj.label} button`}
-          />
-          <span className="text-xs font-bold capitalize">
-            {dashboardObj.label}
-          </span>
-        </li>
-      </Link>
+      {MENU_ITEMS.map((item) => (
+        <SideMenuLink menuItem={item} key={item.href} />
+      ))}
 
       <form
         className={`mt-auto flex ${isPending ? "cursor-not-allowed" : "cursor-pointer"} flex-col items-center gap-1`}
@@ -79,6 +56,31 @@ function SideBarMenu() {
         </ToolTip>
       </form>
     </menu>
+  );
+}
+
+function SideMenuLink({ menuItem }: { menuItem: MenuItem }) {
+  const { icon, label, href, includedRoutes } = menuItem;
+  const pathname = usePathname();
+  let isActive = false;
+
+  if (pathname === href) isActive = true;
+  else if (includedRoutes)
+    isActive = includedRoutes.some((path) => pathname.includes(path));
+
+  return (
+    <Link href={href} prefetch={href !== "/home/whiteboard"}>
+      <li className="flex flex-col items-center gap-1">
+        <ButtonIcon
+          icon={icon}
+          size={6}
+          type="primary"
+          isActive={isActive}
+          ariaLabel={`${label} button`}
+        />
+        <span className="text-xs font-bold capitalize">{label}</span>
+      </li>
+    </Link>
   );
 }
 

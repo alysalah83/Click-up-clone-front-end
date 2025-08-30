@@ -1,12 +1,23 @@
 import { IconsMap } from "@/types/index.types";
-import { useWorkspace } from "../components/WorkspaceContext";
 import { UiForAction } from "@/shared/options-menu/types/types";
 import DeleteWorkspaceConfirm from "../components/DeleteWorkspaceConfirm";
+import WorkspaceEditAvatarOptions from "../components/WorkspaceEditAvatarOptions";
+import { useRename } from "../contexts/RenameProvider";
 
 export function useWorkspaceMenuItems() {
-  const { handleToggleIsRenameOpen } = useWorkspace();
+  const { handleToggleIsRenameOpen } = useRename();
 
   const WORKSPACE_SHOW_MORE_MENU_ITEMS = [
+    {
+      icon: "water" as IconsMap,
+      label: "Icon & Color",
+      color: null,
+      display: {
+        uiForAction: "menu" as UiForAction,
+        ActionComponent: WorkspaceEditAvatarOptions,
+      },
+      action: null,
+    },
     {
       icon: "pen" as IconsMap,
       label: "Rename",

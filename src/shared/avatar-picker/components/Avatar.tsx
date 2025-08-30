@@ -24,7 +24,7 @@ function Avatar({ avatarContent, disabled, selectedColor }: AvatarProps) {
     <button
       disabled={disabled}
       type="button"
-      className={`${bgColor} shrink-0 cursor-pointer rounded-lg border border-neutral-700 p-1 text-lg leading-3.5 font-semibold text-neutral-100 transition duration-300 disabled:cursor-not-allowed disabled:opacity-70`}
+      className={`${bgColor} shrink-0 cursor-pointer rounded-lg border border-neutral-300 p-1 text-lg leading-3.5 font-semibold text-neutral-100 transition duration-300 disabled:cursor-not-allowed disabled:opacity-70 dark:border-neutral-700`}
     >
       {isIcon ? (
         Icon && <Icon className="size-6 fill-neutral-300 text-neutral-300" />

@@ -1,16 +1,14 @@
 "use client";
 
 import { updateWorkspace } from "@/features/workspace/actions/workspace.actions";
-import { useWorkspace } from "./WorkspaceContext";
 import RenameForm from "@/shared/options-menu/components/RenameForm";
 import { memo, startTransition, useOptimistic } from "react";
+import { useRename } from "../contexts/RenameProvider";
+import { useWorkspace } from "../contexts/WorkspaceProvider";
 
 function WorkspaceName() {
-  const {
-    workspace: { id, name },
-    isRenameOpen,
-    handleToggleIsRenameOpen,
-  } = useWorkspace();
+  const { isRenameOpen, handleToggleIsRenameOpen } = useRename();
+  const { id, name } = useWorkspace();
 
   const [optimisticName, setOptimisticName] = useOptimistic(name);
 

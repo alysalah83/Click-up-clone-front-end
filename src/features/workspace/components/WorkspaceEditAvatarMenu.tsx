@@ -15,8 +15,8 @@ function WorkspaceEditAvatarMenu({
 }: {
   currentColor: AvatarColors;
   currentIcon: AvatarIcons | AvatarLetters;
-  onSelectColor: React.Dispatch<React.SetStateAction<AvatarColors>>;
-  onSelectIcon: React.Dispatch<React.SetStateAction<AvatarIcons | null>>;
+  onSelectColor: (color: AvatarColors) => void;
+  onSelectIcon: (icon: AvatarIcons) => void;
 }) {
   return (
     <div className="max-w-2xs">

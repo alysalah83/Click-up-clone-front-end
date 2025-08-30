@@ -2,6 +2,7 @@ import { BsPencil, BsThreeDots } from "react-icons/bs";
 import {
   FaBullseye,
   FaMoon,
+  FaPaintBrush,
   FaRegUserCircle,
   FaSignOutAlt,
 } from "react-icons/fa";
@@ -76,4 +77,5 @@ export const ICONS_MAP = {
   moon: FaMoon,
   sun: MdSunny,
   water: IoWaterOutline,
+  paintBrush: FaPaintBrush,
 } as const;

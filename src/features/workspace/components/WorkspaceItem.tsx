@@ -1,9 +1,11 @@
 import WorkspaceRowHeading from "./WorkspaceRowHeading";
 import ListRowHeading from "@/features/lists-side-nav/components/ListRowHeading";
-import WorkspaceProvider from "./WorkspaceContext";
 import ListProvider from "@/features/lists-side-nav/components/ListContext";
 import { getListsByWorkspaceId } from "@/lib/api/server/list/getList";
 import { Workspace } from "../types/workspace.types";
+import WorkspaceProvider from "../contexts/WorkspaceProvider";
+import RenameProvider from "../contexts/RenameProvider";
+import WorkspaceAvatarProvider from "../contexts/WorkspaceAvatarProvider";
 
 interface WorkspaceItemProps {
   workspace: Workspace;
@@ -17,7 +19,11 @@ async function WorkspaceItem({ workspace }: WorkspaceItemProps) {
   return (
     <li className="flex flex-col gap-2">
       <WorkspaceProvider workspace={workspace}>
-        <WorkspaceRowHeading workspace={workspace} />
+        <RenameProvider>
+          <WorkspaceAvatarProvider>
+            <WorkspaceRowHeading workspace={workspace} />
+          </WorkspaceAvatarProvider>
+        </RenameProvider>
       </WorkspaceProvider>
 
       {haveLists && (

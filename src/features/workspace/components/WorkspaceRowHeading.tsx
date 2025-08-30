@@ -17,45 +17,37 @@ import {
 } from "@/components/ui/ToolTipCompound ";
 import OptionsWorkspaceMenuItems from "./OptionsWorkspaceMenuItems";
 import WorkspaceName from "./WorkspaceName";
-import { useWorkspace } from "./WorkspaceContext";
 import { Workspace } from "../types/workspace.types";
 import WorkspaceAvatar from "./WorkspaceAvatar";
+import { useRename } from "../contexts/RenameProvider";
 
 function WorkspaceRowHeading({ workspace }: { workspace: Workspace }) {
   return (
     <div
       className={`flex items-center justify-between rounded-lg px-2 py-1 transition duration-300 ${hoverElementClasses.replace("cursor-pointer", "cursor-default")}`}
     >
-      <WorkspaceRowHeadingTitle workspace={workspace} />
+      <WorkspaceRowHeadingTitle />
 
       <WorkspaceRowHeadingButtons workspaceId={workspace.id} />
     </div>
   );
 }
 
-function WorkspaceRowHeadingTitle({ workspace }: { workspace: Workspace }) {
-  const {
-    id,
-    avatar: { color, icon },
-  } = workspace;
-  const { isRenameOpen } = useWorkspace();
+function WorkspaceRowHeadingTitle() {
+  const { isRenameOpen } = useRename();
 
   return (
     <div
       className={`flex ${isRenameOpen ? "w-full" : "max-w-3/4"} items-center gap-2`}
     >
-      <WorkspaceAvatar
-        currentColor={color}
-        currentIcon={icon}
-        workspaceId={id}
-      />
+      <WorkspaceAvatar />
       <WorkspaceName />
     </div>
   );
 }
 
 function WorkspaceRowHeadingButtons({ workspaceId }: { workspaceId: string }) {
-  const { isRenameOpen } = useWorkspace();
+  const { isRenameOpen } = useRename();
   return (
     !isRenameOpen && (
       <div className="flex items-center gap-1">

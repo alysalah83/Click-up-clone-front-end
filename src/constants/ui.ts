@@ -1,11 +1,23 @@
+import { IconsMap } from "@/types/index.types";
+
 export const MENU_ITEMS = [
-  { icon: "home", label: "Home", href: "/home" },
   {
-    icon: "dashboard",
+    icon: "home" as IconsMap,
+    label: "Home",
+    href: "/home",
+    includedRoutes: ["/board", "/table", "/list", "/home/overview"],
+  },
+  {
+    icon: "dashboard" as IconsMap,
     label: "DashBoard",
     href: "/home/dashboard",
   },
-] as const;
+  {
+    icon: "paintBrush" as IconsMap,
+    label: "Whiteboard",
+    href: "/home/whiteboard",
+  },
+];
 
 export const HEADER_MENU = [
   {
