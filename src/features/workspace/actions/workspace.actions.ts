@@ -13,6 +13,8 @@ import { ClientWorkspace } from "../types/workspace.types";
 import { createListApi } from "@/lib/api/server/list/createList";
 import { createTaskApi } from "@/lib/api/server/task/createTask";
 import { Avatar } from "@/shared/avatar-picker/types/avatarPicker.types";
+import { getIsListFromWorkspace } from "@/lib/api/server/list/getList";
+import { redirect, RedirectType } from "next/navigation";
 
 export async function createWorkspace(
   avatar: Avatar,
@@ -85,13 +87,23 @@ export async function updateWorkspace(
   }
 }
 
-export async function deleteWorkspace(id: string): Promise<ActionStatus> {
+export async function deleteWorkspace({
+  workspaceId,
+  activeListId,
+}: {
+  workspaceId: string;
+  activeListId: string | null | undefined;
+}): Promise<ActionStatus> {
+  let listIdIsActive;
   try {
-    const vialedId = mongoIdSchema.parse(id);
+    const vialedId = mongoIdSchema.parse(workspaceId);
+
+    if (activeListId)
+      listIdIsActive = await getIsListFromWorkspace(workspaceId, activeListId);
 
     await deleteWorkspaceApi(vialedId);
     revalidateTag("workspaces");
-    return { status: "success" };
+    revalidatePath("/home/overview");
   } catch (err: any) {
     console.log(err);
     if (err instanceof z.ZodError)
@@ -105,4 +117,6 @@ export async function deleteWorkspace(id: string): Promise<ActionStatus> {
       error: err instanceof Error ? err.message : "Something went wrong",
     };
   }
+  if (listIdIsActive) redirect("/home/overview", RedirectType.replace);
+  return { status: "success" };
 }

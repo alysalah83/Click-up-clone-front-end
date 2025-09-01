@@ -91,3 +91,19 @@ export async function getLatestCreatedList() {
     throw new Error(error.message);
   }
 }
+
+export async function getIsListFromWorkspace(
+  workspaceId: string,
+  activeListId: string,
+) {
+  console.log(workspaceId, activeListId);
+  try {
+    const authedApi = await apiWithToken();
+    const res = await authedApi.get<boolean>(
+      `/lists/${activeListId}/workspace/${workspaceId}`,
+    );
+    return res.data;
+  } catch (error: any) {
+    throw new Error(error.message);
+  }
+}

@@ -4,9 +4,8 @@ function ThemeProvider({ children }: { children: React.ReactNode }) {
   return (
     <ThemeContext
       storageKey="theme"
-      defaultTheme="system"
+      defaultTheme="dark"
       attribute="class"
-      enableSystem={true}
       disableTransitionOnChange={true}
     >
       {children}

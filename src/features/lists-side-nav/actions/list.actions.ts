@@ -10,7 +10,7 @@ import { List } from "../types/list.types";
 import { mongoIdSchema } from "@/lib/validations/global";
 import { updateListApi } from "@/lib/api/server/list/updateList";
 import { deleteListApi } from "@/lib/api/server/list/deleteList";
-import { redirect } from "next/navigation";
+import { redirect, RedirectType } from "next/navigation";
 
 export async function createList(
   workspaceId: string,
@@ -77,6 +77,7 @@ export async function deleteList(
     console.error(err);
     return { status: "error", error: err.message || "Something went wrong" };
   }
-  if (isCurrentListIdDeleted) return redirect("/home/overview");
+  if (isCurrentListIdDeleted)
+    return redirect("/home/overview", RedirectType.replace);
   else return { status: "success" };
 }
