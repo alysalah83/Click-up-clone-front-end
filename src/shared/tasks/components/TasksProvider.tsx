@@ -2,7 +2,7 @@
 
 import { createContext, ReactNode, use } from "react";
 import useTasks from "../hooks/useTasks";
-import { useParams } from "next/navigation";
+import { notFound, useParams } from "next/navigation";
 import { Task } from "../types/task.types";
 
 interface TaskProviderProps {
@@ -18,7 +18,9 @@ const TaskContext = createContext<TaskContextValues | null>(null);
 
 function TasksProvider({ children, token }: TaskProviderProps) {
   const { listId } = useParams<{ listId: string }>();
-  const { tasks, isPending } = useTasks({ listId, token });
+  const { tasks, isPending, error } = useTasks({ listId, token });
+
+  if (error) notFound();
 
   return (
     <TaskContext

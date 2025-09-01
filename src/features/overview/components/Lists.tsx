@@ -47,19 +47,23 @@ async function ListItem({ list }: { list: List }) {
           </span>
         </div>
       </Link>
-      <div className="flex items-center gap-4">
-        <div className="relative h-2 w-32 rounded-lg bg-neutral-300 sm:w-52 dark:bg-neutral-800">
-          <div
-            style={{
-              width: `${(completeCount / totalCount) * 100}%`,
-            }}
-            className="absolute inset-0 rounded-lg bg-neutral-600 dark:bg-neutral-500"
-          />
+      {totalCount ? (
+        <div className={`flex items-center gap-4`}>
+          <div className="relative h-2 w-32 rounded-lg bg-neutral-300 sm:w-52 dark:bg-neutral-800">
+            <div
+              style={{
+                width: `${(completeCount / totalCount) * 100}%`,
+              }}
+              className="absolute inset-0 rounded-lg bg-neutral-600 dark:bg-neutral-500"
+            />
+          </div>
+          <p className="text-sm font-semibold text-neutral-500 tabular-nums dark:text-neutral-300">
+            {completeCount}/{totalCount}
+          </p>
         </div>
-        <p className="w-10 text-sm font-semibold text-neutral-500 tabular-nums dark:text-neutral-300">
-          {completeCount}/{totalCount}
-        </p>
-      </div>
+      ) : (
+        <p className="font-semibold">No Tasks to display</p>
+      )}
     </div>
   );
 }

@@ -5,11 +5,14 @@ import TableTaskRow from "./TableTaskRow";
 import TaskProvider from "@/shared/tasks/components/TaskProvider";
 import NoWorkspace from "@/components/layout/NoWorkspace";
 import SkeletonLoader from "@/components/ui/SkeletonLoader";
+import { notFound } from "next/navigation";
 
 function TableTasksBody({ token, listId }: { token: string; listId: string }) {
-  const { tasks, isPending } = useTasks({ listId, token });
+  const { tasks, isPending, error } = useTasks({ listId, token });
 
   if (!tasks && !isPending) return <NoWorkspace />;
+
+  if (error) notFound();
 
   return (
     <>

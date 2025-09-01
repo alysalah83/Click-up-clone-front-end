@@ -13,7 +13,11 @@ export default function useTasks({
   const params = useSearchParams();
   const sortedFilters = convertParamsToString(params);
 
-  const { data: tasks, isPending } = useQuery({
+  const {
+    data: tasks,
+    isPending,
+    error,
+  } = useQuery({
     queryKey: sortedFilters
       ? ["tasks", listId, sortedFilters]
       : ["tasks", listId],
@@ -22,5 +26,5 @@ export default function useTasks({
     staleTime: 3600,
   });
 
-  return { tasks, isPending };
+  return { tasks, isPending, error };
 }

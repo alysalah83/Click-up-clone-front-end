@@ -6,6 +6,7 @@ import {
 } from "@/shared/tasks/types/task.types";
 import { apiTakeToken } from "../../axios/instanceServer";
 import { cookies } from "next/headers";
+import { notFound } from "next/navigation";
 
 const apiWithToken = async () => {
   const cookiesStore = await cookies();
@@ -22,19 +23,10 @@ export async function getTasks(listId: string | undefined) {
     const res = await authedApi.get<Task[]>(`/tasks/${listId}`);
     return res.data;
   } catch (err: any) {
-    console.error("API Error:", {
-      status: err.response?.status,
-      message: err.response?.data?.message,
-      url: err.config?.url,
-    });
+    if (err.response?.status === 400) notFound();
 
-    if (err.response?.status === 401) {
+    if (err.response?.status === 401)
       throw new Error("Authentication failed - please login again");
-    }
-
-    if (err.response?.status === 404) {
-      throw new Error("Tasks not found for this list");
-    }
 
     throw new Error(err.response?.data?.message || "Failed to fetch tasks");
   }
