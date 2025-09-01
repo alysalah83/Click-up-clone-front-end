@@ -70,7 +70,7 @@ function SignupForm() {
           errorMessage={errors.password?.message}
           disabled={isPending}
           register={register("password")}
-          autoComplete="new-password webauthn"
+          autoComplete="new-password"
         />
 
         <Button
