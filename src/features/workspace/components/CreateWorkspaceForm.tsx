@@ -1,12 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { createWorkspace } from "@/features/workspace/actions/workspace.actions";
-import CreateForm from "@/components/common/CreateForm";
-import AvatarPickerMenu from "@/shared/avatar-picker/components/AvatarPickerMenu";
-import ColorsPicker from "@/shared/avatar-picker/components/ColorsPicker";
-import IconPicker from "@/shared/avatar-picker/components/IconsPicker";
-import { useAvatarPicker } from "@/shared/avatar-picker/hooks/useAvatarPicker";
+import CreateForm from "@/shared/ui/CreateForm";
+import AvatarWithPickerMenu from "@/shared/ui/AvatarPicker/AvatarWithPickerMenu";
+import { useAvatarPickerStates } from "@/shared/ui/AvatarPicker";
+import { createWorkspace } from "../actions";
 
 function CreateWorkspaceForm() {
   const [nameValue, setNameValue] = useState("");
@@ -16,14 +14,12 @@ function CreateWorkspaceForm() {
     selectedIcon,
     setSelectedColor,
     setSelectedIcon,
-  } = useAvatarPicker({ label: nameValue });
+  } = useAvatarPickerStates({ label: nameValue });
 
   const createWorkspaceWithAvatar = createWorkspace.bind(null, {
     icon: selectedIcon || avatarLetter,
     color: selectedColor,
   });
-
-  console.log(selectedColor, selectedIcon);
 
   return (
     <CreateForm
@@ -37,20 +33,13 @@ function CreateWorkspaceForm() {
       setInputValue={setNameValue}
       inputValue={nameValue}
     >
-      <AvatarPickerMenu
+      <AvatarWithPickerMenu
+        curAvatarIcon={selectedIcon || avatarLetter}
         selectedIcon={selectedIcon}
         selectedColor={selectedColor}
-        avatarIcon={selectedIcon || avatarLetter}
-      >
-        <ColorsPicker
-          selectedColor={selectedColor}
-          onSelectColor={setSelectedColor}
-        />
-        <IconPicker
-          selectedIcon={selectedIcon}
-          onSelectIcon={setSelectedIcon}
-        />
-      </AvatarPickerMenu>
+        setSelectedColor={setSelectedColor}
+        setSelectedIcon={setSelectedIcon}
+      />
     </CreateForm>
   );
 }

@@ -1,8 +1,8 @@
-import Button from "@/components/common/Button";
-import { ICONS_MAP } from "@/constants/iconsMap";
+import { ICONS_MAP } from "@/shared/icons/icons-map";
 import Link from "next/link";
 import "@/styles/globals.css";
 import { Metadata } from "next";
+import { Button } from "@/shared/ui/Button";
 
 export const metadata: Metadata = {
   title: "Not Found",

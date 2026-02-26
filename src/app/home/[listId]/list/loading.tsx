@@ -1,4 +1,4 @@
-import ListLoader from "@/features/list-tasks/ListLoader";
+import ListLoader from "@/features/task/views/List/ListLoader";
 
 function loading() {
   return <ListLoader />;

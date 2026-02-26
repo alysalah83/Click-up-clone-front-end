@@ -1,4 +1,4 @@
-import MiniSpinner from "@/components/ui/MiniSpinner";
+import MiniSpinner from "@/shared/ui/MiniSpinner";
 
 function loading() {
   return (

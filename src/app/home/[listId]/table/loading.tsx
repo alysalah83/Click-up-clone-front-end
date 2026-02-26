@@ -1,4 +1,4 @@
-import SkeletonLoader from "@/components/ui/SkeletonLoader";
+import SkeletonLoader from "@/shared/ui/SkeletonLoader";
 
 function loading() {
   return (

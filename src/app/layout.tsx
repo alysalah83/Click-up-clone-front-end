@@ -1,4 +1,4 @@
-import ToastsManger from "@/components/ui/ToastsManger";
+import ToastsManger from "@/shared/ui/ToastsManger";
 import ThemeProvider from "@/contexts/ThemeProvider";
 import "@/styles/globals.css";
 import { Metadata } from "next";

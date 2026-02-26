@@ -2,12 +2,11 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   /* config options here */
+  reactCompiler: true,
   experimental: {
     globalNotFound: true,
-    reactCompiler: {
-      compilationMode: "annotation",
-    },
   },
+  cacheComponents: true,
   async redirects() {
     return [
       {

@@ -1,4 +1,5 @@
-import Button from "@/components/common/Button";
+import SignupGuestBtn from "@/features/auth/components/SignupGuestBtn";
+import { Button } from "@/shared/ui/Button";
 import Link from "next/link";
 
 function page() {
@@ -25,14 +26,10 @@ function page() {
         <div className="flex justify-center gap-4">
           <Link href="/signup">
             <Button type="colored" size="large" ariaLabel="sign up button">
-              Sign Up
+              Sign In
             </Button>
           </Link>
-          <Link href="/login">
-            <Button type="secondary" size="large" ariaLabel="log in button">
-              Log In
-            </Button>
-          </Link>
+          <SignupGuestBtn />
         </div>
       </div>
     </div>

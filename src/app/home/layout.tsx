@@ -1,39 +1,37 @@
-import Header from "@/components/layout/Header";
-import SideBarMenu from "@/components/layout/SideBarMenu";
-import MainContent from "@/components/layout/MainContent";
-import SideBarNav from "@/components/layout/SideBarNav";
+import Header from "@/shared/layout/Header/Header";
+import MainContent from "@/shared/layout/MainContent";
 import { ReactNode } from "react";
-import Workspace from "@/features/workspace/components/Workspace";
+import Workspace from "@/features/workspace/components/SpacesSection";
 import QueryProvider from "@/contexts/QueryProvider";
-import { getUserApi } from "@/lib/api/server/auth/getUser";
-import { getLatestCreatedList } from "@/lib/api/server/list/getList";
+import SideNav from "@/shared/layout/SideNav.tsx/SideNav";
+import SideBar from "@/shared/layout/SideBar/SideBar";
+import { authServices } from "@/features/auth/services/auth.service";
+import { listServices } from "@/features/list/services/list.service";
 
 async function HomeLayout({ children }: { children: ReactNode }) {
-  const userPromise = getUserApi();
-  const latestListId = getLatestCreatedList();
+  const userPromise = authServices.getUser();
+  const latestListId = listServices.getLatestCreatedListId();
 
   return (
     <QueryProvider>
-      <div className="flex h-screen overflow-x-auto bg-white p-2 dark:bg-black">
-        <SideBarMenu />
-        <div className="flex w-full rounded-xl border border-neutral-300 dark:border-neutral-700">
-          <SideBarNav>
+      <div className="flex h-screen w-full min-w-0 bg-white p-2 dark:bg-black">
+        <SideNav />
+        <div className="flex w-full min-w-0 rounded-xl border border-neutral-300 dark:border-neutral-700">
+          <SideBar>
             <Workspace />
-          </SideBarNav>
+          </SideBar>
 
           <MainContent>
             <Header
               userPromise={userPromise}
               latestListIdPromise={latestListId}
             />
-            <main className="h-full grow-0 overflow-y-auto">{children}</main>
+            <main className="h-full flex-1 overflow-auto">{children}</main>
           </MainContent>
         </div>
       </div>
     </QueryProvider>
   );
 }
-
-export const dynamic = "force-dynamic";
 
 export default HomeLayout;

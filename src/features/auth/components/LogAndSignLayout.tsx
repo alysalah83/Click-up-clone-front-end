@@ -1,8 +1,8 @@
 import Image from "next/image";
 import { ReactNode } from "react";
-import Button from "@/components/common/Button";
 import Link from "next/link";
 import bg from "../../../../public/bg.png";
+import { Button } from "@/shared/ui/Button";
 
 function LogAndSignLayout({
   children,

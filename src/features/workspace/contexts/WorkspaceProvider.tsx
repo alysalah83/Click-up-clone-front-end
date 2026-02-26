@@ -1,7 +1,7 @@
 "use client";
 
 import React, { createContext, use, useMemo } from "react";
-import { Workspace } from "../types/workspace.types";
+import { Workspace } from "../types";
 
 type WorkspaceProviderValues = Workspace;
 

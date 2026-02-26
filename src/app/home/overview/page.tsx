@@ -1,4 +1,4 @@
-import Lists from "@/features/overview/components/Lists";
+import ListsSummery from "@/features/list/components/ListsSummery";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 function OverviewPage() {
   return (
     <div className="p-4">
-      <Lists />
+      <ListsSummery />
     </div>
   );
 }

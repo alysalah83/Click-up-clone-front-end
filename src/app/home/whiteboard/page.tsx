@@ -1,5 +1,5 @@
+import { authServices } from "@/features/auth/services/auth.service";
 import Whiteboard from "@/features/whiteboard/components/Whiteboard";
-import { getUserApi } from "@/lib/api/server/auth/getUser";
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
 
@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 };
 
 async function page() {
-  const user = await getUserApi();
+  const user = await authServices.getUser();
 
   if (!user) return redirect("/login");
 

@@ -1,22 +1,18 @@
-import TableTasksLayout from "@/features/table-tasks/components/TableTasksLayout";
-import { cookies } from "next/headers";
 import { Metadata } from "next";
-import NoWorkspace from "@/components/layout/NoWorkspace";
-import { getWorkspaces } from "@/lib/api/server/workspace/getWorkspace";
+import { workspaceServices } from "@/features/workspace/services/workspace.service";
+import TableTasksLayout from "@/features/task/views/Table/TableTasksLayout";
+import EmptySpaces from "@/features/workspace/components/EmptySpaces";
 
 export const metadata: Metadata = {
   title: "Table",
 };
 
-async function page({ params }: { params: Promise<{ listId: string }> }) {
-  const workspace = await getWorkspaces();
+async function page() {
+  const workspaceCount = await workspaceServices.getWorkspacesCount();
 
-  if (!workspace || workspace.length <= 0) return <NoWorkspace />;
+  if (workspaceCount === 0) return <EmptySpaces />;
 
-  const [{ listId }, cookiesStore] = await Promise.all([params, cookies()]);
-  const token = cookiesStore.get("auth-token")?.value as string;
-
-  return <TableTasksLayout listId={listId} token={token} />;
+  return <TableTasksLayout />;
 }
 
 export default page;

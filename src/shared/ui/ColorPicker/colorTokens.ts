@@ -1,0 +1,86 @@
+export const COLORS_TOKENS = {
+  red: {
+    bg: "bg-red-600",
+    ring: "ring-red-600",
+    icon: "fill-red-500 text-red-500",
+    hex: "#e7000b",
+  },
+  neutral: {
+    bg: "bg-neutral-700",
+    ring: "ring-neutral-700",
+    icon: "fill-neutral-300 text-neutral-300",
+    hex: "#404040",
+  },
+  amber: {
+    bg: "bg-amber-600",
+    ring: "ring-amber-600",
+    icon: "fill-amber-500 text-amber-500",
+    hex: "#e17100",
+  },
+  lime: {
+    bg: "bg-lime-700",
+    ring: "ring-lime-700",
+    icon: "fill-lime-600 text-lime-600",
+    hex: "#497d00",
+  },
+  green: {
+    bg: "bg-green-700",
+    ring: "ring-green-700",
+    icon: "fill-green-600 text-green-600",
+    hex: "#008236",
+  },
+  emerald: {
+    bg: "bg-emerald-700",
+    ring: "ring-emerald-700",
+    icon: "fill-emerald-600 text-emerald-600",
+    hex: "#007a55",
+  },
+  teal: {
+    bg: "bg-teal-600",
+    ring: "ring-teal-600",
+    icon: "fill-teal-500 text-teal-500",
+    hex: "#009689",
+  },
+  cyan: {
+    bg: "bg-cyan-600",
+    ring: "ring-cyan-600",
+    icon: "fill-cyan-500 text-cyan-500",
+    hex: "#0092b8",
+  },
+  blue: {
+    bg: "bg-blue-500",
+    ring: "ring-blue-600",
+    icon: "fill-blue-500 text-blue-500",
+    hex: "#2b7fff",
+  },
+  indigo: {
+    bg: "bg-indigo-600",
+    ring: "ring-indigo-600",
+    icon: "fill-indigo-500 text-indigo-500",
+    hex: "#7f22fe",
+  },
+  violet: {
+    bg: "bg-violet-600",
+    ring: "ring-violet-600",
+    icon: "fill-violet-500 text-violet-500",
+    hex: "#7f22fe",
+  },
+  purple: {
+    bg: "bg-purple-700",
+    ring: "ring-purple-600",
+    icon: "fill-violet-600 text-violet-600",
+    hex: "#8200db",
+  },
+  gray: {
+    bg: "bg-gray-500",
+    ring: "ring-gray-500",
+    icon: "fill-gray-400 text-gray-400",
+    hex: "#6a7282",
+  },
+  stone: {
+    bg: "bg-stone-500",
+    ring: "ring-stone-500",
+    icon: "fill-stone-400 text-stone-400",
+    hex: "#79716b",
+  },
+} as const;
