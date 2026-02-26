@@ -5,7 +5,7 @@ export function formatErrorForToast(error: ErrorResponse) {
     ? Object.entries(error.errors).reduce(
         (acc, [key, value]) =>
           acc +
-          `${key.replace(key[0], key[0].toUpperCase())}: ${value.replace(":", "")},`,
+          `${key.replace(key[0]!, key[0]!.toUpperCase())}: ${value.replace(":", "")},`,
         "",
       )
     : error.message;

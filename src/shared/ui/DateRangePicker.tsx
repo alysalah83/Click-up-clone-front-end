@@ -25,8 +25,8 @@ function DateRangePicker({ onDateChange, dateRanges }: DateRangePickerProps) {
 
   const handleConfirm = function () {
     onDateChange({
-      startDate: date[0].startDate ?? null,
-      endDate: date[0].endDate ?? null,
+      startDate: date[0]?.startDate ?? null,
+      endDate: date[0]?.endDate ?? null,
     });
     toggleMenu();
   };
@@ -41,7 +41,7 @@ function DateRangePicker({ onDateChange, dateRanges }: DateRangePickerProps) {
       <DateRange
         editableDateInputs={true}
         onChange={(item) => {
-          const { startDate, endDate, key } = item.selection;
+          const { startDate, endDate, key } = item.selection!;
           setDate([
             {
               startDate: startDate ?? new Date(),

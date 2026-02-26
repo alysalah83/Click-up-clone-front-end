@@ -17,8 +17,8 @@ function PriorityBtn({ label, icon }: { label: string; icon: IconsMap }) {
   } = useTask();
 
   const priorityLabel = priority?.replace(
-    priority[0],
-    priority[0]?.toUpperCase(),
+    priority[0]!,
+    priority[0]!?.toUpperCase(),
   );
   const getIconColor = TASK_PRIORITIES_LIST.find(
     (item) => item.label === priorityLabel,

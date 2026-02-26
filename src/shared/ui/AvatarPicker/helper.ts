@@ -12,7 +12,7 @@ const isAvatarIcon = (label: IconsRegistry | AvatarLetters) => {
 const getRandomColor = () => {
   const colorsArr = Object.entries(COLORS_TOKENS);
   const randomIndex = Math.floor(Math.random() * colorsArr.length);
-  return colorsArr[randomIndex][0] as ColorsToken;
+  return colorsArr[randomIndex]![0] as ColorsToken;
 };
 
 const getRandomLetter = () => {

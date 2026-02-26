@@ -55,7 +55,7 @@ function IconPicker({
   useEffect(() => {
     const handleLoadIcons = (entries: IntersectionObserverEntry[]) => {
       const entry = entries[0];
-      if (entry.isIntersecting)
+      if (entry?.isIntersecting)
         setIconsVisibleCount((cur) =>
           Math.min(cur + iconPickerLoadCount, iconsCount),
         );

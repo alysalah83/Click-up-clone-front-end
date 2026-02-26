@@ -10,11 +10,11 @@ async function DashboardPriorityPie() {
     {
       name: "Urgent",
       value: urgent,
-      fill: urgentObj.colorHex,
+      fill: urgentObj!.colorHex,
     },
-    { name: "High", value: high, fill: highObj.colorHex },
-    { name: "Normal", value: normal, fill: normalObj.colorHex },
-    { name: "Low", value: low, fill: lowObj.colorHex },
+    { name: "High", value: high, fill: highObj!.colorHex },
+    { name: "Normal", value: normal, fill: normalObj!.colorHex },
+    { name: "Low", value: low, fill: lowObj!.colorHex },
   ];
 
   return (

@@ -64,7 +64,7 @@ export function useUpdateTask() {
         );
         if (updatedTaskIndex === -1) return oldTasks;
         return oldTasks.with(updatedTaskIndex, {
-          ...oldTasks[updatedTaskIndex],
+          ...oldTasks[updatedTaskIndex]!,
           ...updateTaskInputWithStatus,
         });
       });

@@ -22,7 +22,7 @@ function DatePicker({
       <DateRange
         editableDateInputs={true}
         onChange={(item) => {
-          const { startDate, endDate, key } = item.selection;
+          const { startDate, endDate, key } = item.selection!;
           setDate([
             {
               startDate: startDate || new Date(),
@@ -51,8 +51,8 @@ function DatePicker({
           stretch={true}
           onClick={() =>
             action({
-              startDate: date[0].startDate,
-              endDate: date[0].endDate,
+              startDate: date[0]?.startDate,
+              endDate: date[0]?.endDate,
             })
           }
         >

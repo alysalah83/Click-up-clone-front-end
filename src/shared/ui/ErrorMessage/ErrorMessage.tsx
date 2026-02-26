@@ -28,7 +28,7 @@ function ErrorMessage({
           <span
             className={`${textSize[size]} font-medium text-red-600 dark:text-red-500`}
           >
-            {field.replace(field[0], field[0].toUpperCase())} {errorMessage}
+            {field.replace(field[0]!, field[0]!.toUpperCase())} {errorMessage}
           </span>
         </div>
       ))}
