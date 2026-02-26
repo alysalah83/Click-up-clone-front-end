@@ -10,7 +10,6 @@ async function DashboardStatusPie() {
       name: key.toLocaleLowerCase().replace("count", ""),
       value,
     }));
-  console.log(statusesData);
 
   return (
     <>

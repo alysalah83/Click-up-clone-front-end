@@ -17,6 +17,7 @@ export function useStatuses() {
   } = useQuery<Status[], ApiError>({
     queryFn: () => getStatusesClient(listId),
     queryKey: ["statuses", listId],
+    enabled: !!listId,
     staleTime: 3600,
   });
 

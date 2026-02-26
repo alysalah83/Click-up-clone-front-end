@@ -9,8 +9,6 @@ function DashboardStatusPieChart({
 }: {
   data: { name: string; value: number }[];
 }) {
-  console.log(data);
-
   return (
     <PieChart responsive className="h-full w-full">
       <Pie
