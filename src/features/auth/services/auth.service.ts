@@ -1,4 +1,9 @@
-import { signupUser, getUser, loginUser, signupGuest } from "../api/auth";
+import {
+  signupUser,
+  getUser,
+  loginUser,
+  signupGuest,
+} from "../api/auth.server";
 
 export const authServices = {
   signupUser,
