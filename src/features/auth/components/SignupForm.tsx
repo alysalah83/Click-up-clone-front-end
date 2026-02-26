@@ -10,7 +10,10 @@ import { signupUser } from "../actions/signup-user.action";
 import FormInputWithLabel from "@/shared/ui/Input/FormInputWithLabel";
 import { Button } from "@/shared/ui/Button";
 import SignupGuestBtn from "./SignupGuestBtn";
-import { ActionErrorResponse } from "@/shared/types/action.types";
+import {
+  ActionErrorResponse,
+  ErrorResponse,
+} from "@/shared/types/action.types";
 
 interface FormData {
   name: string;
@@ -28,7 +31,7 @@ function SignupForm() {
     resolver: zodResolver(signupUserSchema),
   });
   const [isPending, setIsPending] = useState(false);
-  const [error, setError] = useState<ActionErrorResponse | null>(null);
+  const [error, setError] = useState<ErrorResponse | null>(null);
 
   const onSubmit = async function (data: FormData) {
     setIsPending(true);

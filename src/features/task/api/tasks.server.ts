@@ -1,10 +1,5 @@
 import { createServerAxios } from "@/shared/lib/axios/server";
-import {
-  CreateTaskInput,
-  Task,
-  TasksPriorityCountResponse,
-  TaskStatusCountsResponse,
-} from "../types";
+import { CreateTaskInput, Task, TasksPriorityCountResponse } from "../types";
 import { List } from "@/features/list/types";
 
 export async function createTask(createdTaskInput: CreateTaskInput) {
@@ -23,16 +18,12 @@ export async function getTasks(listId: List["id"] | undefined) {
 
 export async function getTasksCount() {
   const serverAxios = await createServerAxios();
-  return await serverAxios.get<TaskStatusCountsResponse>(
-    `/tasks?count=${true}`,
-  );
+  return await serverAxios.get<number>(`/tasks?count=${true}`);
 }
 
 export async function getListTasksCount(listId: string) {
   const serverAxios = await createServerAxios();
-  return await serverAxios.get<TaskStatusCountsResponse>(
-    `/tasks?listId=${listId}&count=${true}`,
-  );
+  return await serverAxios.get<number>(`/tasks?listId=${listId}&count=${true}`);
 }
 
 export async function getTasksCompleteAndTotalCounts(listId: Task["listId"]) {

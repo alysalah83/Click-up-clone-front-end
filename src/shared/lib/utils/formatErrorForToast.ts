@@ -1,10 +1,6 @@
-import { ActionErrorResponse } from "@/shared/types/action.types";
+import { ErrorResponse } from "@/shared/types/action.types";
 
-export function formatErrorForToast({
-  status,
-  error,
-}: Omit<ActionErrorResponse, "status"> &
-  Partial<Pick<ActionErrorResponse, "status">>) {
+export function formatErrorForToast(error: ErrorResponse) {
   return error.errors
     ? Object.entries(error.errors).reduce(
         (acc, [key, value]) =>

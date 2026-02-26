@@ -40,7 +40,7 @@ export function useDeleteTasks() {
     onError(error: ActionErrorResponse, variables, context) {
       if (context?.prevTasks)
         queryClient.setQueryData(queryKey, context.prevTasks);
-      window.toast?.error(formatErrorForToast(error), 7);
+      window.toast?.error(formatErrorForToast(error.error), 7);
     },
 
     onSettled() {

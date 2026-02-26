@@ -7,7 +7,7 @@ test("should return a formatted error from error object", () => {
     errors: { name: "Invalid input: expected string, received number" },
   };
 
-  expect(formatErrorForToast({ error })).toBe(
+  expect(formatErrorForToast(error)).toBe(
     "Name: Invalid input expected string, received number,",
   );
 });

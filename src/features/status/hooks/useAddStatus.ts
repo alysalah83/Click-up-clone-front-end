@@ -55,7 +55,7 @@ export function useAddStatus() {
     onError(error: ActionErrorResponse, _, context) {
       if (context?.previousStatuses)
         queryClient.setQueryData(queryKey, context.previousStatuses);
-      window.toast?.error(formatErrorForToast(error), 7);
+      window.toast?.error(formatErrorForToast(error.error), 7);
     },
 
     onSuccess(data, _, context) {

@@ -79,7 +79,7 @@ export function useUpdateTasks() {
     onError(error: ActionErrorResponse, updatedTaskFields, context) {
       if (context?.previousTasks)
         queryClient.setQueryData(queryKey, context.previousTasks);
-      window.toast?.error(formatErrorForToast(error), 7);
+      window.toast?.error(formatErrorForToast(error.error), 7);
     },
 
     onSettled() {

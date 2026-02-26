@@ -20,10 +20,7 @@ export function useStatuses() {
     staleTime: 3600,
   });
 
-  if (error)
-    window.toast?.error(
-      formatErrorForToast({ error: formatActionError(error) }),
-    );
+  if (error) window.toast?.error(formatErrorForToast(formatActionError(error)));
 
   return { statuses, isPending };
 }

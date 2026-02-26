@@ -46,7 +46,7 @@ export function useDeleteTask() {
     onError(error: ActionErrorResponse, variables, context) {
       if (context?.previousTasks)
         queryClient.setQueryData(queryKey, context.previousTasks);
-      window.toast?.error(formatErrorForToast(error), 7);
+      window.toast?.error(formatErrorForToast(error.error), 7);
     },
 
     onSuccess(data: ActionResponse<{ task: Task }>) {

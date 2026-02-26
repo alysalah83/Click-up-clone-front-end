@@ -59,8 +59,7 @@ export function useAddTask(taskStatusId: Task["statusId"]) {
     onError(error: ActionErrorResponse, newTask, context) {
       if (context?.previousTasks)
         queryClient.setQueryData(queryKey, context.previousTasks);
-      console.log(error, formatErrorForToast(error));
-      window.toast?.error(formatErrorForToast(error), 7);
+      window.toast?.error(formatErrorForToast(error.error), 7);
     },
 
     onSuccess(
