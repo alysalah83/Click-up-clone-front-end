@@ -4,7 +4,6 @@ import {
   createTaskSchema,
   updateTaskSchema,
 } from "./schema/task-action.schema";
-import { Prisma } from "../../../../Back-end/src/generated/prisma/client";
 
 interface TaskDateRange {
   startDate: Task["startDate"];
@@ -31,7 +30,29 @@ type UpdateTaskInput = z.infer<typeof updateTaskSchema>;
 
 type SortOrder = "" | "asc" | "desc";
 
-type Task = Prisma.TaskGetPayload<{ include: { status: true } }>;
+type Task = {
+  status: {
+    name: string;
+    id: string;
+    userId: string;
+    listId: string;
+    icon: string;
+    iconColor: string;
+    bgColor: string;
+    order: number;
+  };
+} & {
+  name: string;
+  id: string;
+  userId: string;
+  statusId: string;
+  priority: "urgent" | "high" | "normal" | "low" | "none";
+  startDate: Date | null;
+  endDate: Date | null;
+  listId: string;
+  createdAt: Date;
+  updatedAt: Date;
+};
 
 export type {
   Task,

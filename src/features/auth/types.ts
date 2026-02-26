@@ -1,8 +1,17 @@
 import z from "zod";
 import { loginSchema, signupUserSchema } from "./schema/authSchemas";
-import { User } from "@/../../../Back-end/src/generated/prisma/client";
 
 type UserWithoutPassword = Omit<User, "password">;
+
+interface User {
+  name: string | null;
+  id: string;
+  role: "guest" | "user";
+  email: string | null;
+  password: string | null;
+  createdAt: Date;
+  updatedAt: Date;
+}
 
 interface Session {
   user: UserWithoutPassword;

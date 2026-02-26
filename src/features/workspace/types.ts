@@ -1,12 +1,20 @@
 import z from "zod";
 
-import { Workspace as WorkspaceWithoutAvatar } from "@/../../../Back-end/src/generated/prisma/client";
 import { Avatar } from "@/shared/ui/AvatarPicker/avatarPicker.types";
 import {
   createAvatarSchema,
   createWorkspaceSchema,
   updateWorkSpaceSchema,
 } from "./schema/workspace-actions.schema";
+
+type WorkspaceWithoutAvatar = {
+  name: string;
+  id: string;
+  createdAt: Date;
+  updatedAt: Date;
+  userId: string | null;
+  avatarId: string;
+};
 
 type Workspace = WorkspaceWithoutAvatar & { avatar: Avatar };
 

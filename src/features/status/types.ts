@@ -1,8 +1,17 @@
 import z from "zod";
 import { createStatusSchema } from "./schema/status.schema";
 
-export type { Status } from "@/../../Back-end/src/generated/prisma/client";
+interface Status {
+  name: string;
+  listId: string;
+  icon: string;
+  iconColor: string;
+  bgColor: string;
+  id: string;
+  order: number;
+  userId: string;
+}
 
 type CreateStatusInputs = z.infer<typeof createStatusSchema>;
 
-export type { CreateStatusInputs };
+export type { CreateStatusInputs, Status };
