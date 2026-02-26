@@ -10,9 +10,9 @@ import FormInputWithLabel from "@/shared/ui/Input/FormInputWithLabel";
 import { Button } from "@/shared/ui/Button";
 import SignupGuestBtn from "./SignupGuestBtn";
 import { ErrorResponse } from "@/shared/types/action.types";
-import { authServices } from "../services/auth.service";
 import { formatActionError } from "@/shared/lib/utils/formatActionError";
 import { useRouter } from "next/navigation";
+import { signupUser } from "../api/auth.client";
 
 interface FormData {
   name: string;
@@ -41,7 +41,7 @@ function SignupForm() {
         email: data.email,
         password: data.password,
       });
-      await authServices.signupUser(userInputs);
+      await signupUser(userInputs);
     } catch (error) {
       setError(formatActionError(error));
     } finally {

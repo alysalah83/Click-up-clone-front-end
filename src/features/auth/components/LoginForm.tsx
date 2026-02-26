@@ -10,9 +10,9 @@ import FormInputWithLabel from "@/shared/ui/Input/FormInputWithLabel";
 import { Button } from "@/shared/ui/Button";
 import SignupGuestBtn from "./SignupGuestBtn";
 import { ErrorResponse } from "@/shared/types/action.types";
-import { axiosClient } from "@/shared/lib/axios/client";
 import { formatActionError } from "@/shared/lib/utils/formatActionError";
 import { useRouter } from "next/navigation";
+import { loginUser } from "../api/auth.client";
 
 interface FormData {
   email: string;
@@ -32,8 +32,8 @@ function LoginForm() {
   const onSubmit = async function (data: FormData) {
     setIsPending(true);
     try {
-      const parsed = loginSchema.parse(data);
-      await axiosClient.post("/auth/login", parsed);
+      const userInputs = loginSchema.parse(data);
+      await loginUser(userInputs);
       replace("/home/board");
     } catch (error) {
       setError(formatActionError(error));
