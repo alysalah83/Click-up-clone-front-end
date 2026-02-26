@@ -1,23 +1,15 @@
 "use client";
 
 import { Button } from "@/shared/ui/Button";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import { signupGuest } from "../api/auth.client";
+import { signupGuest } from "../actions/signup-guest.action";
+import { useActionState } from "react";
 
 function SignupGuestBtn({ stretch = false }: { stretch?: boolean }) {
-  const [isPending, setIsPending] = useState(false);
-  // const [_, action, isPending] = useActionState(signupGuest, null);
-  const { replace } = useRouter();
+  const [_, action, isPending] = useActionState(signupGuest, null);
 
   return (
     <Button
-      onClick={async () => {
-        setIsPending(true);
-        await signupGuest();
-        replace("/home/overview");
-        setIsPending(false);
-      }}
+      onClick={action}
       type="secondary"
       size="large"
       stretch={stretch}

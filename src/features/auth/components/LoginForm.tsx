@@ -6,13 +6,14 @@ import { useForm } from "react-hook-form";
 import ErrorMessage from "@/shared/ui/ErrorMessage/ErrorMessage";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema } from "@/features/auth/schema/authSchemas";
+import { loginUser } from "../actions/login-user.action";
 import FormInputWithLabel from "@/shared/ui/Input/FormInputWithLabel";
 import { Button } from "@/shared/ui/Button";
 import SignupGuestBtn from "./SignupGuestBtn";
-import { ErrorResponse } from "@/shared/types/action.types";
-import { formatActionError } from "@/shared/lib/utils/formatActionError";
-import { useRouter } from "next/navigation";
-import { loginUser } from "../api/auth.client";
+import {
+  ActionErrorResponse,
+  ErrorResponse,
+} from "@/shared/types/action.types";
 
 interface FormData {
   email: string;
@@ -27,19 +28,15 @@ function LoginForm() {
   } = useForm<FormData>({ mode: "onBlur", resolver: zodResolver(loginSchema) });
   const [isPending, setIsPending] = useState(false);
   const [error, setError] = useState<ErrorResponse | null>(null);
-  const { replace } = useRouter();
 
   const onSubmit = async function (data: FormData) {
     setIsPending(true);
-    try {
-      const userInputs = loginSchema.parse(data);
-      await loginUser(userInputs);
-      replace("/home/board");
-    } catch (error) {
-      setError(formatActionError(error));
-    } finally {
-      setIsPending(false);
-    }
+    const response = await loginUser({
+      email: data.email,
+      password: data.password,
+    });
+    if (response.status === "error") setError(response.error);
+    setIsPending(false);
   };
 
   return (

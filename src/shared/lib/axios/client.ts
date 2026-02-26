@@ -3,7 +3,7 @@ import { ApiError } from "../errors";
 import { UnwrappedAxiosInstance } from "./types";
 
 export const axiosClient: UnwrappedAxiosInstance = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL,
+  // baseURL: process.env.NEXT_PUBLIC_API_URL,
   withCredentials: true,
 });
 
