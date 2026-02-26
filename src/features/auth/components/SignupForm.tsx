@@ -6,14 +6,13 @@ import { useForm } from "react-hook-form";
 import ErrorMessage from "@/shared/ui/ErrorMessage/ErrorMessage";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signupUserSchema } from "@/features/auth/schema/authSchemas";
-import { signupUser } from "../actions/signup-user.action";
 import FormInputWithLabel from "@/shared/ui/Input/FormInputWithLabel";
 import { Button } from "@/shared/ui/Button";
 import SignupGuestBtn from "./SignupGuestBtn";
-import {
-  ActionErrorResponse,
-  ErrorResponse,
-} from "@/shared/types/action.types";
+import { ErrorResponse } from "@/shared/types/action.types";
+import { authServices } from "../services/auth.service";
+import { formatActionError } from "@/shared/lib/utils/formatActionError";
+import { useRouter } from "next/navigation";
 
 interface FormData {
   name: string;
@@ -32,16 +31,23 @@ function SignupForm() {
   });
   const [isPending, setIsPending] = useState(false);
   const [error, setError] = useState<ErrorResponse | null>(null);
+  const { replace } = useRouter();
 
   const onSubmit = async function (data: FormData) {
     setIsPending(true);
-    const response = await signupUser({
-      name: data.name,
-      email: data.email,
-      password: data.password,
-    });
-    setIsPending(false);
-    if (response.status === "error") setError(error);
+    try {
+      const userInputs = signupUserSchema.parse({
+        name: data.name,
+        email: data.email,
+        password: data.password,
+      });
+      await authServices.signupUser(userInputs);
+    } catch (error) {
+      setError(formatActionError(error));
+    } finally {
+      replace("home/overview");
+      setIsPending(false);
+    }
   };
 
   return (
