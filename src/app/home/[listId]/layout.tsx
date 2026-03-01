@@ -7,6 +7,8 @@ import { redirect } from "next/navigation";
 import { LIST_ID_RESERVED_ROUTES } from "@/shared/constants/layout";
 import { tasksService } from "@/features/task/services/task.service";
 import { statusServices } from "@/features/status/services/status.service";
+import EmptySpaces from "@/features/workspace/components/EmptySpaces";
+import { workspaceServices } from "@/features/workspace/services/workspace.service";
 
 async function ListIdLayout({
   children,
@@ -18,6 +20,10 @@ async function ListIdLayout({
   const { listId } = await params;
 
   if (LIST_ID_RESERVED_ROUTES.has(listId)) return redirect("/home/overview");
+
+  const workspaceCount = await workspaceServices.getWorkspacesCount();
+
+  if (workspaceCount === 0) return <EmptySpaces />;
 
   const queryClient = new QueryClient();
   await Promise.all([
