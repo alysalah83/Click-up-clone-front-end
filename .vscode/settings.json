@@ -1,5 +1,6 @@
 {
-  "typescript.tsdk": "node_modules\\typescript\\lib"
+  "typescript.tsdk": "node_modules\\typescript\\lib",
+  "cSpell.words": ["succsifly"]
   // "typescript.tsserver.experimental.enableProjectDiagnostics": true,
   // "typescript.tsserver.maxTsServerMemory": 4096
 }

@@ -11,9 +11,7 @@ export async function getTasks(listId: List["id"] | undefined) {
   if (!listId) throw new Error("ListId is required");
 
   const serverAxios = await createServerAxios();
-  return await serverAxios.get<Task[]>(
-    `/tasks?listId=${listId}&createdAt=desc`,
-  );
+  return await serverAxios.get<Task[]>(`/tasks?listId=${listId}&createdAt=asc`);
 }
 
 export async function getTasksCount() {

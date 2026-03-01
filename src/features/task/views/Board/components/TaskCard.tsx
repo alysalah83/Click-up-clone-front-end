@@ -10,13 +10,14 @@ import { Task } from "@/features/task/types";
 import { useTask } from "@/features/task/context/TaskProvider";
 import TaskRenameForm from "@/features/task/components/TaskRenameForm";
 import OptionsRow from "./OptionsRow";
+import SkeletonLoader from "@/shared/ui/SkeletonLoader";
 
 interface TaskCardProps {
   task: Task;
 }
 
 function TaskCard({ task }: TaskCardProps) {
-  const { isRenameOpen, taskContainerRef } = useTask();
+  const { isRenameOpen, taskContainerRef, isTempTask } = useTask();
   const { name, id, status } = task;
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
     id,
@@ -47,7 +48,7 @@ function TaskCard({ task }: TaskCardProps) {
           {...listeners}
           {...attributes}
           style={styles}
-          className={`group flex w-full cursor-pointer flex-col gap-3 rounded-lg border border-neutral-300 bg-neutral-100 px-3 py-2 transition duration-300 hover:border-neutral-100 active:border-neutral-100 dark:border-neutral-700 dark:bg-neutral-900 dark:hover:border-neutral-500 dark:active:border-neutral-500`}
+          className={`${isTempTask ? "pointer-events-none opacity-75" : ""} group flex w-full cursor-pointer flex-col gap-3 rounded-lg border border-neutral-300 bg-neutral-100 px-3 py-2 transition duration-300 hover:border-neutral-100 active:border-neutral-100 dark:border-neutral-700 dark:bg-neutral-900 dark:hover:border-neutral-500 dark:active:border-neutral-500`}
         >
           {isRenameOpen ? (
             <TaskRenameForm />

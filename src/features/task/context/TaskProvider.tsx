@@ -21,6 +21,7 @@ interface TaskContextValues {
   isRenameOpen: boolean;
   taskContainerRef: React.RefObject<HTMLDivElement | null>;
   toggleIsRenameOpen: () => void;
+  isTempTask: boolean;
 }
 
 const TaskContext = createContext<TaskContextValues | null>(null);
@@ -32,10 +33,17 @@ function TaskProvider({ children, task }: TaskProviderProps) {
     () => setIsRenameOpen((cur) => !cur),
     [],
   );
+  const isTempTask = task.id.includes("temp");
 
   return (
     <TaskContext
-      value={{ task, isRenameOpen, taskContainerRef, toggleIsRenameOpen }}
+      value={{
+        task,
+        isRenameOpen,
+        taskContainerRef,
+        toggleIsRenameOpen,
+        isTempTask,
+      }}
     >
       {children}
     </TaskContext>

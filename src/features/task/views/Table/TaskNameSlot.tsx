@@ -19,6 +19,7 @@ function TaskNameSlot() {
     toggleIsRenameOpen,
     isRenameOpen,
     task: { id, name, status },
+    isTempTask,
   } = useTask();
   const { updateTask } = useUpdateTask();
 
@@ -47,7 +48,7 @@ function TaskNameSlot() {
           initialName={name}
         />
       ) : (
-        <div className="flex w-full items-center gap-1.5">
+        <div className={`flex w-full items-center gap-1.5`}>
           <Icon className={`${iconColor} ${iconsSize} shrink-0`} />
           <span className="line-clamp-1 truncate">{name}</span>
         </div>

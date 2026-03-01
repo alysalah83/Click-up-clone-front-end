@@ -32,9 +32,8 @@ export function useAddTaskForm({ statusId, onClose }: UseClientAddTaskProps) {
   });
 
   const onSubmit = (data: CreateTaskInput) => {
-    if (!isValid) return;
     addTask(data);
-    reset();
+    reset({ name: "", priority: "none", statusId, listId });
   };
 
   useEffect(() => {

@@ -23,6 +23,7 @@ function ListSlideRow() {
       name,
       status: { icon, iconColor },
     },
+    isTempTask,
   } = useTask();
 
   const Icon = ICONS_REGISTRY[icon as IconsRegistry];
@@ -30,7 +31,7 @@ function ListSlideRow() {
 
   return (
     <div
-      className={`grid grid-cols-21 ${listRowBorder} text-base font-medium text-neutral-300 ${listBgHoverGradient}`}
+      className={`grid grid-cols-21 ${listRowBorder} ${isTempTask ? "pointer-events-none opacity-60" : ""} text-base font-medium text-neutral-300 ${listBgHoverGradient}`}
     >
       <div className="col-span-10 flex items-center gap-2 p-2">
         <Icon className={`${iconColorClass} size-4 shrink-0`} />

@@ -61,12 +61,12 @@ export function useAddStatus() {
     onSuccess(data, _, context) {
       if (data.status === "success" && "payload" in data) {
         const { newStatus } = data.payload;
-        queryClient.setQueryData(queryKey, (oldStatuses: Status[] = []) => {
-          const statuses = oldStatuses.filter(
-            (status) => status.id !== context.tempId,
-          );
-          return [...statuses, newStatus].toSorted((a, b) => a.order - b.order);
-        });
+        queryClient.setQueryData(queryKey, (oldStatuses: Status[] = []) =>
+          oldStatuses.map((status) =>
+            status.id === context.tempId ? newStatus : status,
+          ),
+        );
+        window.toast?.success(`Status (${newStatus.name}) has been added`);
       }
     },
     onSettled() {

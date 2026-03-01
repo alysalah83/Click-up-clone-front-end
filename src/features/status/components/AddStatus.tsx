@@ -16,6 +16,12 @@ function AddStatus() {
   const [name, setName] = useState("");
   const { listId } = useParams<{ listId: string }>();
   const { addStatus } = useAddStatus();
+
+  const reset = () => {
+    setSelectedColor(getRandomColor());
+    setName("");
+  };
+
   return (
     <form className="flex h-fit shrink-0 flex-col gap-3 rounded-lg border border-neutral-400 px-3 py-2 dark:border-neutral-700">
       <label className="flex items-center gap-1" htmlFor="status name">
@@ -57,6 +63,7 @@ function AddStatus() {
                 iconColor: selectedColor,
                 icon: "inProgress",
               });
+              reset();
             }}
           />
         </div>

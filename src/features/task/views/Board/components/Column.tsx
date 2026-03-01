@@ -27,6 +27,7 @@ function Column({ statusItem }: ColumnProps) {
   const { activeStatusColumn, setActiveColumn } = useActiveColumnForm();
   const { isOver, setNodeRef } = useDroppable({ id });
 
+  const isTempStatus = id.includes("temp");
   const isColumnFormOpened = activeStatusColumn === statusName;
   const statusTasks = tasks?.filter((task) => task.statusId === id);
   const tasksCount = statusTasks?.length;
@@ -39,7 +40,7 @@ function Column({ statusItem }: ColumnProps) {
   return (
     <div
       ref={setNodeRef}
-      className={`flex h-fit max-h-full w-2xs shrink-0 flex-col gap-1 overflow-y-auto rounded-lg p-1 ${cardBgColorClass} ${isOver ? "ring-2 ring-neutral-300 outline-0 dark:ring-neutral-700" : ""} transition-all duration-200`}
+      className={`flex h-fit max-h-full w-2xs shrink-0 flex-col gap-1 overflow-y-auto rounded-lg p-1 ${isTempStatus ? "pointer-events-none opacity-75" : ""} ${cardBgColorClass} ${isOver ? "ring-2 ring-neutral-300 outline-0 dark:ring-neutral-700" : ""} transition-all duration-200`}
     >
       <header className="flex w-full items-center justify-between">
         <div className="flex items-center gap-4">

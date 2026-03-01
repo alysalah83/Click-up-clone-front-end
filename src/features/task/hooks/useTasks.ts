@@ -3,11 +3,12 @@ import { useParams, useSearchParams } from "next/navigation";
 import { getSortedParamString } from "../../../shared/lib/utils/getSortedParamString";
 import { Task } from "../types";
 import { getTasksClient } from "../api/tasks.client";
+import { TASK_REVALIDATE_TIME } from "../constants/tasks.const";
 
 export default function useTasks() {
   const params = useSearchParams();
-  const { listId } = useParams<{ listId: Task["listId"] }>();
   const sortedFilters = getSortedParamString(params);
+  const { listId } = useParams<{ listId: Task["listId"] }>();
 
   const {
     data: tasks,
@@ -19,7 +20,7 @@ export default function useTasks() {
       : ["tasks", listId],
     queryFn: () => getTasksClient(listId, sortedFilters),
     enabled: !!listId,
-    staleTime: 3600,
+    staleTime: TASK_REVALIDATE_TIME,
   });
 
   if (error) window.toast?.error(error.message);

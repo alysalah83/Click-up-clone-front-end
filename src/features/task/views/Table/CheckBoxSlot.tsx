@@ -13,6 +13,7 @@ function CheckBoxSlot({
   const { checkedTasksIdSet, handleCheckTask } = useCheckTask();
   const {
     task: { id },
+    isTempTask,
   } = useTask();
 
   const isTaskChecked = checkedTasksIdSet.has(id);
@@ -23,6 +24,7 @@ function CheckBoxSlot({
         <CheckBox
           checked={isTaskChecked}
           onCheckedChange={handleCheckTask.bind(null, id)}
+          disabled={isTempTask}
         />
       ) : (
         <span className="tabular-nums">{sortNum}</span>

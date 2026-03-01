@@ -7,6 +7,7 @@ import { formatErrorForToast } from "@/shared/lib/utils/formatErrorForToast";
 import { formatActionError } from "@/shared/lib/utils/formatActionError";
 import { ApiError } from "@/shared/lib/errors";
 import { Status } from "../types";
+import { STATUS_REVALIDATION_TIME } from "../consts";
 
 export function useStatuses() {
   const { listId } = useParams<{ listId: string }>();
@@ -18,7 +19,7 @@ export function useStatuses() {
     queryFn: () => getStatusesClient(listId),
     queryKey: ["statuses", listId],
     enabled: !!listId,
-    staleTime: 3600,
+    staleTime: STATUS_REVALIDATION_TIME,
   });
 
   if (error) window.toast?.error(formatErrorForToast(formatActionError(error)));

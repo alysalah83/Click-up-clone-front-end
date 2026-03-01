@@ -15,7 +15,7 @@ import { ICON_SIZE } from "../board.const";
 import { getFormattedRangeDate } from "@/shared/lib/utils/getFormattedRangeDate";
 import PriorityMenu from "@/features/task/components/PriorityMenu";
 import ErrorMessage from "@/shared/ui/ErrorMessage/ErrorMessage";
-import { useWatch } from "react-hook-form";
+import { Controller, useWatch } from "react-hook-form";
 
 interface AddTaskFormProps {
   columnStatusId: Task["statusId"];
@@ -47,7 +47,6 @@ function AddTaskForm({ columnStatusId }: AddTaskFormProps) {
     startDate: watchedDates.startDate ?? null,
     endDate: watchedDates.endDate ?? null,
   };
-  console.log(priority);
 
   const [dataObj, priorityObj] = TASK_FEATURES;
   const curPriority = TASK_PRIORITIES_LIST.find(
@@ -61,15 +60,22 @@ function AddTaskForm({ columnStatusId }: AddTaskFormProps) {
       onSubmit={handleSubmit}
     >
       <div className="flex items-center gap-2">
-        <input
-          {...register("name")}
-          type="text"
-          placeholder="Task Name..."
-          className="w-full px-1 py-1 text-sm text-neutral-900 outline-0 dark:text-neutral-100"
+        <Controller
+          control={control}
+          name="name"
+          render={({ field }) => (
+            <input
+              {...field}
+              type="text"
+              placeholder="Task Name..."
+              className="w-full px-1 py-1 text-sm text-neutral-900 outline-0 dark:text-neutral-100"
+            />
+          )}
         />
         <Button
           ariaLabel="save new task button"
           size="small"
+          buttonFor="submit"
           disabled={!isValid}
         >
           <span className="flex items-center gap-1">
@@ -100,8 +106,8 @@ function AddTaskForm({ columnStatusId }: AddTaskFormProps) {
           <MenuContent>
             <DateRangePicker
               onDateChange={({ startDate, endDate }) => {
-                setValue("startDate", startDate);
-                setValue("endDate", endDate);
+                setValue("startDate", startDate, { shouldValidate: false });
+                setValue("endDate", endDate, { shouldValidate: false });
               }}
               dateRanges={dateRanges}
             />
@@ -125,7 +131,9 @@ function AddTaskForm({ columnStatusId }: AddTaskFormProps) {
           </MenuTrigger>
           <MenuContent>
             <PriorityMenu
-              action={(priority) => setValue("priority", priority)}
+              action={(priority) =>
+                setValue("priority", priority, { shouldValidate: false })
+              }
             />
           </MenuContent>
         </Menu>

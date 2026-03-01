@@ -3,6 +3,8 @@ import { OptionUiItem } from "@/shared/types/types";
 const TASK_RENAME_FORM_ICON_SIZE = 3.5;
 const TASK_ICON_SIZE = 3.5;
 
+const TASK_REVALIDATE_TIME = 1000 * 3600; // one hour
+
 const TASK_PRIORITIES_LIST = [
   {
     iconColor: "fill-pink-500",
@@ -54,4 +56,5 @@ export {
   TASK_ICON_SIZE,
   TASK_FEATURES,
   OPTIONS_UI_MENU,
+  TASK_REVALIDATE_TIME,
 };

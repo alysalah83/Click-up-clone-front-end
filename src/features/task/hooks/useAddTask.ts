@@ -42,7 +42,7 @@ export function useAddTask(taskStatusId: Task["statusId"]) {
         (status) => status.id === taskStatusId,
       );
 
-      const tempId = `temp-${Date.now()}-${Math.random()}`;
+      const tempId = `temp-${Date.now()}-${Math.random()}-${Math.random()}`;
       queryClient.setQueryData(queryKey, (oldTasks: Task[]) => [
         ...oldTasks,
         {
@@ -71,15 +71,12 @@ export function useAddTask(taskStatusId: Task["statusId"]) {
         const { newTask } = data.payload;
         queryClient.setQueryData(
           ["tasks", listId],
-          (oldOptimisticTasks: Task[] = []) => {
-            const newTaskIndex = oldOptimisticTasks.findIndex(
-              (task) => task.id === context.tempId,
-            );
-            return newTaskIndex === -1
-              ? [...oldOptimisticTasks, newTask]
-              : oldOptimisticTasks.with(newTaskIndex, newTask);
-          },
+          (oldOptimisticTasks: Task[] = []) =>
+            oldOptimisticTasks.map((task) =>
+              task.id === context.tempId ? newTask : task,
+            ),
         );
+        window.toast?.success(`Task (${newTask.name}) has been added`);
       }
     },
 
