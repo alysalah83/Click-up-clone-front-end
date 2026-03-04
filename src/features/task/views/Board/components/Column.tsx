@@ -1,28 +1,25 @@
 "use client";
 
-import AddButton from "@/shared/components/AddButton";
 import RowAddNew from "@/shared/components/RowAddNew";
-import TaskCard from "./TaskCard";
 import { useActiveColumnForm } from "../contexts/ActiveColumnFormProvider";
 import { useDroppable } from "@dnd-kit/core";
-import { memo, useMemo } from "react";
+import { memo } from "react";
 import SkeletonLoader from "@/shared/ui/SkeletonLoader";
 import AddTaskForm from "./AddTaskForm";
 import StatusBadge from "@/features/status/components/StatusBadge";
-import TaskProvider from "@/features/task/context/TaskProvider";
 import { Status } from "@/features/status/types";
 import { ColorsToken } from "@/shared/ui/ColorPicker/types";
 import { BOARD_STATUS_BACKGROUND_COLOR } from "../board.const";
 import useTasks from "@/features/task/hooks/useTasks";
-import { Task } from "@/features/task/types";
 import TaskItem from "./TaskItem";
+import ColumnFeaturesBtn from "./ColumnFeaturesBtn";
 
 interface ColumnProps {
   statusItem: Status;
 }
 
 function Column({ statusItem }: ColumnProps) {
-  const { id, icon, name: statusName, bgColor } = statusItem;
+  const { id, icon, name: statusName, bgColor, order } = statusItem;
   const { tasks, isPending } = useTasks();
   const { activeStatusColumn, setActiveColumn } = useActiveColumnForm();
   const { isOver, setNodeRef } = useDroppable({ id });
@@ -49,10 +46,11 @@ function Column({ statusItem }: ColumnProps) {
             {tasksCount}
           </span>
         </div>
-        <AddButton
-          onClick={handleActiveColumnForm}
-          toolTipMessage="Add Task"
-          ariaLabel="add task button"
+        <ColumnFeaturesBtn
+          handleActiveColumn={handleActiveColumnForm}
+          statusOrder={order}
+          statusId={id}
+          statusName={statusName}
         />
       </header>
 

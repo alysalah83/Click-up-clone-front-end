@@ -18,3 +18,8 @@ export async function getStatusesCountsSummery() {
     "/statuses/statusCounts",
   );
 }
+
+export async function deleteStatus(statusId: Status["id"]) {
+  const serverAxios = await createServerAxios();
+  return await serverAxios.delete<Status>(`/statuses/${statusId}`);
+}

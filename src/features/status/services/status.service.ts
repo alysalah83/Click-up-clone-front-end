@@ -3,6 +3,7 @@ import {
   createStatus,
   getStatuses,
   getStatusesCountsSummery,
+  deleteStatus,
 } from "../api/status.server";
 
 export const statusServices = {
@@ -14,4 +15,5 @@ export const statusServices = {
     return await getStatuses(listId);
   },
   getStatusesCountsSummery,
+  deleteStatus,
 };
