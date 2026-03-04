@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: "Whiteboard",
 };
 
-async function page() {
+function page() {
   return (
     <div className="h-full w-full">
       <Whiteboard />

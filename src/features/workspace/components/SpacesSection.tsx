@@ -5,7 +5,7 @@ import CreateWorkspaceForm from "./CreateWorkspaceForm";
 import { ICONS_SIZE } from "../consts/workspace.consts";
 import SpacesList from "./SpacesList";
 
-function SpacesSection() {
+async function SpacesSection() {
   return (
     <>
       <div className="flex items-center justify-between">
