@@ -1,7 +1,7 @@
 import { StylesSizes } from "@/shared/types/index.types";
 
 interface MiniSpinnerProps {
-  width?: StylesSizes;
+  width?: StylesSizes | "xLarge";
   padding?: string;
   bgColor?: string;
 }
@@ -15,6 +15,7 @@ function MiniSpinner({
     small: "w-5",
     medium: "w-6",
     large: "w-9",
+    xLarge: "w-12",
   };
 
   return (
