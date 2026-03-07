@@ -1,6 +1,6 @@
 "use client";
 
-import { Dispatch, SetStateAction, useState } from "react";
+import { ChangeEventHandler, FocusEventHandler } from "react";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import clsx from "clsx";
 
@@ -12,7 +12,9 @@ interface ControlledInputProps {
   disabled?: boolean;
   labelText?: string;
   errorMessage?: string;
-  setOutValue: Dispatch<SetStateAction<any>>;
+  value: string | number;
+  onChange: ChangeEventHandler<HTMLInputElement>;
+  onBlur?: FocusEventHandler<HTMLInputElement>;
 }
 
 function ControlledInput({
@@ -23,10 +25,10 @@ function ControlledInput({
   labelText,
   disabled,
   placeholder,
-  setOutValue,
+  value,
+  onChange,
+  onBlur,
 }: ControlledInputProps) {
-  const [value, setValue] = useState("");
-
   const inputClasses = clsx(
     "w-full rounded-lg transition duration-300 disabled:cursor-not-allowed outline-none",
     {
@@ -45,10 +47,8 @@ function ControlledInput({
         id={name}
         type={type}
         value={value}
-        onChange={(e) => {
-          setValue(e.target.value);
-          setOutValue(e.target.value);
-        }}
+        onChange={onChange}
+        onBlur={onBlur}
         placeholder={placeholder}
         disabled={disabled}
         className={inputClasses}

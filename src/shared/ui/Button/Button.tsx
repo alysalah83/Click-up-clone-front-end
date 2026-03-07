@@ -58,6 +58,7 @@ function Button({
         type === "secondary" && disabled,
       "disabled:bg-neutral-600 dark:disabled:bg-neutral-500":
         type === "primary" && disabled && !pending,
+      "disabled:bg-indigo-900": type === "colored" && disabled,
 
       "cursor-default": pending,
       "flex justify-center": type === "delete" && pending,

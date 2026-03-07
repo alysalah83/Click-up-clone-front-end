@@ -4,12 +4,42 @@ import {
   UpdateWorkspaceInput,
   Workspace,
 } from "../types";
+import { CreateListInput, List } from "@/features/list/types";
+import { CreateStatusInputs, Status } from "@/features/status/types";
+import { CreateTaskInput, Task } from "@/features/task/types";
 
 export async function createWorkspace(
   createWorkspaceInputs: CreateWorkspaceInputs,
 ) {
   const serverAxios = await createServerAxios();
   return await serverAxios.post("/workspaces", createWorkspaceInputs);
+}
+
+export async function createWorkspaceFlow({
+  workspace,
+  list,
+  status,
+  task,
+}: {
+  workspace: CreateWorkspaceInputs;
+  list: Omit<CreateListInput, "workspaceId">;
+  status: Omit<CreateStatusInputs, "listId">;
+  task: Omit<CreateTaskInput, "statusId" | "listId">;
+}) {
+  const serverAxios = await createServerAxios();
+  return await serverAxios.post<{
+    workspace: Workspace;
+    list: List;
+    status: Status;
+    task: Task;
+  }>("/workspaces/flow", {
+    data: {
+      workspace,
+      list,
+      status,
+      task,
+    },
+  });
 }
 
 export const getWorkspaces = async () => {

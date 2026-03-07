@@ -12,6 +12,7 @@ function CreateListForm({ workspaceId }: { workspaceId: string }) {
   return (
     <CreateForm
       theAction={createListWithWorkspaceId}
+      name={nameValue}
       actionFor="list"
       headerTitle="Create List"
       headerText="All Lists are located within a Space. Lists can house any type of task."

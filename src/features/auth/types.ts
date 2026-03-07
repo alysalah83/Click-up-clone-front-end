@@ -4,9 +4,10 @@ import { loginSchema, signupUserSchema } from "./schema/authSchemas";
 type UserWithoutPassword = Omit<User, "password">;
 
 interface User {
+  role: "guest" | "user";
+  hasOnBoarded: boolean;
   name: string | null;
   id: string;
-  role: "guest" | "user";
   email: string | null;
   password: string | null;
   createdAt: Date;

@@ -45,7 +45,8 @@ function AddStatus() {
         <ControlledInput
           inputStyle="secondary"
           name="status name"
-          setOutValue={setName}
+          value={name}
+          onChange={(e) => setName(e.target.value)}
           placeholder="Status Name"
         />
         <div className="justify-self-end">

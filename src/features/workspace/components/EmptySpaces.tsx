@@ -3,8 +3,8 @@ import Modal, {
   ModalContent,
   ModalTrigger,
 } from "../../../shared/ui/ModalCompound";
-import CreateWorkspaceForm from "@/features/workspace/components/CreateWorkspaceForm";
 import Button from "../../../shared/ui/Button/Button";
+import CreateSpaceFlow from "./CreateSpaceFlow";
 
 function EmptySpaces() {
   return (
@@ -28,7 +28,7 @@ function EmptySpaces() {
           </Button>
         </ModalTrigger>
         <ModalContent contentYPosition="withTopMargin">
-          <CreateWorkspaceForm />
+          <CreateSpaceFlow />
         </ModalContent>
       </Modal>
     </div>

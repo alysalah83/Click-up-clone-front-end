@@ -1,6 +1,7 @@
 import { cacheLife, cacheTag } from "next/cache";
 import {
   createWorkspace,
+  createWorkspaceFlow,
   deleteWorkspace,
   getWorkspaces,
   getWorkspacesCount,
@@ -9,6 +10,7 @@ import {
 
 export const workspaceServices = {
   createWorkspace,
+  createWorkspaceFlow,
   async getWorkspaces() {
     "use cache: private";
     cacheTag("workspaces");

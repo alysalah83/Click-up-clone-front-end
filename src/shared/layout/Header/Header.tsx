@@ -6,9 +6,6 @@ import {
   ToolTipMessage,
   ToolTipTrigger,
 } from "../../ui/ToolTip/ToolTipCompound ";
-import ButtonWithIconLabel from "../../ui/Button/ButtonWithIconLabel";
-import { usePathname } from "next/navigation";
-import { HEADER_MENU } from "./Header.const";
 import UserLogo from "@/features/auth/components/UserLogo";
 import { useSideBarStore } from "../SideBar/useSideNavStore";
 import { UserWithoutPassword } from "@/features/auth/types";

@@ -24,3 +24,10 @@ export const loginUser = async function (loginInputs: LoginInputs) {
   const serverAxios = await createServerAxios();
   return await serverAxios.post<Session>("/users/login", loginInputs);
 };
+
+export const updateUser = async function (hasOnBoarded: boolean) {
+  const serverAxios = await createServerAxios();
+  return await serverAxios.patch<UserWithoutPassword>("/users", {
+    hasOnBoarded,
+  });
+};

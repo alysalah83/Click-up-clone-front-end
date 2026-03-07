@@ -19,6 +19,7 @@ interface CreateFormProps {
 
   theAction: (...args: any) => Promise<ActionResponse>;
   inputPlaceholder: string;
+  name: string;
   headerTitle: string;
   headerText: string;
   inputLabel: string;
@@ -29,6 +30,7 @@ interface CreateFormProps {
 
 function CreateForm({
   children,
+  name,
   theAction,
   inputPlaceholder,
   headerTitle,
@@ -76,7 +78,8 @@ function CreateForm({
               name="name"
               type="text"
               placeholder={inputPlaceholder}
-              setOutValue={setNameValue}
+              value={name}
+              onChange={(e) => setNameValue(e.target.value)}
             />
           </div>
         </div>

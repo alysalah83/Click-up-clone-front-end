@@ -4,6 +4,12 @@ import Modal, { ModalContent, ModalTrigger } from "@/shared/ui/ModalCompound";
 import CreateWorkspaceForm from "./CreateWorkspaceForm";
 import { ICONS_SIZE } from "../consts/workspace.consts";
 import SpacesList from "./SpacesList";
+import {
+  ToolTip,
+  ToolTipMessage,
+  ToolTipTrigger,
+} from "@/shared/ui/ToolTip/ToolTipCompound ";
+import CreateSpaceFlow from "./CreateSpaceFlow";
 
 async function SpacesSection() {
   return (
@@ -12,21 +18,26 @@ async function SpacesSection() {
         <h4 className="text-sm font-medium">Spaces</h4>
         <Modal>
           <ModalTrigger>
-            <ButtonIcon
-              icon="plus"
-              size={ICONS_SIZE}
-              ariaLabel="add new space button"
-            />
+            <ToolTip>
+              <ToolTipTrigger>
+                <ButtonIcon
+                  icon="plus"
+                  size={ICONS_SIZE}
+                  ariaLabel="add new space button"
+                />
+              </ToolTipTrigger>
+              <ToolTipMessage>Add Space</ToolTipMessage>
+            </ToolTip>
           </ModalTrigger>
           <ModalContent contentYPosition="withTopMargin">
-            <CreateWorkspaceForm />
+            <CreateSpaceFlow />
           </ModalContent>
         </Modal>
       </div>
       <SpacesList />
       <Modal>
         <ModalTrigger>
-          <RowAddNew label="New Space" />
+          <RowAddNew label="New Workspace" />
         </ModalTrigger>
         <ModalContent contentYPosition="withTopMargin">
           <CreateWorkspaceForm />

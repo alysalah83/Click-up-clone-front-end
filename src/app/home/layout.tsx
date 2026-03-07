@@ -7,6 +7,7 @@ import SideNav from "@/shared/layout/SideNav.tsx/SideNav";
 import SideBar from "@/shared/layout/SideBar/SideBar";
 import { authServices } from "@/features/auth/services/auth.service";
 import { listServices } from "@/features/list/services/list.service";
+import OnBoardingTrigger from "@/features/auth/components/OnBoardingTrigger";
 
 async function HomeLayout({ children }: { children: ReactNode }) {
   const userPromise = authServices.getUser();
@@ -26,6 +27,7 @@ async function HomeLayout({ children }: { children: ReactNode }) {
               userPromise={userPromise}
               latestListIdPromise={latestListId}
             />
+            <OnBoardingTrigger userPromise={userPromise} />
             <main className="h-full flex-1 overflow-auto">{children}</main>
           </MainContent>
         </div>

@@ -26,7 +26,7 @@ const TASK_PRIORITIES_LIST = [
     label: "Low",
     colorHex: "#79716b",
   },
-];
+] as const;
 
 const TASK_FEATURES = [
   { id: "date", icon: "date", label: "Add date" },

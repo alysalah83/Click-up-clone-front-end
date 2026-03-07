@@ -4,8 +4,7 @@ import SpaceItem from "./SpaceItem";
 async function SpacesList() {
   const workspaces = await workspaceServices.getWorkspaces();
 
-  if (workspaces?.length === 0 || !workspaces)
-    return <p>no workspaces to display</p>;
+  if (workspaces?.length === 0 || !workspaces) return;
 
   return (
     <menu className="flex flex-col gap-4">
