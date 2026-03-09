@@ -8,7 +8,7 @@ import {
   containerGridClasses,
   slotPadding,
 } from "./table.styles";
-import TableSortButton from "../../components/TaskSortButton";
+import SortRowField from "../../components/Sort/SortRowField";
 
 function Header() {
   const { handleCheckAll, isAllChecked } = useCheckTask();
@@ -31,25 +31,25 @@ function Header() {
         className={`col-span-3 flex items-center gap-2 ${slotBorderClasses} ${slotPadding} ${headerSlotHoverClasses}`}
       >
         <span>Status</span>
-        <TableSortButton sortingFor="status" />
+        <SortRowField sortField="status" />
       </div>
       <div
         className={`col-span-3 flex items-center gap-2 ${slotBorderClasses} ${slotPadding} ${headerSlotHoverClasses}`}
       >
         <span>Due date</span>
-        <TableSortButton sortingFor="dueDate" />
+        <SortRowField sortField="dueDate" />
       </div>
       <div
         className={`col-span-3 flex items-center gap-2 ${slotBorderClasses} ${slotPadding} ${headerSlotHoverClasses}`}
       >
         <span>Priority</span>
-        <TableSortButton sortingFor="priority" />
+        <SortRowField sortField="priority" />
       </div>
       <div
         className={`col-span-5 flex items-center gap-2 ${slotPadding} ${headerSlotHoverClasses}`}
       >
         <span>Created at</span>
-        <TableSortButton sortingFor="createdAt" />
+        <SortRowField sortField="createdAt" />
       </div>
     </header>
   );

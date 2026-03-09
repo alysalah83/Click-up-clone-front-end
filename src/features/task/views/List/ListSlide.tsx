@@ -1,10 +1,10 @@
 import StatusBadge from "../../../status/components/StatusBadge";
-import TaskSortButton from "../../components/TaskSortButton";
 import TaskProvider from "../../context/TaskProvider";
 import { Task } from "../../types";
 import AddTaskRow from "../../components/AddTaskRow";
 import { listBgHoverGradient, listRowBorder } from "./list.styles";
 import ListSlideRow from "./ListSlideRow";
+import SortRowField from "../../components/Sort/SortRowField";
 
 function ListSlide({
   status,
@@ -37,13 +37,13 @@ function ListSlide({
             className={`col-span-3 flex items-center gap-2 p-2 ${listBgHoverGradient}`}
           >
             <span>Due date</span>
-            <TaskSortButton sortingFor="dueDate" usedFor="list" />
+            <SortRowField sortField="dueDate" usedFor="list" />
           </div>
           <div
             className={`col-span-3 flex items-center gap-2 p-2 ${listBgHoverGradient}`}
           >
             <span>Priority</span>
-            <TaskSortButton sortingFor="priority" usedFor="list" />
+            <SortRowField sortField="priority" usedFor="list" />
           </div>
           <div
             className={`col-span-3 flex items-center p-2 ${listBgHoverGradient}`}

@@ -2,18 +2,15 @@
 
 import ButtonIcon from "@/shared/ui/Button/ButtonIcon";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useTaskSortsStore } from "../stores/useTaskSortsStore";
+import { useTaskSortsStore } from "../../stores/useTaskSortsStore";
+import { SortField, SortOrder, UsedFor } from "./sort.type";
 
-type SortingFor = "status" | "dueDate" | "priority" | "createdAt";
-type SortType = "asc" | "desc" | "";
-type UsedFor = "table" | "board" | "list";
-
-function TaskSortButton({
-  sortingFor,
+function SortRowField({
+  sortField,
   withLabel,
   usedFor = "table",
 }: {
-  sortingFor: SortingFor;
+  sortField: SortField;
   withLabel?: boolean;
   usedFor?: UsedFor;
 }) {
@@ -29,17 +26,17 @@ function TaskSortButton({
   const { replace } = useRouter();
   const pathname = usePathname();
 
-  const handleSorting = function (sortValue: SortType) {
+  const handleSorting = function (sortValue: SortOrder) {
     const params = new URLSearchParams(searchParams);
-    if (sortValue === "") params.delete(sortingFor);
-    else params.set(sortingFor, sortValue);
+    if (sortValue === "") params.delete(sortField);
+    else params.set(sortField, sortValue);
 
     if (usedFor === "table")
-      setTableSorts({ ...tableSorts, [sortingFor]: sortValue });
+      setTableSorts({ ...tableSorts, [sortField]: sortValue });
     else if (usedFor === "board")
-      setBoardSorts({ ...boardSorts, [sortingFor]: sortValue });
+      setBoardSorts({ ...boardSorts, [sortField]: sortValue });
     else if (usedFor === "list")
-      setListSorts({ ...listSorts, [sortingFor]: sortValue });
+      setListSorts({ ...listSorts, [sortField]: sortValue });
 
     replace(`${pathname}?${params.toString()}`);
   };
@@ -47,7 +44,7 @@ function TaskSortButton({
   const iconSize = 3;
   return (
     <>
-      {!searchParams.get(sortingFor) && (
+      {!searchParams.get(sortField) && (
         <span
           className={
             withLabel ? "flex w-full items-center gap-1" : "h-fit w-fit"
@@ -60,10 +57,10 @@ function TaskSortButton({
             padding="small"
             ariaLabel="sort button"
           />
-          {withLabel && <span className="capitalize">{sortingFor}</span>}
+          {withLabel && <span className="capitalize">{sortField}</span>}
         </span>
       )}
-      {searchParams.get(sortingFor) === "asc" && (
+      {searchParams.get(sortField) === "asc" && (
         <span
           className={
             withLabel ? "flex w-full items-center gap-1" : "h-fit w-fit"
@@ -79,10 +76,10 @@ function TaskSortButton({
             bgHoverColor="hover:bg-blue-700/20 active:bg-blue-700/20"
             ariaLabel="sort asc"
           />
-          {withLabel && <span className="capitalize">{sortingFor}</span>}
+          {withLabel && <span className="capitalize">{sortField}</span>}
         </span>
       )}
-      {searchParams.get(sortingFor) === "desc" && (
+      {searchParams.get(sortField) === "desc" && (
         <span
           className={
             withLabel ? "flex w-full items-center gap-1" : "h-fit w-fit"
@@ -98,11 +95,11 @@ function TaskSortButton({
             bgHoverColor="hover:bg-blue-700/20 active:bg-blue-700/20"
             ariaLabel="sort asc"
           />
-          {withLabel && <span className="capitalize">{sortingFor}</span>}
+          {withLabel && <span className="capitalize">{sortField}</span>}
         </span>
       )}
     </>
   );
 }
 
-export default TaskSortButton;
+export default SortRowField;

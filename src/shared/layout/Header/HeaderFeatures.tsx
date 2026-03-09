@@ -1,13 +1,17 @@
-import SortBtn from "@/features/task/views/Board/components/SortBtn";
+import SortBtnWithMenu from "@/features/task/components/Sort/SortBtnWithMenu";
+import { TASK_VIEWS } from "@/features/task/constants/tasks.const";
 import { usePathname } from "next/navigation";
 
 function HeaderFeatures() {
   const pathname = usePathname();
-  const isInBoardPage = pathname.includes("/board");
+  const isInTaskView = TASK_VIEWS.some((taskView) =>
+    pathname.includes(taskView),
+  );
+  const isInTableView = pathname.includes("table");
 
   return (
     <div className="flex items-center gap-4">
-      {isInBoardPage && <SortBtn />}
+      {isInTaskView && <SortBtnWithMenu withSortStatusField={isInTableView} />}
     </div>
   );
 }

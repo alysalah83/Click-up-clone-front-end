@@ -15,5 +15,5 @@ export async function signupUser(signupUserInputs: SignupUserInputs) {
   } catch (error) {
     return { status: "error" as const, error: formatActionError(error) };
   }
-  redirect("/home/board", RedirectType.replace);
+  redirect("/home/overview", RedirectType.replace);
 }

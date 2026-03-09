@@ -3,17 +3,28 @@ import { hoverElementClasses } from "@/shared/constants/styles";
 
 interface RowAddNewProps {
   label: string;
+  size?: "small" | "medium";
   onClick?: () => void;
 }
 
-function RowAddNew({ label, onClick }: RowAddNewProps) {
+function RowAddNew({ label, size = "medium", onClick }: RowAddNewProps) {
   return (
     <div
-      className={`flex items-center gap-2 rounded-lg px-2 py-1 opacity-60 transition duration-300 ${hoverElementClasses}`}
+      className={`flex items-center rounded-lg ${size === "medium" ? "gap-2 px-2 py-1" : "px-1 py-0.5"} opacity-60 transition duration-300 ${hoverElementClasses}`}
       onClick={onClick}
     >
-      <ButtonIcon icon="plus" size={4} ariaLabel="add new space button" />
-      <h4 className="text-sm font-medium">{label}</h4>
+      <ButtonIcon
+        icon="plus"
+        size={size === "medium" ? 4 : 3}
+        ariaLabel="add new space button"
+      />
+      <h4
+        className={
+          size === "medium" ? "text-sm font-medium" : "text-xs font-bold"
+        }
+      >
+        {label}
+      </h4>
     </div>
   );
 }

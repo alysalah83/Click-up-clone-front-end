@@ -40,7 +40,7 @@ function ThemeButton() {
           )}
         </button>
       </ToolTipTrigger>
-      <ToolTipMessage>Theme button</ToolTipMessage>
+      <ToolTipMessage messagePosition="left">Theme button</ToolTipMessage>
     </ToolTip>
   );
 }

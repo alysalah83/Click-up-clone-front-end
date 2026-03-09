@@ -11,7 +11,7 @@ interface UseTaskSortsStore {
   setListSorts: (newSorts: NewSorts) => void;
 }
 
-interface NewSorts {
+export interface NewSorts {
   status: SortOrder;
   priority: SortOrder;
   dueDate: SortOrder;

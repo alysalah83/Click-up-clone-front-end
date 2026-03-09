@@ -6,6 +6,9 @@ import { listServices } from "@/features/list/services/list.service";
 import { Workspace } from "../types";
 import { OpenAvatarPickerProvider } from "../contexts/OpenAvatarProvider";
 import { ListItem } from "@/features/list";
+import Modal, { ModalContent, ModalTrigger } from "@/shared/ui/ModalCompound";
+import RowAddNew from "@/shared/components/RowAddNew";
+import CreateListForm from "@/features/list/components/CreateListForm";
 
 interface SpaceItemProps {
   workspace: Workspace;
@@ -26,15 +29,22 @@ async function SpaceItem({ workspace }: SpaceItemProps) {
         </RenameProvider>
       </WorkspaceProvider>
 
-      {haveLists && (
-        <menu className="ml-auto flex w-[92%] flex-col gap-2 border-l border-neutral-300 pl-3 dark:border-neutral-700">
-          {lists.map((list) => (
+      <menu className="ml-auto flex w-[92%] flex-col gap-2 border-l border-neutral-300 pl-3 dark:border-neutral-700">
+        {haveLists &&
+          lists.map((list) => (
             <ListProvider workspaceId={workspace.id} list={list} key={list.id}>
               <ListItem list={list} />
             </ListProvider>
           ))}
-        </menu>
-      )}
+        <Modal>
+          <ModalTrigger>
+            <RowAddNew label="New List" size="small" />
+          </ModalTrigger>
+          <ModalContent>
+            <CreateListForm workspaceId={workspace.id} />
+          </ModalContent>
+        </Modal>
+      </menu>
     </li>
   );
 }
