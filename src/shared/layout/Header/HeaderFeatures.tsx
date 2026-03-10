@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 function HeaderFeatures() {
   const pathname = usePathname();
   const isInTaskView = TASK_VIEWS.some((taskView) =>
-    pathname.includes(taskView),
+    pathname.endsWith(`/${taskView}`),
   );
   const isInTableView = pathname.includes("table");
 

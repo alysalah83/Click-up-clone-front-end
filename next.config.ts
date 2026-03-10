@@ -12,7 +12,7 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/home",
-        destination: "/home/overview",
+        destination: "/home/lists",
         permanent: true,
       },
     ];

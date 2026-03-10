@@ -43,7 +43,7 @@ async function ListItem({ list }: { list: List }) {
     await tasksService.getTasksCompleteAndTotalCounts(id);
   return (
     <div className="flex items-center justify-between gap-4">
-      <Link href={`/home/${id}/table`}>
+      <Link href={`/home/lists/${id}/table`}>
         <div className="group flex cursor-pointer items-center gap-3">
           <ICONS_MAP.list className="size-4 fill-neutral-500 transition duration-200 group-hover:fill-neutral-600 dark:fill-neutral-400 dark:group-hover:fill-neutral-500" />
           <span className="text-base font-medium underline underline-offset-2 transition duration-200 group-hover:text-neutral-700 group-hover:no-underline group-active:text-neutral-700 group-active:no-underline dark:group-hover:text-neutral-500 dark:group-active:text-neutral-500">

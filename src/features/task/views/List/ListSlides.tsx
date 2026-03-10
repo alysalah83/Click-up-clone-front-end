@@ -1,6 +1,6 @@
 "use client";
 
-import ListLoader from "./ListLoader";
+import ListLoader from "./ListSkeleton";
 import ListSlide from "./ListSlide";
 import useTasks from "../../hooks/useTasks";
 import { useStatuses } from "@/features/status/hooks/useStatuses";

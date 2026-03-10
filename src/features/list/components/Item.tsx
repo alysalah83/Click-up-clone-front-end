@@ -55,7 +55,7 @@ export function Heading({
     <div
       className={`flex w-full items-center ${isRenameOpen ? "" : "max-w-3/4"} gap-1`}
     >
-      <Link href={`/home/${list.id}/board`}>
+      <Link href={`/home/lists/${list.id}/board`}>
         <ButtonIcon
           icon="list"
           ariaLabel="project list item"

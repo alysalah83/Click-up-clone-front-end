@@ -39,7 +39,7 @@ function NameField() {
       onSave={handleRenameList}
     />
   ) : (
-    <Link href={`/home/${id}/board`} className="w-full">
+    <Link href={`/home/lists/${id}/board`} className="w-full">
       <span className="grow-0 truncate text-sm font-medium">
         {optimisticName}
       </span>

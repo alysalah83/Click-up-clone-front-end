@@ -5,7 +5,7 @@ import { ActiveColumnFormProvider } from "../contexts/ActiveColumnFormProvider";
 import AddTaskStatus from "../../../../status/components/AddStatus";
 import DragProvider from "../contexts/DragProvider";
 import { useStatuses } from "@/features/status/hooks/useStatuses";
-import ColumnLoader from "./Loader";
+import BoardSkeleton from "./BoardSkeleton";
 
 function Columns() {
   const { statuses, isPending } = useStatuses();
@@ -15,7 +15,7 @@ function Columns() {
       <ActiveColumnFormProvider>
         <DragProvider>
           {isPending ? (
-            <ColumnLoader columnCount={4} />
+            <BoardSkeleton columnCount={4} />
           ) : (
             statuses?.map((status) => (
               <Column statusItem={status} key={status.id} />

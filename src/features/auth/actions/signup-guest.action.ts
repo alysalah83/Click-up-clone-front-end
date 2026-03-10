@@ -18,5 +18,5 @@ export async function signupGuest() {
   } catch (error) {
     return { status: "error" as const, error: formatActionError(error) };
   }
-  redirect("/home/overview", RedirectType.replace);
+  redirect("/home/lists", RedirectType.replace);
 }

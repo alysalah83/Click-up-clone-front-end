@@ -1,6 +1,6 @@
 import SkeletonLoader from "@/shared/ui/SkeletonLoader";
 
-function ListLoader() {
+function ListSkeleton() {
   return (
     <div className="flex flex-col gap-10 p-8">
       <div className="flex flex-col gap-3">
@@ -25,4 +25,4 @@ function ListLoader() {
   );
 }
 
-export default ListLoader;
+export default ListSkeleton;

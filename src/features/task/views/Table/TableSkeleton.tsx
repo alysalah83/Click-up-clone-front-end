@@ -1,6 +1,6 @@
 import SkeletonLoader from "@/shared/ui/SkeletonLoader";
 
-function loading() {
+function TableSkeleton() {
   return (
     <div className="flex w-full flex-col gap-2 px-6 pt-2">
       <SkeletonLoader
@@ -13,4 +13,4 @@ function loading() {
   );
 }
 
-export default loading;
+export default TableSkeleton;

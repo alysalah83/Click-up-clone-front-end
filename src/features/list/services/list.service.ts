@@ -8,6 +8,7 @@ import {
   getWorkspaceLists,
   updateList,
   getListsCount,
+  getList,
 } from "../api/list";
 import { List } from "../types";
 import { Workspace } from "@/features/workspace/types";
@@ -21,6 +22,14 @@ export const listServices = {
     cacheLife("max");
     return getLists();
   },
+
+  async getList(listId: List["id"]) {
+    "use cache: private";
+    cacheTag(`list-${listId}`);
+    cacheLife("max");
+    return getList(listId);
+  },
+
   async getListsCount() {
     "use cache: private";
     cacheTag("lists");

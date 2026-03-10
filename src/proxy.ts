@@ -21,7 +21,7 @@ export async function proxy(request: NextRequest) {
         const isGuest = decode.role === "guest";
         if (isGuest) return NextResponse.next();
 
-        return NextResponse.redirect(new URL("/home/overview", request.url));
+        return NextResponse.redirect(new URL("/home/lists", request.url));
       }
       return NextResponse.next();
     } catch {

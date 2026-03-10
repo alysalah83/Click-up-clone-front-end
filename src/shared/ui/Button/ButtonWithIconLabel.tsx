@@ -42,7 +42,7 @@ function ButtonWithIconLabel({
   const isTable = item.label === "Table";
   const isBoard = item.label === "Board";
   const isList = item.label === "List";
-  const isOverview = item.label === "Overview";
+  const isListsOverview = item.label === "Lists Overview";
 
   let linkHref: string;
   if (isTable) {
@@ -50,20 +50,20 @@ function ButtonWithIconLabel({
     Object.entries(tableSorts).forEach(([key, value]) => {
       if (value) tableSearchParams.set(key, value);
     });
-    linkHref = `/home/${newListId}${href}?${tableSearchParams.toString()}`;
+    linkHref = `/home/lists/${newListId}${href}?${tableSearchParams.toString()}`;
   } else if (isBoard) {
     const boardSearchParams = new URLSearchParams();
     Object.entries(boardSorts).forEach(([key, value]) => {
       if (value) boardSearchParams.set(key, value);
     });
-    linkHref = `/home/${newListId}${href}?${boardSearchParams.toString()}`;
+    linkHref = `/home/lists/${newListId}${href}?${boardSearchParams.toString()}`;
   } else if (isList) {
     const listSearchParams = new URLSearchParams();
     Object.entries(listSorts).forEach(([key, value]) => {
       if (value) listSearchParams.set(key, value);
     });
-    linkHref = `/home/${newListId}${href}?${listSearchParams.toString()}`;
-  } else if (isOverview) linkHref = `/home${href}`;
+    linkHref = `/home/lists/${newListId}${href}?${listSearchParams.toString()}`;
+  } else if (isListsOverview) linkHref = `/home${href}`;
   else linkHref = `/home/${newListId}${href}`;
 
   return (

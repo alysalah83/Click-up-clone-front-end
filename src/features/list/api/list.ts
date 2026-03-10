@@ -22,6 +22,11 @@ export async function getLists() {
   return await serverAxios.get<List[]>(`/lists`);
 }
 
+export async function getList(listId: List["id"]) {
+  const serverAxios = await createServerAxios();
+  return await serverAxios.get<List>(`/lists/${listId}`);
+}
+
 export async function getListsCount() {
   const serverAxios = await createServerAxios();
   return await serverAxios.get<number>(`/lists?count=true`);

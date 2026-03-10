@@ -5,7 +5,7 @@ export const SIDE_NAV_ITEMS = [
     icon: "home" as IconsMap,
     label: "Home",
     href: "/home",
-    includedRoutes: ["/board", "/table", "/list", "/home/overview"],
+    includedRoutes: ["/board", "/table", "/list", "/home/lists"],
   },
   {
     icon: "dashboard" as IconsMap,

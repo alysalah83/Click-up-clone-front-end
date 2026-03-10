@@ -154,7 +154,7 @@ function CreateSpaceFlow() {
                   window.toast?.error(formatErrorForToast(results.error));
                 if (results.status === "success" && "payload" in results) {
                   closeModal();
-                  push(`/home/${results.payload.listId}/board`);
+                  push(`/home/lists/${results.payload.listId}/board`);
                 }
               } else {
                 handleGoNext();

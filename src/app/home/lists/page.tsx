@@ -2,10 +2,10 @@ import ListsSummery from "@/features/list/components/ListsSummery";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Overview",
+  title: "ListsOverview",
 };
 
-function OverviewPage() {
+function ListsOverviewPage() {
   return (
     <div className="p-4">
       <ListsSummery />
@@ -13,4 +13,4 @@ function OverviewPage() {
   );
 }
 
-export default OverviewPage;
+export default ListsOverviewPage;

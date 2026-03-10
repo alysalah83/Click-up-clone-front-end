@@ -23,12 +23,12 @@ function NotFound() {
           You don&apos;t have access to this Workspace or it doesn&apos;t exist
           anymore.
         </p>
-        <Link href="/home/overview" className="w-full">
+        <Link href="/home/lists" className="w-full">
           <Button
             stretch={true}
             type="colored"
             size="large"
-            ariaLabel="go to overview page"
+            ariaLabel="go to lists overview page"
           >
             Go Back
           </Button>

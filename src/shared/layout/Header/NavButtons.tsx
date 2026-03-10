@@ -15,7 +15,7 @@ function NavButtons({
       item={item}
       key={item.href}
       latestListIdPromise={latestListIdPromise}
-      isActive={pathname.includes(item.href)}
+      isActive={pathname.endsWith(item.href)}
     />
   ));
 }

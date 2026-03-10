@@ -22,6 +22,6 @@ export async function deleteList(
     return { status: "error", error: formatActionError(error) };
   }
   if (isCurrentListDeleted)
-    return redirect("/home/overview", RedirectType.replace);
+    return redirect("/home/lists", RedirectType.replace);
   else return { status: "success" };
 }

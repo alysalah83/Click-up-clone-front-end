@@ -32,6 +32,6 @@ export async function deleteWorkspace({
       error: formatActionError(error),
     };
   }
-  if (listIdIsActive) redirect("/home/overview", RedirectType.replace);
+  if (listIdIsActive) redirect("/home/lists", RedirectType.replace);
   return { status: "success" };
 }

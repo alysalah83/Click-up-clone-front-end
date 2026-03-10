@@ -4,9 +4,7 @@ import {
   SetStateAction,
   useActionState,
   useEffect,
-  // useEffect,
 } from "react";
-// import { useModal } from "../ui/ModalCompound";
 import ErrorMessage from "./ErrorMessage/ErrorMessage";
 import ControlledFormInput from "./Input/ControlledInput";
 import { useRouter } from "next/navigation";
@@ -50,7 +48,7 @@ function CreateForm({
 
   useEffect(() => {
     if (actionStatus.status === "success" && "payload" in actionStatus) {
-      push(`/home/${actionStatus.payload.listId}/table`);
+      push(`/home/lists/${actionStatus.payload.listId}/board`);
       toggleModal();
     }
   }, [push, actionStatus, toggleModal]);

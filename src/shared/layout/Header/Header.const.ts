@@ -20,7 +20,7 @@ export const HEADER_MENU = [
   {
     icon: "exclamationMark",
     iconBgColor: "bg-gray-500",
-    href: "/overview",
-    label: "Overview",
+    href: "/lists",
+    label: "Lists Overview",
   },
 ] as const;
