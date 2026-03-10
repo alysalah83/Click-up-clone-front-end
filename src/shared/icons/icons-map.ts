@@ -42,6 +42,8 @@ import {
   TbLayoutDashboardFilled,
   TbLayoutSidebarLeftCollapseFilled,
   TbLayoutSidebarRightCollapseFilled,
+  TbRouteOff,
+  TbZoomQuestionFilled,
 } from "react-icons/tb";
 import { VscGraph } from "react-icons/vsc";
 
@@ -83,4 +85,6 @@ export const ICONS_MAP = {
   water: IoWaterOutline,
   paintBrush: FaPaintBrush,
   addColumn: RiInsertColumnLeft,
+  noRoute: TbRouteOff,
+  notFound: TbZoomQuestionFilled,
 } as const;

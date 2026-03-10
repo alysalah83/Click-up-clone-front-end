@@ -13,15 +13,14 @@ function NotFound() {
     <div className="flex h-screen w-screen items-center justify-center bg-neutral-900">
       <div className="flex max-w-96 flex-col items-center gap-4 rounded-xl bg-neutral-800 px-6 py-8">
         <div className="mb-4 w-fit rounded-xl bg-indigo-600/20 p-2 ring-2 ring-indigo-600 ring-offset-4 ring-offset-neutral-800">
-          <ICONS_MAP.setting className="size-8 fill-indigo-600 text-indigo-600" />
+          <ICONS_MAP.notFound className="size-8 fill-indigo-600 text-indigo-600" />
         </div>
 
         <h2 className="text-xl font-semibold text-neutral-200">
-          This page is unavailable
+          List not found
         </h2>
         <p className="text-center text-base font-medium text-neutral-400">
-          You don&apos;t have access to this Workspace or it doesn&apos;t exist
-          anymore.
+          This list doesn&apos;t exist or may have been deleted.
         </p>
         <Link href="/home/lists" className="w-full">
           <Button
@@ -30,7 +29,7 @@ function NotFound() {
             size="large"
             ariaLabel="go to lists overview page"
           >
-            Go Back
+            Go to home
           </Button>
         </Link>
       </div>

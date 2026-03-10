@@ -8,9 +8,20 @@ import SideBar from "@/shared/layout/SideBar/SideBar";
 import { authServices } from "@/features/auth/services/auth.service";
 import { listServices } from "@/features/list/services/list.service";
 import OnBoardingTrigger from "@/features/auth/components/OnBoardingTrigger";
+import { redirect } from "next/navigation";
 
-async function HomeLayout({ children }: { children: ReactNode }) {
-  const userPromise = authServices.getUser();
+async function HomeLayout({
+  children,
+  searchParams,
+}: {
+  children: ReactNode;
+  searchParams: Promise<{ retry?: string }>;
+}) {
+  const userPromise = authServices.getUser().catch(async (error) => {
+    const { retry } = await searchParams;
+    if (retry === "1") throw error;
+    redirect("/home/lists?retry=1");
+  });
   const latestListId = listServices.getLatestCreatedListId();
 
   return (

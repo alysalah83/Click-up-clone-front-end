@@ -5,7 +5,7 @@ import {
   HydrationBoundary,
   dehydrate,
 } from "@tanstack/react-query";
-import { redirect, RedirectType } from "next/navigation";
+import { notFound, redirect, RedirectType } from "next/navigation";
 import { listServices } from "../services/list.service";
 
 async function ListIdDataLayer({
@@ -17,8 +17,8 @@ async function ListIdDataLayer({
 }) {
   const { listId } = await paramsPromise;
 
-  const list = await listServices.getList(listId);
-  if (!list) redirect("/home/lists", RedirectType.replace);
+  const list = await listServices.getList(listId).catch(() => notFound());
+  if (!list) notFound();
 
   const queryClient = new QueryClient();
   await Promise.all([

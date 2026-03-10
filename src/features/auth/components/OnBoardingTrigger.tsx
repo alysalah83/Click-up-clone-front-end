@@ -13,6 +13,8 @@ function OnBoardingTrigger({
 }) {
   const user = use(userPromise);
 
+  if (!user) return null;
+
   const hasOnBoarded = user.hasOnBoarded;
 
   if (hasOnBoarded) return;

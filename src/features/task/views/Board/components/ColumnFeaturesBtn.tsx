@@ -13,6 +13,11 @@ import Modal, {
   ModalTrigger,
   useModal,
 } from "@/shared/ui/ModalCompound";
+import {
+  ToolTip,
+  ToolTipMessage,
+  ToolTipTrigger,
+} from "@/shared/ui/ToolTip/ToolTipCompound ";
 
 function ColumnFeaturesBtn({
   handleActiveColumn,
@@ -38,12 +43,17 @@ function ColumnFeaturesBtn({
       ) && (
         <Modal>
           <ModalTrigger>
-            <ButtonIcon
-              icon="trash"
-              size={4}
-              iconColor="text-red-400"
-              ariaLabel="delete statusButton"
-            />
+            <ToolTip>
+              <ToolTipTrigger>
+                <ButtonIcon
+                  icon="trash"
+                  size={4}
+                  iconColor="text-red-400"
+                  ariaLabel="delete statusButton"
+                />
+              </ToolTipTrigger>
+              <ToolTipMessage>Delete Status</ToolTipMessage>
+            </ToolTip>
           </ModalTrigger>
           <ModalContent>
             <DeleteConfirm statusName={statusName} statusId={statusId} />
