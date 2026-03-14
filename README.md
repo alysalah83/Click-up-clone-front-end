@@ -19,17 +19,17 @@
         <strong>Home Page</strong>
       </td>
       <td align="center">
-        <img src="assets/login.jpeg" alt="Login" width="300" />
+        <img src="assets/login.png" alt="Login" width="300" />
         <br>
         <strong>Login Page</strong>
       </td>
       <td align="center">
-        <img src="assets/signup.jpeg" alt="Signup" width="300" />
+        <img src="assets/signup.png" alt="Signup" width="300" />
         <br>
         <strong>Signup Page</strong>
       </td>
       <td align="center">
-        <img src="assets/overview.png" alt="Overview" width="300" />
+        <img src="assets/list-overview.png" alt="Overview" width="300" />
         <br>
         <strong>Overview</strong>
       </td>
@@ -51,14 +51,14 @@
         <strong>List View</strong>
       </td>
       <td align="center">
-        <img src="assets/table.png" alt="Table View" width="300" />
+        <img src="assets/table1.png" alt="Table View" width="300" />
         <br>
         <strong>Table View</strong>
       </td>
     </tr>
     <tr>
       <td align="center">
-        <img src="assets/create-workspace.png" alt="Create Workspace" width="300" />
+        <img src="assets/multistep-form.png" alt="Create Workspace" width="300" />
         <br>
         <strong>Create Workspace</strong>
       </td>
@@ -68,7 +68,7 @@
         <strong>Table View 2</strong>
       </td>
       <td align="center">
-        <img src="assets/whiteboard.png" alt="Whiteboard" width="300" />
+        <img src="assets/whitebaord.png" alt="Whiteboard" width="300" />
         <br>
         <strong>Whiteboard Collaboration</strong>
       </td>

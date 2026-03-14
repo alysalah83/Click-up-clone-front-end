@@ -7,7 +7,7 @@ import { LoginInputs } from "../types";
 import { redirect, RedirectType } from "next/navigation";
 import { formatActionError } from "@/shared/lib/utils/formatActionError";
 
-export async function loginUser(loginInputs: LoginInputs) {
+export async function loginUser(_prevState: any, loginInputs: LoginInputs) {
   try {
     const userInputs = loginSchema.parse(loginInputs);
     const { token } = await authServices.loginUser(userInputs);

@@ -7,7 +7,10 @@ import { SignupUserInputs } from "../types";
 import { setToken } from "@/shared/lib/cookies/setToken";
 import { formatActionError } from "@/shared/lib/utils/formatActionError";
 
-export async function signupUser(signupUserInputs: SignupUserInputs) {
+export async function signupUser(
+  _prevState: any,
+  signupUserInputs: SignupUserInputs,
+) {
   try {
     const userInputs = signupUserSchema.parse(signupUserInputs);
     const { token } = await authServices.signupUser(userInputs);
