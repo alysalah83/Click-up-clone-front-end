@@ -28,7 +28,6 @@ function SignupForm() {
     resolver: zodResolver(signupUserSchema),
   });
   const [state, action, isPending] = useActionState(signupUser, null);
-  const [error, setError] = useState<ErrorResponse | null>(null);
 
   const onSubmit = function (data: FormData) {
     startTransition(() => {
@@ -38,7 +37,6 @@ function SignupForm() {
         password: data.password,
       });
     });
-    if (state && state.status === "error") setError(error);
   };
 
   return (
@@ -88,8 +86,11 @@ function SignupForm() {
           >
             Create account
           </Button>
-          {error && (
-            <ErrorMessage error={error.message} errorObject={error.errors} />
+          {state?.error && (
+            <ErrorMessage
+              error={state.error.message}
+              errorObject={state.error.errors}
+            />
           )}
         </form>
         <div className="flex items-center gap-4">

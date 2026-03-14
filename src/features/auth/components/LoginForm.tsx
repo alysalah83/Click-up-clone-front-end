@@ -24,7 +24,6 @@ function LoginForm() {
     formState: { errors },
   } = useForm<FormData>({ mode: "onBlur", resolver: zodResolver(loginSchema) });
   const [state, action, isPending] = useActionState(loginUser, null);
-  const [error, setError] = useState<ErrorResponse | null>(null);
 
   const onSubmit = function (data: FormData) {
     startTransition(() => {
@@ -33,8 +32,6 @@ function LoginForm() {
         password: data.password,
       });
     });
-
-    if (state && state.status === "error") setError(state.error);
   };
 
   return (
@@ -75,8 +72,11 @@ function LoginForm() {
             Login
           </Button>
 
-          {error && (
-            <ErrorMessage error={error.message} errorObject={error.errors} />
+          {state?.error && (
+            <ErrorMessage
+              error={state.error.message}
+              errorObject={state.error.errors}
+            />
           )}
         </form>
         <div className="flex items-center gap-4">
