@@ -2,7 +2,7 @@
 
 import { use, useEffect } from "react";
 import { UserWithoutPassword } from "../types";
-import Modal, { ModalContent, useModal } from "@/shared/ui/ModalCompound";
+import Modal, { ModalContent } from "@/shared/ui/ModalCompound";
 import CreateSpaceFlow from "@/features/workspace/components/CreateSpaceFlow";
 import { updateUser } from "../actions/update-user.action";
 
@@ -13,26 +13,19 @@ function OnBoardingTrigger({
 }) {
   const user = use(userPromise);
 
-  if (!user) return null;
-
-  const hasOnBoarded = user.hasOnBoarded;
-
-  if (hasOnBoarded) return;
+  if (!user || user.hasOnBoarded) return null;
 
   return (
-    <Modal>
+    <Modal initialOpen={true}>
       <Content />
     </Modal>
   );
 }
 
 function Content() {
-  const { toggleModal } = useModal();
-
   useEffect(() => {
-    toggleModal();
     updateUser({ hasOnBoarded: true });
-  }, [toggleModal]);
+  }, []);
 
   return (
     <ModalContent>

@@ -13,6 +13,7 @@ import {
   useState,
 } from "react";
 import { createPortal } from "react-dom";
+import { AnimatePresence, motion } from "motion/react";
 
 interface MenuContextValues {
   menuMargin: number;
@@ -92,8 +93,9 @@ function useMenu() {
   return values;
 }
 
-function Overlay({ children }: { children: ReactNode }) {
+function Overlay() {
   const { toggleMenu } = useMenu();
+
   return (
     <div
       className="absolute inset-0 z-40 overflow-x-hidden overflow-y-hidden"
@@ -102,9 +104,7 @@ function Overlay({ children }: { children: ReactNode }) {
         if (e.target !== e.currentTarget) return;
         toggleMenu();
       }}
-    >
-      {children}
-    </div>
+    />
   );
 }
 
@@ -146,24 +146,35 @@ function MenuContent({ children }: { children: ReactNode }) {
     setPositionCords({ top, left });
   }, [triggerRef, menuRef, setPositionCords, isOpened, menuMargin]);
 
-  if (!mounted || !isOpened) return null;
+  if (!mounted) return null;
 
   const hasPosition = !!positionCords.top && !!positionCords.left;
 
   return createPortal(
-    <Overlay>
-      <div
-        style={{
-          top: positionCords.top ?? 0,
-          left: positionCords.left ?? 0,
-          visibility: hasPosition ? "visible" : "hidden",
-        }}
-        className="absolute z-50 rounded-lg bg-neutral-300 text-sm text-neutral-800 shadow-md shadow-neutral-900/10 dark:bg-neutral-800 dark:text-neutral-200"
-        ref={menuRef}
-      >
-        {children}
-      </div>
-    </Overlay>,
+    <>
+      {isOpened && <Overlay />}
+      <AnimatePresence>
+        {isOpened && (
+          <motion.div
+            key="menu"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            transition={{ duration: 0.15, ease: "easeOut" }}
+            style={{
+              top: positionCords.top ?? 0,
+              left: positionCords.left ?? 0,
+              visibility: hasPosition ? "visible" : "hidden",
+              transformOrigin: "top left",
+            }}
+            className="absolute z-50 rounded-lg bg-neutral-300 text-sm text-neutral-800 shadow-md shadow-neutral-900/10 dark:bg-neutral-800 dark:text-neutral-200"
+            ref={menuRef}
+          >
+            {children}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>,
     document.body,
   );
 }
