@@ -18,13 +18,13 @@ function StepsProgressBar({
             <div key={step} className="flex w-full">
               <div className="flex max-w-8 flex-col">
                 <span
-                  className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full ${isActiveStep || isCompletedStep ? "bg-indigo-700" : "bg-neutral-600"}`}
+                  className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full ${isActiveStep || isCompletedStep ? "bg-indigo-700" : "bg-neutral-600"} transition duration-300`}
                 >
                   {isCompletedStep ? "✓" : step + 1}
                 </span>
 
                 <p
-                  className={`mt-1 text-center text-xs ${isActiveStep ? "text-indigo-400" : "text-neutral-500"}`}
+                  className={`mt-1 text-center text-xs ${isActiveStep ? "text-indigo-400" : "text-neutral-500"} transition duration-300`}
                 >
                   {stepsLabel[step]}
                 </p>
@@ -32,7 +32,7 @@ function StepsProgressBar({
 
               {!isLastStep && (
                 <span
-                  className={`mt-3.5 h-1 w-full ${isCompletedStep ? "bg-indigo-700" : "bg-neutral-600"} `}
+                  className={`mt-3.5 h-1 w-full ${isCompletedStep ? "bg-indigo-700" : "bg-neutral-600"} transition duration-300`}
                 />
               )}
             </div>

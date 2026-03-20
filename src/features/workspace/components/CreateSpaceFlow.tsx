@@ -20,6 +20,7 @@ import { formatErrorForToast } from "@/shared/lib/utils/formatErrorForToast";
 import { useRouter } from "next/navigation";
 import { AvatarLetters } from "@/shared/ui/AvatarPicker/avatarPicker.types";
 import { IconsRegistry } from "@/shared/ui/IconPicker/types";
+import { AnimatePresence, motion } from "motion/react";
 
 function CreateSpaceFlow() {
   const { closeModal } = useModal();
@@ -99,6 +100,7 @@ function CreateSpaceFlow() {
     curStepComponent,
     handleGoNext,
     handleGoPrev,
+    direction,
   } = useMultiStep({ stepsComponents });
 
   const stepsLabel = ["Workspace", "List", "Status", "Task"];
@@ -108,12 +110,47 @@ function CreateSpaceFlow() {
       stepsLabel[curStep]?.toLocaleLowerCase() as keyof typeof flowData
     ].name.trim();
 
+  const variants = {
+    initial: (dir: number) => ({
+      x: dir > 0 ? 40 : -40,
+      opacity: 0,
+    }),
+    animate: {
+      x: 0,
+      opacity: 1,
+      transition: {
+        type: "spring" as const,
+        visualDuration: 0.25,
+        bounce: 0.1,
+      },
+    },
+    exit: (dir: number) => ({
+      x: dir > 0 ? -40 : 40,
+      opacity: 0,
+      transition: {
+        duration: 0.15,
+        ease: "easeIn" as const,
+      },
+    }),
+  };
+
   return (
     <ModalContent contentYPosition="withTopMargin">
       <div className="px-6 pt-6">
         <StepsProgressBar stepsLabel={stepsLabel} curActiveStep={curStep} />
       </div>
-      {curStepComponent}
+      <AnimatePresence mode="wait" custom={direction}>
+        <motion.div
+          key={curStep}
+          custom={direction}
+          variants={variants}
+          initial="initial"
+          animate="animate"
+          exit="exit"
+        >
+          {curStepComponent}
+        </motion.div>
+      </AnimatePresence>
       <footer className="mt-3 flex items-center justify-between px-6 pb-6">
         {isTouched && !isStepVialed && (
           <ErrorMessage error="name is required" />
