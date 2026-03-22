@@ -3,7 +3,6 @@
 import { Task } from "@/features/task/types";
 import { CALENDER_PRIORITY_COLORS } from "../calendar.consts";
 import { useDraggable } from "@dnd-kit/core";
-import { CSS } from "@dnd-kit/utilities";
 import { isSameDay } from "date-fns";
 import { ICONS_MAP } from "@/shared/icons/icons-map";
 import { TaskOptionsButton } from "@/features/task/components/TaskDetailPanel";
@@ -43,7 +42,9 @@ function CalendarTaskRow({ task, cellDate }: CalendarTaskRowProps) {
     <div
       ref={setNodeRef}
       style={{
-        transform: CSS.Translate.toString(transform),
+        transform: transform
+          ? `transform3d(${transform.x}px, ${transform.y}px, 0)`
+          : undefined,
         opacity: isDragging ? 0.4 : 1,
       }}
       {...attributes}
