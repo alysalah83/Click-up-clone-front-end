@@ -12,15 +12,14 @@ import { useTask } from "@/features/task/context/TaskProvider";
 import { useUpdateTask } from "@/features/task/hooks/useUpdateTask";
 import { useStatuses } from "@/features/status/hooks/useStatuses";
 import { STATUS_HIGHEST_ORDER } from "@/features/status/consts";
+import { TaskOptionsButton } from "@/features/task/components/TaskDetailPanel";
 
 function OptionsRow() {
+  const { task, toggleIsRenameOpen } = useTask();
   const {
-    task: {
-      id,
-      status: { name: statusName },
-    },
-    toggleIsRenameOpen,
-  } = useTask();
+    id,
+    status: { name: statusName },
+  } = task;
   const { updateTask } = useUpdateTask();
   const { statuses } = useStatuses();
 
@@ -62,6 +61,9 @@ function OptionsRow() {
         </ToolTipTrigger>
         <ToolTipMessage>Rename</ToolTipMessage>
       </ToolTip>
+
+      <TaskOptionsButton task={task} buttonSize={ICON_SIZE} />
+
       <Menu>
         <MenuTrigger>
           <ToolTip>

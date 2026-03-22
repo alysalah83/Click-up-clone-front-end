@@ -15,7 +15,13 @@ type ContentYPosition = "withTopMargin" | "center" | null;
 
 const ModalContext = createContext<ModalContextTypes | null>(null);
 
-function Modal({ children,initialOpen = false }: { children: ReactNode ,initialOpen?:boolean}) {
+function Modal({
+  children,
+  initialOpen = false,
+}: {
+  children: ReactNode;
+  initialOpen?: boolean;
+}) {
   const [isModalOpen, setIsModalOpen] = useState(initialOpen);
 
   const toggleModal = () => setIsModalOpen((cur) => !cur);

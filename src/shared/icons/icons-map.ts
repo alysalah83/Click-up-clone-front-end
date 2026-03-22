@@ -49,6 +49,8 @@ import {
   TbZoomQuestionFilled,
 } from "react-icons/tb";
 import { VscGraph } from "react-icons/vsc";
+import { RiDraggable } from "react-icons/ri";
+
 import { TiCalendar } from "react-icons/ti";
 
 export const ICONS_MAP = {
@@ -95,4 +97,5 @@ export const ICONS_MAP = {
   noRoute: TbRouteOff,
   notFound: TbZoomQuestionFilled,
   calendar: TiCalendar,
+  dragHandle: RiDraggable,
 } as const;
