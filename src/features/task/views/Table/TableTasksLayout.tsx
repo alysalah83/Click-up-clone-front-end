@@ -6,14 +6,16 @@ import ActionsRow from "../../components/ActionsRow";
 
 function TableTasksLayout() {
   return (
-    <section className="w-full min-w-3xl overflow-x-hidden md:overflow-x-auto">
-      <CheckTaskProvider>
-        <Header />
-        <Body />
-        <ActionsRow />
-      </CheckTaskProvider>
+    <section className="w-full overflow-x-auto">
+      <div className="min-w-3xl">
+        <CheckTaskProvider>
+          <Header />
+          <Body />
+          <ActionsRow />
+        </CheckTaskProvider>
 
-      <TableAddTaskRow styleFor="table" />
+        <TableAddTaskRow styleFor="table" />
+      </div>
     </section>
   );
 }

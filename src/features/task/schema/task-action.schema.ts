@@ -8,8 +8,8 @@ const createTaskSchema = z.object({
     .enum(["urgent", "high", "normal", "low", "none"])
     .default("none")
     .optional(),
-  startDate: z.date().nullable().optional(),
-  endDate: z.date().nullable().optional(),
+  startDate: z.coerce.date().optional().nullable(),
+  endDate: z.coerce.date().optional().nullable(),
 });
 
 const updateTaskSchema = z.object({

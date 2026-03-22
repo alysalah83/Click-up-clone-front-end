@@ -64,23 +64,23 @@ function ButtonWithIconLabel({
     });
     linkHref = `/home/lists/${newListId}${href}?${listSearchParams.toString()}`;
   } else if (isListsOverview) linkHref = `/home${href}`;
-  else linkHref = `/home/${newListId}${href}`;
+  else linkHref = `/home/lists/${newListId}${href}`;
 
   return (
     <Link href={linkHref}>
       <button
         type="button"
         aria-label={`${label} button`}
-        className={`flex gap-1 px-2 py-1 ${
+        className={`flex items-center gap-1 px-2 py-1 text-[11px] sm:text-xs ${
           isActive
-            ? "rounded-tl-lg rounded-tr-lg border-b-2 border-neutral-950 pb-2 text-neutral-950 dark:border-neutral-50 dark:text-neutral-50"
-            : "mb-2 rounded-lg text-neutral-500 dark:text-neutral-300"
-        } items-center transition duration-300 ${hoverElementClasses}`}
+            ? "rounded-tl-lg rounded-tr-lg border-b-2 border-neutral-300 text-neutral-950 sm:rounded-tl-lg sm:rounded-tr-lg sm:border-x-0 sm:border-t-0 sm:pb-2 dark:text-neutral-50 dark:sm:border-neutral-50"
+            : "text-neutral-500 sm:mb-2 dark:text-neutral-300"
+        } transition duration-300 ${hoverElementClasses}`}
       >
         <span className={`rounded-sm p-0.5 ${iconBgColor}`}>
           <Icon className="h-3 w-3 fill-neutral-50" />
         </span>
-        <span className={`text-xs font-medium capitalize`}>{label}</span>
+        <span className="font-medium capitalize">{label}</span>
       </button>
     </Link>
   );

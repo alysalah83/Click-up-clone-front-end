@@ -16,9 +16,9 @@ async function ListsSummery() {
   if (workspacesCount === 0) return <EmptySpaces />;
 
   return (
-    <div className="flex flex-col gap-2 rounded-xl border border-neutral-300 bg-neutral-200 px-6 py-4 text-neutral-600 md:px-8 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-400">
+    <div className="flex flex-col gap-2 rounded-xl border border-neutral-300 bg-neutral-200 px-3 py-4 text-neutral-600 sm:px-6 md:px-8 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-400">
       <h2 className="mb-4 flex items-end gap-4">
-        <span className="text-2xl font-semibold tracking-wide text-neutral-900 dark:text-neutral-100">
+        <span className="text-lg font-semibold tracking-wide text-neutral-900 sm:text-2xl dark:text-neutral-100">
           All Lists
         </span>
         <span className="text-sm font-medium text-neutral-700 dark:text-neutral-500">
@@ -42,18 +42,18 @@ async function ListItem({ list }: { list: List }) {
   const { totalTasksCount, completedTasksCount } =
     await tasksService.getTasksCompleteAndTotalCounts(id);
   return (
-    <div className="flex items-center justify-between gap-4">
+    <div className="flex items-center justify-between gap-3 sm:gap-4">
       <Link href={`/home/lists/${id}/board`}>
         <div className="group flex cursor-pointer items-center gap-3">
-          <ICONS_MAP.list className="size-4 fill-neutral-500 transition duration-200 group-hover:fill-neutral-600 dark:fill-neutral-400 dark:group-hover:fill-neutral-500" />
-          <span className="text-base font-medium underline underline-offset-2 transition duration-200 group-hover:text-neutral-700 group-hover:no-underline group-active:text-neutral-700 group-active:no-underline dark:group-hover:text-neutral-500 dark:group-active:text-neutral-500">
+          <ICONS_MAP.list className="size-3 fill-neutral-500 transition duration-200 group-hover:fill-neutral-600 sm:size-4 dark:fill-neutral-400 dark:group-hover:fill-neutral-500" />
+          <span className="text-sm font-medium underline underline-offset-2 transition duration-200 group-hover:text-neutral-700 group-hover:no-underline group-active:text-neutral-700 group-active:no-underline sm:text-base dark:group-hover:text-neutral-500 dark:group-active:text-neutral-500">
             {name}
           </span>
         </div>
       </Link>
       {totalTasksCount ? (
         <div className={`flex items-center gap-4`}>
-          <div className="relative h-2 w-32 rounded-lg bg-neutral-300 sm:w-52 dark:bg-neutral-800">
+          <div className="relative h-2 w-24 rounded-lg bg-neutral-300 sm:w-52 dark:bg-neutral-800">
             <div
               style={{
                 width: `${(completedTasksCount / totalTasksCount) * 100}%`,
@@ -66,7 +66,9 @@ async function ListItem({ list }: { list: List }) {
           </p>
         </div>
       ) : (
-        <p className="font-semibold">No Tasks to display</p>
+        <p className="text-sm font-medium sm:text-base sm:font-semibold">
+          No Tasks to display
+        </p>
       )}
     </div>
   );

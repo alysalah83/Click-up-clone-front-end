@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 
 function page() {
   return (
-    <main className="p-8">
+    <main className="p-3 sm:p-4 lg:p-8">
       <ListSlides />
     </main>
   );

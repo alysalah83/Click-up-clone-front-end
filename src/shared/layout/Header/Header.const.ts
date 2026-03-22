@@ -18,6 +18,12 @@ export const HEADER_MENU = [
     label: "List",
   },
   {
+    icon: "calendar",
+    iconBgColor: "bg-orange-500",
+    href: "/calendar",
+    label: "Calendar",
+  },
+  {
     icon: "exclamationMark",
     iconBgColor: "bg-gray-500",
     href: "/lists",

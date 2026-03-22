@@ -23,7 +23,7 @@ interface MenuItem {
 function SideNav() {
   const [_, action, isPending] = useActionState(signOutUser, null);
   return (
-    <menu className="mr-2 flex w-fit flex-col items-center gap-6 rounded-xl bg-neutral-200 px-2 py-4 dark:bg-neutral-900">
+    <menu className="mr-2 flex w-fit flex-col items-center gap-6 rounded-xl bg-neutral-200 px-1 py-4 md:px-2 dark:bg-neutral-900">
       {SIDE_NAV_ITEMS.map((item) => (
         <SideMenuLink menuItem={item} key={item.href} />
       ))}
@@ -73,7 +73,9 @@ function SideMenuLink({ menuItem }: { menuItem: MenuItem }) {
           isActive={isActive}
           ariaLabel={`${label} button`}
         />
-        <span className="text-xs font-bold capitalize">{label}</span>
+        <span className="text-xs font-medium capitalize md:font-bold">
+          {label}
+        </span>
       </Link>
     </li>
   );

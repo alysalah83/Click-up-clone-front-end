@@ -7,6 +7,7 @@ import { useUpdateTask } from "../hooks/useUpdateTask";
 import { useMenu } from "@/shared/ui/Menu/MenuCompound";
 import DatePicker from "./DatePicker";
 import { useTask } from "../context/TaskProvider";
+import { TaskDateRange } from "../types";
 
 function DateUpdater() {
   const { updateTask } = useUpdateTask();
@@ -22,10 +23,7 @@ function DateUpdater() {
     },
   ]);
 
-  const handleUpdateDate = function (datesRange?: {
-    startDate?: Date;
-    endDate?: Date;
-  }) {
+  const handleUpdateDate = function (datesRange?: TaskDateRange) {
     const newDates = datesRange ?? { startDate: null, endDate: null };
 
     updateTask({

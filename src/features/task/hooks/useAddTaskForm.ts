@@ -2,7 +2,7 @@
 
 import { useParams } from "next/navigation";
 import { useAddTask } from "./useAddTask";
-import { useForm } from "react-hook-form";
+import { Resolver, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { createTaskSchema } from "../schema/task-action.schema";
 import { CreateTaskInput, Task } from "../types";
@@ -26,7 +26,7 @@ export function useAddTaskForm({ statusId, onClose }: UseClientAddTaskProps) {
     control,
     formState: { errors, isValid },
   } = useForm<CreateTaskInput>({
-    resolver: zodResolver(createTaskSchema),
+    resolver: zodResolver(createTaskSchema) as Resolver<CreateTaskInput>,
     defaultValues: { name: "", priority: "none", statusId, listId },
     mode: "onChange",
   });

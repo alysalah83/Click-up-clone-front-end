@@ -7,9 +7,9 @@ function MainContent({ children }: { children: ReactNode }) {
   const { isSideBarOpened } = useSideBarStore();
   return (
     <section
-      className={`flex h-full w-full min-w-0 flex-1 ${
-        !isSideBarOpened ? "rounded-tl-xl rounded-bl-xl" : ""
-      } dark:bg-neutral-925 flex-col overflow-hidden rounded-tr-xl rounded-br-xl bg-neutral-100`}
+      className={`dark:bg-neutral-925 flex min-h-screen w-full min-w-0 flex-1 flex-col overflow-hidden bg-neutral-100 sm:min-h-0 ${
+        !isSideBarOpened ? "sm:rounded-tl-xl sm:rounded-bl-xl" : ""
+      } sm:rounded-tr-xl sm:rounded-br-xl`}
     >
       {children}
     </section>

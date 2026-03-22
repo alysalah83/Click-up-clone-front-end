@@ -5,7 +5,7 @@ import OptionsMenuItem from "./OptionsMenuItem";
 
 function OptionsMenu({ options }: { options: OptionItem[] }) {
   return (
-    <menu className="min-w-3xs p-2">
+    <menu className="min-w-3xs list-none p-2">
       {options.map((option) => (
         <OptionsMenuItem option={option} key={option.label} />
       ))}

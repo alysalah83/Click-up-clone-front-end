@@ -9,7 +9,6 @@ import { formatActionError } from "@/shared/lib/utils/formatActionError";
 
 export async function createList(
   workspaceId: Workspace["id"],
-  _prevState: ActionResponse,
   formData: FormData,
 ): Promise<ActionResponse> {
   try {

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useMenu } from "@/shared/ui/Menu/MenuCompound";
 import { useUpdateTasks } from "../../hooks/useUpdateTasks";
 import DatePicker from "../DatePicker";
+import { TaskDateRange } from "../../types";
 
 function DatesUpdater({ tasksId }: { tasksId: Set<string> }) {
   const { updateTasks } = useUpdateTasks();
@@ -16,10 +17,7 @@ function DatesUpdater({ tasksId }: { tasksId: Set<string> }) {
     },
   ]);
 
-  const handleUpdateDates = function (datesRange?: {
-    startDate?: Date;
-    endDate?: Date;
-  }) {
+  const handleUpdateDates = function (datesRange?: TaskDateRange) {
     const newDates = datesRange ?? { startDate: null, endDate: null };
 
     updateTasks({

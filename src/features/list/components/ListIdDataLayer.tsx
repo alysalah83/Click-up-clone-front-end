@@ -5,7 +5,7 @@ import {
   HydrationBoundary,
   dehydrate,
 } from "@tanstack/react-query";
-import { notFound, redirect, RedirectType } from "next/navigation";
+import { notFound } from "next/navigation";
 import { listServices } from "../services/list.service";
 
 async function ListIdDataLayer({

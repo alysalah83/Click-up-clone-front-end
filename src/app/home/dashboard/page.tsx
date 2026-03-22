@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 function DashboardPage() {
   return (
-    <main className="p-8">
+    <main className="p-3 sm:p-4 lg:p-8">
       <main className="grid grid-cols-1 gap-6 text-neutral-600 lg:grid-cols-2 dark:text-neutral-400">
         <section className="col-span-1 grid grid-cols-1 gap-4 sm:grid-cols-2">
           <DashboardStatusCards />

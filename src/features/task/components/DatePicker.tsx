@@ -13,7 +13,7 @@ function DatePicker({
   date,
   setDate,
 }: {
-  action: ((date?: TaskDateRange) => void) | any;
+  action: (date?: TaskDateRange) => void;
   date: DateState;
   setDate: React.Dispatch<React.SetStateAction<DateState>>;
 }) {
@@ -51,8 +51,8 @@ function DatePicker({
           stretch={true}
           onClick={() =>
             action({
-              startDate: date[0]?.startDate,
-              endDate: date[0]?.endDate,
+              startDate: date[0]?.startDate!,
+              endDate: date[0]?.endDate!,
             })
           }
         >

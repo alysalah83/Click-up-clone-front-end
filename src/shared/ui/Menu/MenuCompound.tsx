@@ -130,25 +130,25 @@ function MenuContent({ children }: { children: ReactNode }) {
 
     const pageHight = window.innerHeight + window.scrollY;
     const pageWidth = window.innerWidth + window.scrollX;
-    // default position is bottom the trigger ele
     let top = triggerRect.bottom + window.scrollY + menuMargin;
     let left = triggerRect.left + window.scrollX;
 
     if (pageHight - Math.abs(top) < menuRect.height)
-      top = triggerRect.top + window.scrollY - menuRect.height - menuMargin; //making menu top
+      top = triggerRect.top + window.scrollY - menuRect.height - menuMargin;
 
     if (pageHight - Math.abs(top) < menuRect.height)
-      top = pageHight - menuRect.height + window.scrollY - menuMargin; //making menu sticky to the top of viewport
+      top = pageHight - menuRect.height + window.scrollY - menuMargin;
 
     if (pageWidth - left < menuRect.width)
-      left = pageWidth - menuRect.width + window.scrollX - menuMargin; //making menu sticky to the left of viewport
+      left = pageWidth - menuRect.width + window.scrollX - menuMargin;
 
     setPositionCords({ top, left });
   }, [triggerRef, menuRef, setPositionCords, isOpened, menuMargin]);
 
   if (!mounted) return null;
 
-  const hasPosition = !!positionCords.top && !!positionCords.left;
+  const hasPosition =
+    positionCords.top !== null && positionCords.left !== null;
 
   return createPortal(
     <>
@@ -169,6 +169,7 @@ function MenuContent({ children }: { children: ReactNode }) {
             }}
             className="absolute z-50 rounded-lg bg-neutral-300 text-sm text-neutral-800 shadow-md shadow-neutral-900/10 dark:bg-neutral-800 dark:text-neutral-200"
             ref={menuRef}
+            onClick={(e) => e.stopPropagation()}
           >
             {children}
           </motion.div>

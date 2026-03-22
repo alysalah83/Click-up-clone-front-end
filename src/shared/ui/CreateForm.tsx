@@ -2,19 +2,18 @@ import {
   Dispatch,
   ReactNode,
   SetStateAction,
-  useActionState,
-  useEffect,
+  useTransition,
+  useState,
 } from "react";
 import ErrorMessage from "./ErrorMessage/ErrorMessage";
 import ControlledFormInput from "./Input/ControlledInput";
 import { useRouter } from "next/navigation";
 import { useModal } from "./ModalCompound";
-import { ActionResponse } from "../types/action.types";
+import { ActionResponse, ErrorResponse } from "../types/action.types";
 import { Button } from "./Button";
 
 interface CreateFormProps {
   children?: ReactNode;
-
   theAction: (...args: any) => Promise<ActionResponse>;
   inputPlaceholder: string;
   name: string;
@@ -39,24 +38,34 @@ function CreateForm({
   inputValue: nameValue,
 }: CreateFormProps) {
   const { push } = useRouter();
-  const [actionStatus, action, isPending] = useActionState(theAction, {
-    status: "idle",
-  });
   const { toggleModal } = useModal();
+  const [isPending, startTransition] = useTransition();
+  const [error, setError] = useState<ErrorResponse | null>(null);
 
   const isFormValid = nameValue.trim().length > 0;
 
-  useEffect(() => {
-    if (actionStatus.status === "success" && "payload" in actionStatus) {
-      push(`/home/lists/${actionStatus.payload.listId}/board`);
-      toggleModal();
-    }
-  }, [push, actionStatus, toggleModal]);
+  const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+
+    startTransition(async () => {
+      const result = await theAction(formData);
+
+      if (result.status === "error") return setError(result.error);
+
+      if (result.status === "success") {
+        if ("payload" in result)
+          push(`/home/lists/${result.payload.listId}/board`);
+
+        toggleModal();
+      }
+    });
+  };
 
   return (
     <form
-      action={action}
-      className="flex max-w-80 flex-col gap-5 p-6 text-neutral-700 lg:max-w-lg lg:min-w-lg dark:text-neutral-500"
+      onSubmit={handleSubmit}
+      className="flex min-w-80 flex-col gap-5 p-6 text-neutral-700 lg:max-w-lg lg:min-w-lg dark:text-neutral-500"
     >
       <header className="flex flex-col gap-2">
         <h2 className="text-lg font-medium text-neutral-900 dark:text-neutral-100">
@@ -83,11 +92,8 @@ function CreateForm({
         </div>
       </main>
       <footer className="mt-3 flex justify-between">
-        {actionStatus.status === "error" && (
-          <ErrorMessage
-            error={actionStatus.error.message}
-            errorObject={actionStatus.error.errors}
-          />
+        {error && (
+          <ErrorMessage error={error.message} errorObject={error.errors} />
         )}
         <Button
           disabled={isPending || !isFormValid}
@@ -95,6 +101,7 @@ function CreateForm({
           size="medium"
           ariaLabel={`${actionFor} create button`}
           extraClasses="ml-auto"
+          buttonFor="submit"
         >
           Create
         </Button>

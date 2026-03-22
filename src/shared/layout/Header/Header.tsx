@@ -25,12 +25,12 @@ function Header({
 
   return (
     <header
-      className={`flex flex-col gap-3 border-b px-2 pt-4 sm:px-4 ${
-        !isSideBarOpened ? "rounded-tl-xl" : ""
+      className={`flex flex-col gap-3 border-b px-3 pt-3 sm:px-4 sm:pt-4 ${
+        !isSideBarOpened ? "sm:rounded-tl-xl" : ""
       } border-neutral-300 dark:border-neutral-700`}
     >
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-2">
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <div className="flex min-w-0 items-center gap-2">
           {!isSideBarOpened && (
             <ToolTip>
               <ToolTipMessage messagePosition="right">
@@ -53,15 +53,15 @@ function Header({
             withBg={true}
             padding="large"
           />
-          <h4 className="text-sm font-bold capitalize">Workload</h4>
+          <h4 className="truncate text-sm font-bold capitalize">Workload</h4>
         </div>
-        <div className="flex items-center gap-1">
+        <div className="ml-auto flex items-center gap-1">
           <ThemeButton />
           <UserLogo userPromise={userPromise} />
         </div>
       </div>
-      <div className="flex justify-between">
-        <menu className="flex sm:gap-2">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <menu className="flex flex-wrap gap-1 sm:gap-2">
           <NavButtons latestListIdPromise={latestListIdPromise} />
         </menu>
         <HeaderFeatures />

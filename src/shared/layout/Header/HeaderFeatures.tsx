@@ -13,8 +13,8 @@ function HeaderFeatures() {
   const isInTableView = pathname.includes("table");
 
   return (
-    <div className="mb-0.5 flex items-center gap-4">
-      {isInTaskView && (
+    isInTaskView && (
+      <div className="mb-1 flex flex-wrap items-center gap-2 sm:gap-4">
         <>
           <Menu>
             <MenuTrigger>
@@ -33,8 +33,8 @@ function HeaderFeatures() {
           </Menu>
           <SortBtnWithMenu withSortStatusField={isInTableView} />{" "}
         </>
-      )}
-    </div>
+      </div>
+    )
   );
 }
 

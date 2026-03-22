@@ -23,13 +23,13 @@ function CreateWorkspaceForm() {
 
   return (
     <CreateForm
-      theAction={createWorkspaceWithAvatar}
       name={nameValue}
+      theAction={createWorkspaceWithAvatar}
       actionFor="workspace"
       headerTitle="Create a Space"
       headerText="A Space represents teams, departments, or groups, each with its own
         Lists, workflows, and settings."
-      inputLabel="icon & name"
+      inputLabel="Icon & name"
       inputPlaceholder="e.g. Marketing, Engineering, HR"
       setInputValue={setNameValue}
       inputValue={nameValue}

@@ -28,11 +28,14 @@ import {
 import { MdLockOutline, MdOutlineBlock, MdSunny } from "react-icons/md";
 import {
   PiArrowBendDownLeftBold,
+  PiArrowBendDownRightBold,
   PiCalendarDotsFill,
   PiExclamationMarkBold,
   PiWarningFill,
 } from "react-icons/pi";
 import {
+  RiArrowLeftSLine,
+  RiArrowRightSLine,
   RiHomeSmileFill,
   RiInsertColumnLeft,
   RiProgress3Line,
@@ -46,6 +49,7 @@ import {
   TbZoomQuestionFilled,
 } from "react-icons/tb";
 import { VscGraph } from "react-icons/vsc";
+import { TiCalendar } from "react-icons/ti";
 
 export const ICONS_MAP = {
   home: RiHomeSmileFill,
@@ -66,6 +70,9 @@ export const ICONS_MAP = {
   dotsRow: BsThreeDots,
   trash: HiOutlineTrash,
   leftArrow: PiArrowBendDownLeftBold,
+  rightArrow: PiArrowBendDownRightBold,
+  leftArrow2: RiArrowLeftSLine,
+  rightArrow2: RiArrowRightSLine,
   checkMark: IoCheckmarkSharp,
   pen: BsPencil,
   mail: FiMail,
@@ -87,4 +94,5 @@ export const ICONS_MAP = {
   addColumn: RiInsertColumnLeft,
   noRoute: TbRouteOff,
   notFound: TbZoomQuestionFilled,
+  calendar: TiCalendar,
 } as const;

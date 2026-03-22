@@ -33,7 +33,7 @@ interface ButtonIconProps {
   padding?: PaddingType;
   type?: "default" | "primary" | "bordered";
   isActive?: boolean;
-  btnType?: "button" | "submit";
+  btnType?: HTMLButtonElement["type"];
   disabled?: boolean;
   disabledIconColor?: string;
 }

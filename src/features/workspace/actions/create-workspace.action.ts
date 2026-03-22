@@ -9,7 +9,6 @@ import { formatActionError } from "@/shared/lib/utils/formatActionError";
 
 export async function createWorkspace(
   avatar: CreateAvatarInput,
-  prevState: ActionResponse,
   formData: FormData,
 ): Promise<ActionResponse> {
   try {

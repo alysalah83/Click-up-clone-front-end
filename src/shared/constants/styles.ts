@@ -12,7 +12,7 @@ export const sizeClasses: Record<number, string> = {
   4.5: "h-4.5 w-4.5",
   5: "h-5 w-5",
   5.5: "h-5.5 w-5.5",
-  6: "h-6 w-6",
+  6: "h-5 w-5 md:h-6 md:w-6",
   7: "h-7 w-7",
   8: "h-8 w-8",
   9: "h-9 w-9",
