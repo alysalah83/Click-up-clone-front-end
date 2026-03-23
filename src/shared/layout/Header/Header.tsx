@@ -61,9 +61,7 @@ function Header({
         </div>
       </div>
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <menu className="flex flex-wrap gap-1 sm:gap-2">
-          <NavButtons latestListIdPromise={latestListIdPromise} />
-        </menu>
+        <NavButtons latestListIdPromise={latestListIdPromise} />
         <HeaderFeatures />
       </div>
     </header>
