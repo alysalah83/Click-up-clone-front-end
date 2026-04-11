@@ -11,6 +11,8 @@ import { useTask } from "@/features/task/context/TaskProvider";
 import TaskRenameForm from "@/features/task/components/TaskRenameForm";
 import OptionsRow from "./OptionsRow";
 import SkeletonLoader from "@/shared/ui/SkeletonLoader";
+import { ICONS_MAP } from "@/shared/icons/icons-map";
+import { TASK_ICON_SIZE } from "@/features/task/constants/tasks.const";
 
 interface TaskCardProps {
   task: Task;
@@ -54,9 +56,16 @@ function TaskCard({ task }: TaskCardProps) {
             <TaskRenameForm />
           ) : (
             <div className="flex justify-between">
-              <span className="line-clamp-2 grow-0 text-sm font-medium text-neutral-950 transition duration-300 dark:text-neutral-50 dark:group-hover:text-neutral-300 dark:group-active:text-neutral-300">
-                {name}
-              </span>
+              <div className="flex items-center gap-1">
+                <ICONS_MAP.dragHandle
+                  className="size-3.5 cursor-grab text-neutral-500"
+                  aria-label="drag handle"
+                />
+                <span className="line-clamp-2 grow-0 text-sm font-medium text-neutral-950 transition duration-300 dark:text-neutral-50 dark:group-hover:text-neutral-300 dark:group-active:text-neutral-300">
+                  {name}
+                </span>
+              </div>
+
               <DropdownMenu>
                 <OptionsRow />
               </DropdownMenu>
