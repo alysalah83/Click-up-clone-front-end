@@ -41,8 +41,8 @@ function SignupForm() {
 
   return (
     <LogAndSignLayout page="signup">
-      <div className="flex flex-col gap-4">
-        <form className="flex flex-col gap-6" onSubmit={handleSubmit(onSubmit)}>
+      <div className="flex flex-col gap-5">
+        <form className="flex flex-col gap-5" onSubmit={handleSubmit(onSubmit)}>
           <FormInputWithLabel
             icon="user"
             label="Full Name"
@@ -78,8 +78,9 @@ function SignupForm() {
             type="colored"
             stretch={true}
             size="large"
-            ariaLabel="login button"
-            extraClasses="mt-2"
+            rounded="large"
+            ariaLabel="create account button"
+            extraClasses="mt-1 shadow-md shadow-indigo-500/25"
             disabled={isPending}
             pending={isPending}
             pendingSpinnerWidth="medium"
@@ -94,9 +95,9 @@ function SignupForm() {
           )}
         </form>
         <div className="flex items-center gap-4">
-          <span className="grow border-t border-neutral-300" />
-          <p className="text-xl font-bold text-neutral-500">or</p>
-          <span className="grow border-t border-neutral-300" />
+          <span className="grow border-t border-gray-100" />
+          <p className="text-sm font-semibold text-gray-400">or</p>
+          <span className="grow border-t border-gray-100" />
         </div>
         <SignupGuestBtn stretch={true} />
       </div>
