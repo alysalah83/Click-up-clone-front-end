@@ -14,7 +14,17 @@
   <table>
     <tr>
       <td align="center">
-        <img src="assets/home-page.png" alt="Home Page" width="300" />
+        <img src="assets/homePage1.png" alt="Home Page" width="300" />
+        <br>
+        <strong>Home Page</strong>
+      </td>
+      <td align="center">
+        <img src="assets/homePage2.png" alt="Home Page" width="300" />
+        <br>
+        <strong>Home Page</strong>
+      </td>
+      <td align="center">
+        <img src="assets/homePage3.png" alt="Home Page" width="300" />
         <br>
         <strong>Home Page</strong>
       </td>
@@ -22,11 +32,6 @@
         <img src="assets/login.png" alt="Login" width="300" />
         <br>
         <strong>Login Page</strong>
-      </td>
-      <td align="center">
-        <img src="assets/signup.png" alt="Signup" width="300" />
-        <br>
-        <strong>Signup Page</strong>
       </td>
       <td align="center">
         <img src="assets/list-overview.png" alt="Overview" width="300" />
