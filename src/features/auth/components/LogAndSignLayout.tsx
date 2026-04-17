@@ -14,7 +14,6 @@ function LogAndSignLayout({
   const isLoginPage = page === "login";
   return (
     <div className="relative flex min-h-screen w-full overflow-hidden">
-      {/* ─── Left decorative panel (desktop only) ─── */}
       <div className="hidden flex-col justify-between bg-linear-to-br from-indigo-600 via-violet-600 to-purple-700 p-12 lg:flex lg:w-[45%]">
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
           <div className="absolute -top-20 -left-20 h-80 w-80 rounded-full border border-white/10" />
@@ -25,7 +24,12 @@ function LogAndSignLayout({
         </div>
 
         <div className="relative z-10">
-          <h2 className="text-4xl font-extrabold text-white">Click Up</h2>
+          <Link
+            className="cursor-pointer text-4xl font-extrabold text-white"
+            href="/"
+          >
+            Click Up
+          </Link>
           <p className="mt-2 text-lg font-medium text-indigo-100/70">
             Manage everything in one place
           </p>
@@ -47,19 +51,15 @@ function LogAndSignLayout({
         </div>
       </div>
 
-      {/* ─── Right / Main content panel ─── */}
-      <div className="relative flex w-full min-h-screen flex-col items-center justify-center bg-gray-50 px-4 py-20 sm:px-6 lg:w-[55%] lg:py-10">
-        {/* Gradient background visible only on mobile/tablet */}
+      <div className="relative flex min-h-screen w-full flex-col items-center justify-center bg-gray-50 px-4 py-20 sm:px-6 lg:w-[55%] lg:py-10">
         <div className="absolute inset-0 bg-linear-to-br from-indigo-600 via-violet-600 to-purple-700 lg:hidden" />
 
-        {/* Decorative rings for mobile/tablet */}
         <div className="pointer-events-none absolute inset-0 overflow-hidden lg:hidden">
           <div className="absolute -top-16 -right-16 h-64 w-64 rounded-full border border-white/10" />
           <div className="absolute -bottom-20 -left-20 h-72 w-72 rounded-full border border-white/7" />
           <div className="absolute top-1/3 left-10 h-20 w-20 rounded-full bg-white/5" />
         </div>
 
-        {/* Dot grid for desktop only */}
         <div
           className="absolute inset-0 hidden opacity-[0.03] lg:block"
           style={{
@@ -69,9 +69,7 @@ function LogAndSignLayout({
           }}
         />
 
-        {/* Top bar with logo + toggle */}
         <div className="absolute top-5 right-5 left-5 z-10 flex items-center justify-between sm:top-7 sm:right-7 sm:left-7">
-          {/* Logo on mobile (hidden on desktop since left panel shows it) */}
           <Link href="/" className="flex items-center gap-2 lg:invisible">
             <Image src={icon} alt="Click Up logo" width={26} height={26} />
             <span className="text-lg font-extrabold text-white lg:text-gray-800">
@@ -99,7 +97,6 @@ function LogAndSignLayout({
           </div>
         </div>
 
-        {/* Form card */}
         <section className="relative z-10 w-full max-w-md rounded-2xl border border-white/20 bg-white px-8 py-8 shadow-2xl shadow-black/10 sm:px-10 sm:py-10 lg:border-gray-100 lg:shadow-xl lg:shadow-gray-200/60">
           <h1 className="mb-7 border-b border-gray-100 pb-4 text-center text-2xl font-bold tracking-wide text-gray-800 sm:mb-8 sm:text-3xl">
             {isLoginPage ? "Welcome back!" : "Seconds to sign up!"}
